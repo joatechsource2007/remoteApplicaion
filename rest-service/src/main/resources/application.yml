@@ -1,0 +1,169 @@
+#rest-service configuration
+
+spring:
+  application:
+    name: REST-SERVICE
+  profiles:
+    active: development              # 개발용 프로파일: 로컬사용
+  http:
+    mvc:
+      hidden-method:
+        filter:
+          enabled: true
+    output:
+      ansi:
+        enabled: always                # 콘솔 창에 출력되는 로깅 메세지를 색으로 구분해서 출력
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2022Dialect
+  jackson:
+    # Date format string or a fully-qualified date format class name. For instance, 'yyyy-MM-dd HH:mm:ss'
+    date-format: "yyyy-MM-dd HH:mm:ss.SSS"
+    # Locale used for formatting
+    time-zone: "GMT+9"
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}@${server.address}:${server.port}
+    ip-address: ${server.address}
+    prefer-ip-address: true
+
+management:     #spring actuator 를 이용한 우아한 종료  /actuator/shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: shutdown,info
+
+log4jdbc:
+  spylogdelegator:
+    name: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+  dump:
+    sql:
+      maxlinelength: 0
+
+joa:
+  app:
+    jwtSecret: The_Quick_Brown_Fox_Jumps_Over_The_Lazy_Dog_By_Joa
+    jwtExpirationMs: 86400000
+    jwtRefreshExpirationMs: 86400000
+
+server.error:
+  include-exception: false
+  include-stacktrace: never # 오류 응답에 stacktrace 내용을 포함할 지 여부
+  path: '/error' # 오류 응답을 처리할 Handler의 경로
+  whitelabel.enabled: true # 서버 오류 발생시 브라우저에 보여줄 기본 페이지 생성 여부
+
+# jasypt encryptor
+jasypt:
+  encryptor:
+    bean: jasyptStringEncrptor
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_WEB;password=WEB36900**;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 5000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  ## MULTIPART (MultipartProperties)
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB # Threshold after which files are written to disk.
+      maxFileSize: 200MB # Max file size.
+      maxRequestSize: 215MB # Max Request Size
+      location: c:/RemoteFiles
+
+location.nts: c:/RemoteFiles/NTS
+
+server:
+  port: 9083   #server.port=${PORT:8083}
+  address: 0.0.0.0
+  connection-timeout: 1800000
+  tomcat:
+    connection-timeout: 1800000 # milliseconds
+    max-wait: 1800000 # milliseconds
+
+logging:
+  config: classpath:log4j2-development.xml      # 개발 로그설정파일
+  level:
+    root: info
+    web: debug
+    com.zaxxer.hikari.pool.HikariPool: debug
+proxy:
+  server:
+    url: http://localhost:8090
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_WEB;password=WEB36900**;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 30
+      connection-timeout: 50000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 900000
+      max-lifetime: 2700000
+  ## MULTIPART (MultipartProperties)
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB # Threshold after which files are written to disk.
+      maxFileSize: 200MB # Max file size.
+      maxRequestSize: 215MB # Max Request Size
+      location: C:/RemoteFiles
+
+location.nts: c:/RemoteFiles/NPKI
+
+server:
+  port: 9083   #server.port=${PORT:8083}
+  address: 0.0.0.0
+  connection-timeout: 1800000
+  http2:
+    enabled: false
+  #ssl:
+  #  enabled: true
+  #  keyStoreType : PKCS12
+  #  keyStorePassword : e1_rec&ssl&pw
+  #  protocol : TLS
+  #  keyStore : file:f:\\nginx-1.25.3\\conf\\cert\\www.ocasys.com.p12
+  #  enabled-protocols : TLSv1.1,TLSv1.2,TLSv1.3
+  tomcat:
+    connection-timeout: 1800000 # milliseconds
+    max-wait: 1800000 # milliseconds
+
+logging:
+  config: classpath:log4j2-production.xml      # 운영 로그설정파일
+
+proxy:
+  server:
+    url: http://172.31.0.100:8090
+---

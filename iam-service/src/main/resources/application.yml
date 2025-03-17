@@ -1,0 +1,148 @@
+#iam-service configuration
+spring:
+  application:
+    name: IAM-SERVICE
+  profiles:
+    active: development              # 개발용 프로파일
+  jackson:
+    # Date format string or a fully-qualified date format class name. For instance, 'yyyy-MM-dd HH:mm:ss'
+    date-format: "yyyy-MM-dd HH:mm:ss.SSS"
+    # Locale used for formatting
+    time-zone: "GMT+9"
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}@${server.address}:${server.port}
+    ip-address: ${server.address}
+    prefer-ip-address: true
+
+management:     #spring actuator 를 이용한 우아한 종료  /actuator/shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: shutdown,info
+
+
+#custom properties jwtSecret key 256bit : 영문32자리 한글16자리이상
+joa:
+  app:
+    jwtSecret: The_Quick_Brown_Fox_Jumps_Over_The_Lazy_Dog_By_Joa
+    jwtExpirationMinute: 30
+    jwtRefreshExpirationMinute: 720
+    jwtExpirationMs: 86400000
+    jwtRefreshExpirationMs: 86400000
+
+# jasypt encryptor
+jasypt:
+  encryptor:
+    bean: jasyptStringEncrptor
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=JOA_SERVICE;user=JOA_SERVICE;password=JOA_Service_Pass;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 5000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+server:
+  port: 9081 #server.port=${PORT:8081}
+  address: 0.0.0.0
+
+logging:
+  config: classpath:log4j2-development.xml      # 개발 로그설정파일
+  level:
+    root: info
+    web: debug
+    com.zaxxer.hikari.pool.HikariPool: debug
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=JOA_SERVICE;user=JOA_SERVICE;password=JOA_Service_Pass;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 30
+      connection-timeout: 50000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 900000
+      max-lifetime: 2700000
+
+server:
+  port: 9081   #server.port=${PORT:8082}
+  address: 0.0.0.0
+  # ssl:
+  #  enabled: true
+  #  keyStoreType : PKCS12
+  #  keyStorePassword : e1_rec&ssl&pw
+  #  protocol : TLS
+  #  keyStore : file:f:\\nginx-1.25.3\\conf\\cert\\www.ocasys.com.p12
+
+  # ssl 설치 후
+  # ssl:
+  #  enabled: true
+  #  keyStoreType : PKCS12
+  #  keyStorePassword : e1_rec&ssl&pw
+  #  protocol : TLS
+  #  keyStore : file:f:\\nginx-1.25.3\\conf\\cert\\www.ocasys.com.p12
+
+
+logging:
+  config: classpath:log4j2-production.xml      # 운영 로그설정파일
+
+---
+spring:
+  config:
+    activate:
+      on-profile: proxy-development
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    #url: ENC(gchIOrp+Pq03FOIJSxTrfhHH/ya93o8BiavojV093wGaO2nbnPESr3OMQ08VcR8EBJ3mePMPF8e3hB8YA70esW0W8peQlNxoPzs+JR4m8s7vg5M2XLEWz0AACz7iI9Yj1ZhbtU7q9w4=)
+    url: ENC(pNLm36bGG18c2Tmh9oTeebMmHnKp5vFhPtmFEV1UIiVyeDPojqk5OE77pGiI2dCGjq6aWrladDXI9iXMoVhX6UiAUPA2wzorpFH5JGpRb9KVmSvFFTFanpJexqoSibwQ)
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 5000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+server:
+  port: 9081
+  address: 0.0.0.0
+
+logging:
+  config: classpath:log4j2-proxy-development.xml      # 개발 로그설정파일
+  level:
+    root: info
+    web: debug
+    com.zaxxer.hikari.pool.HikariPool: debug
+---
