@@ -16,6 +16,14 @@ public interface TankService {
     Map<String, Object> tcustRcvDetail(Map<String,Object> param) throws SQLException;
 
     Map<String, Object> tcustRcvDetailV2(Map<String,Object> param) throws SQLException;
+    Map<String, Object> cuChargeList(Map<String,Object> param) throws SQLException;
+
+    Map<String, Object> tankinsplist(Map<String,Object> param) throws SQLException;
+
+    Map<String, Object> tankinsphist(Map<String,Object> param) throws SQLException;
+
+    Map<String, Object> tankinspselect(Map<String,Object> param) throws SQLException;
+
 
     //Map<String, Object> update(Map<String,Object> param) throws SQLException;
 

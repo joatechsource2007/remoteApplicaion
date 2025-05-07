@@ -1,5 +1,6 @@
 package com.remote.restservice.tank.service.impl;
 
+import com.remote.restservice.tank.model.Tank_Insp_Params;
 import com.remote.restservice.tank.model.Tank_Cust_Params;
 import com.remote.restservice.tank.model.Tank_Params;
 import com.remote.restservice.tank.service.TankService;
@@ -28,25 +29,6 @@ public class TankServiceImpl implements TankService {
     public TankServiceImpl(DbHelper dbHelper) {
         this.dbHelper = dbHelper;
     }
-
-    /**
-     * 화면초기화 메서드로 9개 테이블 리턴함.
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> init() throws SQLException {
-//        List<String> listOfTableNames = List.of();
-//        Tank_Params pTank_Params = new Tank_Params();
-//
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pTank_Params.getListOfInitSpParameters())
-//                .tableNames(listOfTableNames)
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo, pTank_Params.getListOfInitSpParameters());
-//    }
 
     /**
      * 조회 - 쿼리조건에 따라 단건/다건 조회
@@ -176,53 +158,135 @@ public class TankServiceImpl implements TankService {
     }
 
     /**
-     * 수정
+     * 탱크 거래처 상세 수신이력 (달력, 집계)
      * @param params
      * @return
      * @throws SQLException
      */
-//    @Override
-//    public Map<String, Object> update(Map<String,Object> params) throws SQLException {
-//
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
+
+    @Override
+    public Map<String, Object> cuChargeList(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Tank_Cust_Params pTank_Params = new Tank_Cust_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("==== 314 ====================================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+
+            SpParameter oldSpParameter =  pTank_Params.getSpParameterByName(SpParameter.SpType.FIND2, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pTank_Params.replaceSpParameterByName(SpParameter.SpType.FIND2,parameter,oldSpParameter);
+        }
+        logger.info("=== 315 =====================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_CU_CHARGE_LIST")
+                .spParameterList(pTank_Params.getListOfFind2SpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
 
     /**
-     * 수정과 동일
+     * 501	w네	전체		wsp_TANK_INSP_LIST	탱크 리스트 (master)
      * @param params
      * @return
      * @throws SQLException
      */
-//    @Override
-//    public Map<String, Object> insert(Map<String,Object> params) throws SQLException {
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
+    @Override
+    public Map<String, Object> tankinsplist(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Tank_Insp_Params pTank_Params = new Tank_Insp_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("==== 501 ===============================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+
+            SpParameter oldSpParameter =  pTank_Params.getSpParameterByName(SpParameter.SpType.FIND, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pTank_Params.replaceSpParameterByName(SpParameter.SpType.FIND,parameter,oldSpParameter);
+        }
+        logger.info("=== 501 =====================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_TANK_INSP_LIST")
+                .spParameterList(pTank_Params.getListOfFindSpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
+
+    /**
+     * 502	wsp	전체		wsp_TANK_INSP_HIST	탱크 검사현황 (Detail)
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public Map<String, Object> tankinsphist(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Tank_Insp_Params pTank_Params = new Tank_Insp_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("==== 502 ===============================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+            SpParameter oldSpParameter =  pTank_Params.getSpParameterByName(SpParameter.SpType.FIND2, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pTank_Params.replaceSpParameterByName(SpParameter.SpType.FIND2,parameter,oldSpParameter);
+        }
+        logger.info("=== 502 =====================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_TANK_INSP_HIST")
+                .spParameterList(pTank_Params.getListOfFind2SpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
+
+    /**
+     * 503	wsp	전체		wsp_TANK_INSP_HIST	탱크 검사현황 (Detail)
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public Map<String, Object> tankinspselect(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Tank_Insp_Params pTank_Params = new Tank_Insp_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("==== 503 ===============================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+            SpParameter oldSpParameter =  pTank_Params.getSpParameterByName(SpParameter.SpType.FIND2, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pTank_Params.replaceSpParameterByName(SpParameter.SpType.FIND2,parameter,oldSpParameter);
+        }
+        logger.info("=== 503 =====================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_TANK_INSP_SELECT")
+                .spParameterList(pTank_Params.getListOfFind2SpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
+
+
 }
