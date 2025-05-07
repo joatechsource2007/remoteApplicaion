@@ -94,7 +94,7 @@ spring:
       file-size-threshold: 2KB # Threshold after which files are written to disk.
       maxFileSize: 200MB # Max file size.
       maxRequestSize: 215MB # Max Request Size
-      location: c:/RemoteFiles
+      location: c:/18.JOA_RemoteMoniter/Tank_IMG
 
 location.nts: c:/RemoteFiles/NTS
 
