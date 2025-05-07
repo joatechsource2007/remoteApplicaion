@@ -10,7 +10,4 @@ public interface CompanyService {
 
     Map<String, Object> find(Map<String,Object> param) throws SQLException;
 
-    //Map<String, Object> update(Map<String,Object> param) throws SQLException;
-
-    //Map<String, Object> insert(Map<String,Object> param) throws SQLException;
 }

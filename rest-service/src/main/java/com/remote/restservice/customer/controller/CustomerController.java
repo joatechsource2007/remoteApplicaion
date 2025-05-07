@@ -23,33 +23,11 @@ public class CustomerController {
         this.service = service;
     }
 
-
     /**
-     * OPT:60 화면초기화 컨트롤러
+     * 351 : wsp_Get_Customer_FIND : 전체거래처 리스트 조건초회 (A전체, T.탱크, C.용기, M 검침,   TC,TM,CM, TCM)
      * @return
      * @throws SQLException
      */
-//    @RequestMapping("/init")
-//    public CommonResponse init() {
-//        LOGGER.info("TankController.init() accepted on {}");
-//        try {
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 초기화")
-//                    .data(service.init())
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
-
-
     @RequestMapping("/find")
     public CommonResponse find(@RequestParam Map<String,Object> params) {
         LOGGER.info("CustomerController.search() accepted on {}");
@@ -70,6 +48,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * 301	wsp	전체	wsp_CUST_INFO	거래처정보  (T,C,M) 탱크,용기,검침고객정보, 탱크리스트,검침리스트, 이미지 LIST
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping("/custinfo")
     public CommonResponse custinfo(@RequestParam Map<String,Object> params) {
         LOGGER.info("CustomerController.Cust Info accepted on {}");
@@ -90,6 +73,86 @@ public class CustomerController {
         }
     }
 
+    /**
+     * 401	wsp	전체	wsp_Select_Data	데이터 조회 (Select)
+     * @return
+     * @throws SQLException
+     */
+    @RequestMapping("/selectData")
+    public CommonResponse selectData(@RequestParam Map<String,Object> params) {
+        LOGGER.info("CustomerController.Select Data accepted on {}");
+        try {
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("테이블 데이터 정보")
+                    .data(service.selectdata(params))
+                    .build();
+        } catch (RuntimeException | SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
+
+    /**
+     * 401	wsp	전체	wsp_Modify_Data	데이터 조회 (Select)
+     * @return
+     * @throws SQLException
+     */
+    @RequestMapping("/modifyData")
+    public CommonResponse modifyData(@RequestParam Map<String,Object> params) {
+        LOGGER.info("CustomerController.Cust Info accepted on {}");
+        try {
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("테이블 데이터 정보")
+                    .data(service.modifydata(params))
+                    .build();
+        } catch (RuntimeException | SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
+
+    /**
+     * 402	wsp	전체		wsp_Generate_PK	Insert PK 항번생성
+     * @return
+     * @throws SQLException
+     */
+    @RequestMapping("/generatePK")
+    public CommonResponse generatePK(@RequestParam Map<String,Object> params) {
+        LOGGER.info("CustomerController.  generate  Pk accepted on {}");
+        try {
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("테이블 데이터 정보")
+                    .data(service.generatepk(params))
+                    .build();
+        } catch (RuntimeException | SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
+
+    /**
+     * 300	wsp_Get_Base_Code	기초코드
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping("/getbasecode")
     public CommonResponse getbasecode(@RequestParam Map<String,Object> params) {
         LOGGER.info("CustomerController.BaseCode Info accepted on {}");
@@ -112,57 +175,5 @@ public class CustomerController {
 
 
 
-
-//    @PostMapping("/update")
-//    public CommonResponse update(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("F11BM010Controller.update() accepted on {}");
-//        try {
-//            params.put("OPT", 20);
-//            Map<String, Object> rtnMap = service.update(params);
-//            params.put("OPT", 21);
-//            rtnMap = service.update(params);
-//
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 수정")
-//                    .data(rtnMap)
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
-
-
-
-//    @PostMapping("/insert")
-//    public CommonResponse insert(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("F11BM010Controller.insert() accepted on {}");
-//        try {
-//            params.put("OPT", 10);
-//            Map<String, Object> rtnMap = service.insert(params);
-//            params.put("OPT", 11);
-//            rtnMap = service.insert(params);
-//
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 저장")
-//                    .data(rtnMap)
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
 
 }

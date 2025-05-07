@@ -25,31 +25,10 @@ public class CylrinderController {
 
 
     /**
-     * OPT:60 화면초기화 컨트롤러
+     * SP NO : 321: wsp_Week_Cylinder_V1
      * @return
      * @throws SQLException
      */
-//    @RequestMapping("/init")
-//    public CommonResponse init() {
-//        LOGGER.info("TankController.init() accepted on {}");
-//        try {
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 초기화")
-//                    .data(service.init())
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
-
-
     @RequestMapping("/search")
     public CommonResponse search(@RequestParam Map<String,Object> params) {
         LOGGER.info("CylrinderController.search() accepted on {}");
@@ -57,7 +36,7 @@ public class CylrinderController {
             return CommonResponse.builder()
                     .code("SUCCESS")
                     .status(HttpStatus.OK.value())
-                    .message("용기 주간 조회")
+                    .message("321 : 용기 주간수신 리스트")
                     .data(service.search(params))
                     .build();
         } catch (RuntimeException | SQLException e) {
@@ -70,6 +49,11 @@ public class CylrinderController {
         }
     }
 
+    /**
+     * SP NO : 321: wsp_Week_Cylinder_V2
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping("/searchV2")
     public CommonResponse searchV2(@RequestParam Map<String,Object> params) {
         LOGGER.info("CylrinderController.search() accepted on {}");
@@ -77,7 +61,7 @@ public class CylrinderController {
             return CommonResponse.builder()
                     .code("SUCCESS")
                     .status(HttpStatus.OK.value())
-                    .message("용기 주간 조회")
+                    .message("321-2 : 집계건수 + 용기 주간수신 리스트")
                     .data(service.searchV2(params))
                     .build();
         } catch (RuntimeException | SQLException e) {
@@ -90,6 +74,11 @@ public class CylrinderController {
         }
     }
 
+    /**
+     * SP NO : 323: wsp_JCust_RCV_Detail_V2
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping("/jcustRcvDetail")
     public CommonResponse jcustRcvDetail(@RequestParam Map<String,Object> params) {
         LOGGER.info("CylrinderController.search() accepted on {}");
@@ -110,55 +99,28 @@ public class CylrinderController {
         }
     }
 
-//    @PostMapping("/update")
-//    public CommonResponse update(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("F11BM010Controller.update() accepted on {}");
-//        try {
-//            params.put("OPT", 20);
-//            Map<String, Object> rtnMap = service.update(params);
-//            params.put("OPT", 21);
-//            rtnMap = service.update(params);
-//
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 수정")
-//                    .data(rtnMap)
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
-
-
-
-//    @PostMapping("/insert")
-//    public CommonResponse insert(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("F11BM010Controller.insert() accepted on {}");
-//        try {
-//            params.put("OPT", 10);
-//            Map<String, Object> rtnMap = service.insert(params);
-//            params.put("OPT", 11);
-//            rtnMap = service.insert(params);
-//
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 저장")
-//                    .data(rtnMap)
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
+    /**
+     * SP NO : 324: wsp_JCust_RCV_Detail_V2
+     * @return
+     * @throws SQLException
+     */
+    @RequestMapping("/jcustRcvMonth")
+    public CommonResponse jcustRcvMonth(@RequestParam Map<String,Object> params) {
+        LOGGER.info("CylrinderController.search() accepted on {}");
+        try {
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("324 : 용기 거래처 수신이력(달력) +집계 포함")
+                    .data(service.jcustRcvMonth(params))
+                    .build();
+        } catch (RuntimeException | SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
 }

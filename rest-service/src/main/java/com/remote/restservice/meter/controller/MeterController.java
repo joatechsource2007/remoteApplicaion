@@ -25,31 +25,10 @@ public class MeterController {
 
 
     /**
-     * OPT:60 화면초기화 컨트롤러
+     * SP NO : 331: wsp_Week_Meter_V1
      * @return
      * @throws SQLException
      */
-//    @RequestMapping("/init")
-//    public CommonResponse init() {
-//        LOGGER.info("TankController.init() accepted on {}");
-//        try {
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 초기화")
-//                    .data(service.init())
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
-
-
     @RequestMapping("/search")
     public CommonResponse search(@RequestParam Map<String,Object> params) {
         LOGGER.info("TankController.search() accepted on {}");
@@ -70,6 +49,11 @@ public class MeterController {
         }
     }
 
+    /**
+     * SP NO : 332: wsp_Get_Meter_DETAIL
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping("/getMeterDetail")
     public CommonResponse getMeterDetail(@RequestParam Map<String,Object> params) {
         LOGGER.info("TankController.search() accepted on {}");
@@ -90,6 +74,11 @@ public class MeterController {
         }
     }
 
+    /**
+     * SP NO : 332: wsp_Get_Meter_GROUP
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping("/getMeterGroup")
     public CommonResponse getMeterGroup(@RequestParam Map<String,Object> params) {
         LOGGER.info("TankController.search() accepted on {}");
@@ -110,56 +99,50 @@ public class MeterController {
         }
     }
 
-
-//    @PostMapping("/update")
-//    public CommonResponse update(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("F11BM010Controller.update() accepted on {}");
-//        try {
-//            params.put("OPT", 20);
-//            Map<String, Object> rtnMap = service.update(params);
-//            params.put("OPT", 21);
-//            rtnMap = service.update(params);
-//
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 수정")
-//                    .data(rtnMap)
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
+    @RequestMapping("/getMeterGroupApp")
+    public CommonResponse getMeterGroupApp(@RequestParam Map<String,Object> params) {
+        LOGGER.info("TankController.search() accepted on {}");
+        try {
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("거래처 정보 검침 일간,주간,월간 집계 Data")
+                    .data(service.getMeterGroupApp(params))
+                    .build();
+        } catch (RuntimeException | SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
 
 
 
-//    @PostMapping("/insert")
-//    public CommonResponse insert(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("F11BM010Controller.insert() accepted on {}");
-//        try {
-//            params.put("OPT", 10);
-//            Map<String, Object> rtnMap = service.insert(params);
-//            params.put("OPT", 11);
-//            rtnMap = service.insert(params);
-//
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("충전소기본정보 저장")
-//                    .data(rtnMap)
-//                    .build();
-//        } catch (RuntimeException | SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
+    /**
+     * SP NO : 333: wsp_MCUST_RCV_AVG
+     * @return
+     * @throws SQLException
+     */
+    @RequestMapping("/mcustRcvAvg")
+    public CommonResponse mcustRcvAvg(@RequestParam Map<String,Object> params) {
+        LOGGER.info("TankController.search() accepted on {}");
+        try {
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("검침 거래처 정보 , 최종검침")
+                    .data(service.mcustRcvAvg(params))
+                    .build();
+        } catch (RuntimeException | SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
 }

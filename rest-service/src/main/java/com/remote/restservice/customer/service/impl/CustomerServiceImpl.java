@@ -1,6 +1,7 @@
 package com.remote.restservice.customer.service.impl;
 
 import com.remote.restservice.customer.model.Customer_Params;
+import com.remote.restservice.customer.model.SearchTable_Params;
 import com.remote.restservice.customer.service.CustomerService;
 import com.remote.restservice.utils.database.DbHelper;
 import com.remote.restservice.utils.database.SpInfo;
@@ -29,26 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     /**
-     * 화면초기화 메서드로 9개 테이블 리턴함.
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> init() throws SQLException {
-//        List<String> listOfTableNames = List.of();
-//        Tank_Params pTank_Params = new Tank_Params();
-//
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pTank_Params.getListOfInitSpParameters())
-//                .tableNames(listOfTableNames)
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo, pTank_Params.getListOfInitSpParameters());
-//    }
-
-    /**
-     * 조회 - 쿼리조건에 따라 단건/다건 조회
+     * 351 : wsp_Get_Customer_FIND : 전체거래처 리스트 조건초회 (A전체, T.탱크, C.용기, M 검침,   TC,TM,CM, TCM)
      * @param params
      * @return
      * @throws SQLException
@@ -60,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("====== 351 =============================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -70,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
             oldSpParameter.setValue(params.get(parameter));
             pCustomer_Params.replaceSpParameterByName(SpParameter.SpType.QUERY,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("====== 351 =================================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_Get_Customer_FIND")
                 .spParameterList(pCustomer_Params.getListOfQuerySpParameters())
@@ -80,6 +62,12 @@ public class CustomerServiceImpl implements CustomerService {
         return dbHelper.execute(spInfo);
     }
 
+    /**
+     * 301	wsp	전체	wsp_CUST_INFO	거래처정보  (T,C,M) 탱크,용기,검침고객정보, 탱크리스트,검침리스트, 이미지 LIST
+     * @param params
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Map<String, Object> custinfo(Map<String,Object> params) throws SQLException {
         List<String> listOfTableNames = List.of();
@@ -87,7 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("===== 301 ==============================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -97,7 +85,7 @@ public class CustomerServiceImpl implements CustomerService {
             oldSpParameter.setValue(params.get(parameter));
             pCustomer_Params.replaceSpParameterByName(SpParameter.SpType.FIND,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("==== 301 ===============================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_CUST_INFO")
                 .spParameterList(pCustomer_Params.getListOfFindSpParameters())
@@ -107,6 +95,113 @@ public class CustomerServiceImpl implements CustomerService {
         return dbHelper.execute(spInfo);
     }
 
+    /**
+     * 401	wsp	전체	wsp_select_Data	 테이블 데이터 조회
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public Map<String, Object> selectdata(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        SearchTable_Params pSearchTable_Params = new SearchTable_Params();
+
+        for (String parameter : params.keySet()) {
+
+
+            SpParameter oldSpParameter =  pSearchTable_Params.getSpParameterByName(SpParameter.SpType.QUERY, parameter);
+
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pSearchTable_Params.replaceSpParameterByName(SpParameter.SpType.QUERY,parameter,oldSpParameter);
+        }
+
+        logger.info("===== 401 ==============================");
+        logger.info("parameter : " + pSearchTable_Params.getListOfQuerySpParameters());
+        logger.info("========================================");
+
+        logger.info("==== 401 select Data ===============================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_Select_Data_Test")
+                .spParameterList(pSearchTable_Params.getListOfQuerySpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+
+        return dbHelper.execute(spInfo);
+    }
+
+    /**
+     * 401	wsp	전체	wsp_modify_Data	 테이블 데이터 조회
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public Map<String, Object> modifydata(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        SearchTable_Params pSearchTable_Params = new SearchTable_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("===== 401 modify data ==================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+            SpParameter oldSpParameter =  pSearchTable_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pSearchTable_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
+        }
+        logger.info("==== 401 modify Data ========================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_Modify_Data")
+                .spParameterList(pSearchTable_Params.getListOfAllSpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
+
+    /**
+     * 402	wsp	전체		wsp_Generate_PK	Insert PK 항번생성
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public Map<String, Object> generatepk(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        SearchTable_Params pSearchTable_Params = new SearchTable_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("===== 402 generate PK ==================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+            SpParameter oldSpParameter =  pSearchTable_Params.getSpParameterByName(SpParameter.SpType.FIND, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pSearchTable_Params.replaceSpParameterByName(SpParameter.SpType.FIND,parameter,oldSpParameter);
+        }
+        logger.info("==== 402 generate PK ========================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_Generate_PK")
+                .spParameterList(pSearchTable_Params.getListOfFindSpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
+
+
+    /**
+     * 300	wsp_Get_Base_Code	기초코드
+     * @param params
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Map<String, Object> getbasecode(Map<String,Object> params) throws SQLException {
         List<String> listOfTableNames = List.of();
@@ -114,7 +209,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("====== 300 =============================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -124,7 +219,7 @@ public class CustomerServiceImpl implements CustomerService {
             oldSpParameter.setValue(params.get(parameter));
             pCustomer_Params.replaceSpParameterByName(SpParameter.SpType.INIT,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("======= 300 =================================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_Get_Base_Code")
                 .spParameterList(pCustomer_Params.getListOfInitSpParameters())
@@ -133,55 +228,4 @@ public class CustomerServiceImpl implements CustomerService {
         logger.info(spInfo.toString());
         return dbHelper.execute(spInfo);
     }
-
-    /**
-     * 수정
-     * @param params
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> update(Map<String,Object> params) throws SQLException {
-//
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
-
-    /**
-     * 수정과 동일
-     * @param params
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> insert(Map<String,Object> params) throws SQLException {
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
 }

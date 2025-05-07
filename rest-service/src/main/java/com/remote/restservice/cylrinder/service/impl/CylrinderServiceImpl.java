@@ -29,26 +29,7 @@ public class CylrinderServiceImpl implements CylrinderService {
     }
 
     /**
-     * 화면초기화 메서드로 9개 테이블 리턴함.
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> init() throws SQLException {
-//        List<String> listOfTableNames = List.of();
-//        Tank_Params pTank_Params = new Tank_Params();
-//
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pTank_Params.getListOfInitSpParameters())
-//                .tableNames(listOfTableNames)
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo, pTank_Params.getListOfInitSpParameters());
-//    }
-
-    /**
-     * 조회 - 쿼리조건에 따라 단건/다건 조회
+     * SP_321 : 용기 주간수신  (단일 업체코드 조회) (wsp_Week_Cylinder_V1)
      * @param params
      * @return
      * @throws SQLException
@@ -60,7 +41,7 @@ public class CylrinderServiceImpl implements CylrinderService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("===== 321-V1 ===========================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -70,7 +51,7 @@ public class CylrinderServiceImpl implements CylrinderService {
             oldSpParameter.setValue(params.get(parameter));
             pCylrinder_Params.replaceSpParameterByName(SpParameter.SpType.QUERY,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("====== 321-V1 ==================================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_Week_Cylinder_V1")
                 .spParameterList(pCylrinder_Params.getListOfQuerySpParameters())
@@ -80,6 +61,12 @@ public class CylrinderServiceImpl implements CylrinderService {
         return dbHelper.execute(spInfo);
     }
 
+    /**
+     * SP_321 : 집계건수, 리스트  (wsp_Week_Cylinder_V2)
+     * @param params
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Map<String, Object> searchV2(Map<String,Object> params) throws SQLException {
         List<String> listOfTableNames = List.of();
@@ -87,7 +74,7 @@ public class CylrinderServiceImpl implements CylrinderService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("====== 321-V2 ==========================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -97,7 +84,7 @@ public class CylrinderServiceImpl implements CylrinderService {
             oldSpParameter.setValue(params.get(parameter));
             pCylrinder_Params.replaceSpParameterByName(SpParameter.SpType.QUERY,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("====== 321-v2 ===============================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_Week_Cylinder_V2")
                 .spParameterList(pCylrinder_Params.getListOfQuerySpParameters())
@@ -107,6 +94,12 @@ public class CylrinderServiceImpl implements CylrinderService {
         return dbHelper.execute(spInfo);
     }
 
+    /**
+     * SP_323 : 용기 거래처 상세 수신이력 (기간별 상세)
+     * @param params
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Map<String, Object> jcustRcvDetail(Map<String,Object> params) throws SQLException {
         List<String> listOfTableNames = List.of();
@@ -114,7 +107,7 @@ public class CylrinderServiceImpl implements CylrinderService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("======= 323 ============================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -124,9 +117,9 @@ public class CylrinderServiceImpl implements CylrinderService {
             oldSpParameter.setValue(params.get(parameter));
             pCylrinder_Params.replaceSpParameterByName(SpParameter.SpType.FIND,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("====== 323 ===============================");
         SpInfo spInfo = SpInfo.builder()
-                .spName("wsp_JCUST_RCV_Detail")
+                .spName("wsp_JCUST_RCV_Detail_V2")
                 .spParameterList(pCylrinder_Params.getListOfFindSpParameters())
                 .tableNames(listOfTableNames)
                 .build();
@@ -134,55 +127,36 @@ public class CylrinderServiceImpl implements CylrinderService {
         return dbHelper.execute(spInfo);
     }
 
-
     /**
-     * 수정
+     * SP_324 : 용기 거래처 정보 , 달력
      * @param params
      * @return
      * @throws SQLException
      */
-//    @Override
-//    public Map<String, Object> update(Map<String,Object> params) throws SQLException {
-//
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
+    @Override
+    public Map<String, Object> jcustRcvMonth(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Cylrinder_Params pCylrinder_Params = new Cylrinder_Params();
 
-    /**
-     * 수정과 동일
-     * @param params
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> insert(Map<String,Object> params) throws SQLException {
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
+        for (String parameter : params.keySet()) {
+
+            logger.info("====== 324 =============================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+
+            SpParameter oldSpParameter =  pCylrinder_Params.getSpParameterByName(SpParameter.SpType.FIND2, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pCylrinder_Params.replaceSpParameterByName(SpParameter.SpType.FIND2,parameter,oldSpParameter);
+        }
+        logger.info("======= 324 ================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_JCust_RCV_Month")
+                .spParameterList(pCylrinder_Params.getListOfFind2SpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
 }

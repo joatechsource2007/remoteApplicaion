@@ -29,25 +29,6 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     /**
-     * 화면초기화 메서드로 9개 테이블 리턴함.
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> init() throws SQLException {
-//        List<String> listOfTableNames = List.of();
-//        Tank_Params pTank_Params = new Tank_Params();
-//
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pTank_Params.getListOfInitSpParameters())
-//                .tableNames(listOfTableNames)
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo, pTank_Params.getListOfInitSpParameters());
-//    }
-
-    /**
      * 조회 - 쿼리조건에 따라 단건/다건 조회
      * @param params
      * @return
@@ -79,54 +60,4 @@ public class CompanyServiceImpl implements CompanyService {
         logger.info(spInfo.toString());
         return dbHelper.execute(spInfo);
     }
-    /**
-     * 수정
-     * @param params
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> update(Map<String,Object> params) throws SQLException {
-//
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
-
-    /**
-     * 수정과 동일
-     * @param params
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> insert(Map<String,Object> params) throws SQLException {
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
 }

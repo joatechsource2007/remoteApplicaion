@@ -289,24 +289,24 @@ public class HttpInterceptor implements HandlerInterceptor {
             logger.info("[afterCompletion]:UserPhone: {}",UserPhone);
         }
 
-        Connection con = dataSource.getConnection();
-        AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
-        AutoRollback tm = new AutoRollback(con);
-        PreparedStatement stmt = con.prepareStatement("INSERT INTO LPIS_Web_Log (ResStatus, Controller,Method,Params,UserPhone,EX) VALUES (?,?,?,?,?,?)");
+        //Connection con = dataSource.getConnection();
+        //AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
+        //AutoRollback tm = new AutoRollback(con);
+        //PreparedStatement stmt = con.prepareStatement("INSERT INTO LPIS_Web_Log (ResStatus, Controller,Method,Params,UserPhone,EX) VALUES (?,?,?,?,?,?)");
 
-        try (con; stmt; sac; tm) {
-            stmt.setInt(1,status);
-            stmt.setString(2,controllerName);
-            stmt.setString(3,method);
-            stmt.setString(4,params.toString());
-            stmt.setString(5,UserPhone);
-            stmt.setString(6,exc);
-            int count = stmt.executeUpdate();
-            tm.commit();
-        }catch (SQLException e) {
-                logger.info("Remote_Web_Log 저장시 오류가 발생하였습니다.");
-                throw e;
-        }
+        //try (con; stmt; sac; tm) {
+        //    stmt.setInt(1,status);
+        //    stmt.setString(2,controllerName);
+        //    stmt.setString(3,method);
+        //    stmt.setString(4,params.toString());
+        //    stmt.setString(5,UserPhone);
+        //   stmt.setString(6,exc);
+        //    int count = stmt.executeUpdate();
+        //    tm.commit();
+        //}catch (SQLException e) {
+        //        logger.info("Remote_Web_Log 저장시 오류가 발생하였습니다.");
+        //        throw e;
+        //}
     }
 
     private Optional<String> resolveToken(HttpServletRequest request) {

@@ -56,77 +56,80 @@ public class DbHelper {
 
         Map<String, Object> resultMap = new HashMap<>();
         try (con; stmt; sac; tm) {
-            boolean results = stmt.execute(sqlStringWithUnknownResults);
-            int count = 0;
-            int resultSetCount = 0;
-            do {
-                if (results) {
-                    ResultSet rs = stmt.getResultSet();
-                    ResultSetMetaData md = rs.getMetaData();
-                    int numCols = md.getColumnCount();
-                    List<String> colNames = IntStream.range(0, numCols)
-                            .mapToObj(i -> {
+
+                boolean results = stmt.execute(sqlStringWithUnknownResults);
+                int count = 0;
+                int resultSetCount = 0;
+                do {
+                    if (results) {
+                        ResultSet rs = stmt.getResultSet();
+                        ResultSetMetaData md = rs.getMetaData();
+                        int numCols = md.getColumnCount();
+                        List<String> colNames = IntStream.range(0, numCols)
+                                .mapToObj(i -> {
+                                    try {
+                                        return md.getColumnName(i + 1).equals("")? String.valueOf(i) : md.getColumnName(i + 1);
+                                    } catch (SQLException e) {
+                                        logger.info("오류가 발생하였습니다.1");
+                                        return "?";
+                                    }
+                                })
+                                .toList();
+
+                        JSONArray result = new JSONArray();
+                        while (rs.next()) {
+                            JSONObject row = new JSONObject();
+                            colNames.forEach(cn -> {
                                 try {
-                                    return md.getColumnName(i + 1).equals("")? String.valueOf(i) : md.getColumnName(i + 1);
+                                    if(isNumeric(cn) && Integer.parseInt(cn) <100 ){ //로직없음. 누더기
+                                        int col = Integer.parseInt(cn);
+                                        row.put("col"+cn, rs.getObject(col));
+                                    }else{
+                                        row.put(cn, rs.getObject(cn));
+                                    }
+
                                 } catch (SQLException e) {
-                                    logger.info("오류가 발생하였습니다.");
-                                    return "?";
+                                    logger.info("오류가 발생하였습니다.2");
                                 }
-                            })
-                            .toList();
-
-                    JSONArray result = new JSONArray();
-                    while (rs.next()) {
-                        JSONObject row = new JSONObject();
-                        colNames.forEach(cn -> {
-                            try {
-                                if(isNumeric(cn) && Integer.parseInt(cn) <100 ){ //로직없음. 누더기
-                                    int col = Integer.parseInt(cn);
-                                    row.put("col"+cn, rs.getObject(col));
-                                }else{
-                                    row.put(cn, rs.getObject(cn));
-                                }
-
-                            } catch (SQLException e) {
-                                logger.info("오류가 발생하였습니다.");
-                            }
-                        });
-                        result.add(row);
-                    }
-                    Optional<List<String>> listTableNames = Optional.ofNullable(spInfo.getTableNames());
-                    String tableName="";
-                    if(listTableNames.isPresent()){
-                        List<String> l = listTableNames.get();
-                        tableName = l.size() > resultSetCount ? l.get(resultSetCount) : "TABLE" + String.valueOf(resultSetCount);
-                    }else{
-                        tableName = "TABLE" + String.valueOf(resultSetCount);
-                    }
-                    resultMap.put( tableName, result);
-                    resultSetCount++;
-                    System.out.println("Result set data displayed here.");
-                }
-                else {
-                    count = stmt.getUpdateCount();
-                    if (count >= 0) {
-                        resultMap.put( "RowAffected", count);
-                        System.out.println("DDL or update data displayed here.");
-                        System.out.println("RowAffected:"+count);
+                            });
+                            result.add(row);
+                        }
+                        Optional<List<String>> listTableNames = Optional.ofNullable(spInfo.getTableNames());
+                        String tableName="";
+                        if(listTableNames.isPresent()){
+                            List<String> l = listTableNames.get();
+                            tableName = l.size() > resultSetCount ? l.get(resultSetCount) : "TABLE" + String.valueOf(resultSetCount);
+                        }else{
+                            tableName = "TABLE" + String.valueOf(resultSetCount);
+                        }
+                        resultMap.put( tableName, result);
+                        resultSetCount++;
+                        logger.info("Result set data displayed here.");
+                        System.out.println("Result set data displayed here.");
                     }
                     else {
-                        resultMap.put( "RowAffected", count);
-                        System.out.println("No more results to process.");
+                        count = stmt.getUpdateCount();
+                        if (count >= 0) {
+                            resultMap.put( "RowAffected", count);
+                            System.out.println("DDL or update data displayed here.");
+                            System.out.println("RowAffected:"+count);
+                        }
+                        else {
+                            resultMap.put( "RowAffected", count);
+                            System.out.println("No more results to process.");
+                        }
                     }
+                    results = stmt.getMoreResults();
+                    logger.info("more result = {}",results);
                 }
-                results = stmt.getMoreResults();
-                logger.info("more result = {}",results);
-            }
-            while (results || count != -1);
+                while (results || count != -1);
 
-            tm.commit();
+                tm.commit();
+
         }
         // Handle any errors that may have occurred.
         catch (SQLException e) {
-            logger.info("오류가 발생하였습니다.");
+            logger.info("오류가 발생하였습니다.3");
             throw e;
         }
 

@@ -15,6 +15,7 @@ public class Customer_Params {
     private List<SpParameter> listOfInitSpParameters  = new ArrayList<SpParameter>();
     private List<SpParameter> listOfFindSpParameters  = new ArrayList<SpParameter>();
 
+
     //생성자
     public Customer_Params(){
         //전부
@@ -124,7 +125,6 @@ public class Customer_Params {
             listOfFindSpParameters.add(SpParameter.builder().name("p_CUST_CODE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
             listOfFindSpParameters.add(SpParameter.builder().name("p_TRANSM_CD").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
             listOfFindSpParameters.add(SpParameter.builder().name("p_GET_TYPE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
-
         }
 
     }

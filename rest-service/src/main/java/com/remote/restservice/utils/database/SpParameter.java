@@ -54,6 +54,7 @@ public class SpParameter {
         QUERY,
         FIND,
         FIND2,
+        FIND3,
         DELETE,
         INSERT,
         UPDATE,

@@ -13,6 +13,7 @@ public class Meter_Params {
     private List<SpParameter> listOfQuerySpParameters = new ArrayList<SpParameter>();
     private List<SpParameter> listOfFindSpParameters = new ArrayList<SpParameter>();
     private List<SpParameter> listOfFind2SpParameters = new ArrayList<SpParameter>();
+    private List<SpParameter> listOfFind3SpParameters = new ArrayList<SpParameter>();
 
     //생성자
     public Meter_Params(){
@@ -53,6 +54,11 @@ public class Meter_Params {
             listOfFind2SpParameters.add(SpParameter.builder().name("p_GROUP_TYPE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
         }
 
+        {
+            listOfFind3SpParameters.add(SpParameter.builder().name("p_C_MNG_NO").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+            listOfFind3SpParameters.add(SpParameter.builder().name("p_CUST_CODE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+        }
+
         //초기화
         //listOfInitSpParameters.add(SpParameter.builder().name("OPT").value(60).direction(SpParameter.Direction.IN).jdbcType(JDBCType.INTEGER).build());
     }
@@ -64,6 +70,8 @@ public class Meter_Params {
             return listOfFindSpParameters.stream().filter(spParameter -> name.equals(spParameter.getName())).findFirst().orElse(null);
         }else if(spType.equals(SpParameter.SpType.FIND2)){
             return listOfFind2SpParameters.stream().filter(spParameter -> name.equals(spParameter.getName())).findFirst().orElse(null);
+        }else if(spType.equals(SpParameter.SpType.FIND3)){
+            return listOfFind3SpParameters.stream().filter(spParameter -> name.equals(spParameter.getName())).findFirst().orElse(null);
         }
         return null;
     }
@@ -85,6 +93,10 @@ public class Meter_Params {
                 index = listOfFind2SpParameters.indexOf(oldSpParameter);
                 if(index >-1)
                     listOfFind2SpParameters.set(index, newSpParameter);
+            }else if(spType.equals(SpParameter.SpType.FIND3)){
+                index = listOfFind3SpParameters.indexOf(oldSpParameter);
+                if(index >-1)
+                    listOfFind3SpParameters.set(index, newSpParameter);
             }
       }catch (NullPointerException e){
             System.out.println("오류가 발생하였습니다.");
