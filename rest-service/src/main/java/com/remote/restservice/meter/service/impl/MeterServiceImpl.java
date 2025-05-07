@@ -29,26 +29,7 @@ public class MeterServiceImpl implements MeterService {
     }
 
     /**
-     * 화면초기화 메서드로 9개 테이블 리턴함.
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public Map<String, Object> init() throws SQLException {
-//        List<String> listOfTableNames = List.of();
-//        Tank_Params pTank_Params = new Tank_Params();
-//
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pTank_Params.getListOfInitSpParameters())
-//                .tableNames(listOfTableNames)
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo, pTank_Params.getListOfInitSpParameters());
-//    }
-
-    /**
-     * 조회 - 쿼리조건에 따라 단건/다건 조회
+     * 331	wsp	검침	wsp_Week_Meter_V1	주간수신 검침
      * @param params
      * @return
      * @throws SQLException
@@ -60,7 +41,7 @@ public class MeterServiceImpl implements MeterService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("========================================");
+            logger.info("===== 331 ==============================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -70,7 +51,7 @@ public class MeterServiceImpl implements MeterService {
             oldSpParameter.setValue(params.get(parameter));
             pMeter_Params.replaceSpParameterByName(SpParameter.SpType.QUERY,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("====== 331 ==================================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_Week_METER_V1")
                 .spParameterList(pMeter_Params.getListOfQuerySpParameters())
@@ -81,12 +62,11 @@ public class MeterServiceImpl implements MeterService {
     }
 
     /**
-     * 조회 - 쿼리조건에 따라 단건/다건 조회
+     * 332 	검침	wsp_Get_Meter_DETAIL	검침 상세수신이력, (실검침 이력 포함)
      * @param params
      * @return
      * @throws SQLException
      */
-
     @Override
     public Map<String, Object> getMeterDetail(Map<String,Object> params) throws SQLException {
         List<String> listOfTableNames = List.of();
@@ -114,6 +94,12 @@ public class MeterServiceImpl implements MeterService {
         return dbHelper.execute(spInfo);
     }
 
+    /**
+     * 332 	wsp	검침	wsp_Get_Meter_GROUP	검침 (일,주,월) 그룹별 사용량 집계 (실검침 구분포함)
+     * @param params
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Map<String, Object> getMeterGroup(Map<String,Object> params) throws SQLException {
         List<String> listOfTableNames = List.of();
@@ -121,7 +107,7 @@ public class MeterServiceImpl implements MeterService {
 
         for (String parameter : params.keySet()) {
 
-            logger.info("======== 332 ================================");
+            logger.info("======== 332 ===========================");
             logger.info("parameter : " + parameter);
             logger.info("========================================");
 
@@ -131,7 +117,7 @@ public class MeterServiceImpl implements MeterService {
             oldSpParameter.setValue(params.get(parameter));
             pMeter_Params.replaceSpParameterByName(SpParameter.SpType.FIND2,parameter,oldSpParameter);
         }
-        logger.info("========================================");
+        logger.info("====== 332 ==================================");
         SpInfo spInfo = SpInfo.builder()
                 .spName("wsp_Get_Meter_GROUP")
                 .spParameterList(pMeter_Params.getListOfFind2SpParameters())
@@ -142,53 +128,69 @@ public class MeterServiceImpl implements MeterService {
     }
 
     /**
-     * 수정
+     * 332 	wsp	검침	wsp_Get_Meter_GROUP	검침 (일,주,월) 그룹별 사용량 집계 (실검침 구분포함)
      * @param params
      * @return
      * @throws SQLException
      */
-//    @Override
-//    public Map<String, Object> update(Map<String,Object> params) throws SQLException {
-//
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
+    @Override
+    public Map<String, Object> getMeterGroupApp(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Meter_Params pMeter_Params = new Meter_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("======== 332 ===========================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+
+            SpParameter oldSpParameter =  pMeter_Params.getSpParameterByName(SpParameter.SpType.FIND2, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pMeter_Params.replaceSpParameterByName(SpParameter.SpType.FIND2,parameter,oldSpParameter);
+        }
+        logger.info("====== 332 ==================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_Get_Meter_GROUP_App")
+                .spParameterList(pMeter_Params.getListOfFind2SpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
+
 
     /**
-     * 수정과 동일
+     * 333	wsp	검침	wsp_MCUST_RCV_AVG	검침 거래처 정보 , 최종검침
      * @param params
      * @return
      * @throws SQLException
      */
-//    @Override
-//    public Map<String, Object> insert(Map<String,Object> params) throws SQLException {
-//        F11BM010_Params pF11BM010_Params = new F11BM010_Params();
-//
-//        for (String parameter : params.keySet()) {
-//            SpParameter oldSpParameter =  pF11BM010_Params.getSpParameterByName(SpParameter.SpType.ALL, parameter);
-//            if(oldSpParameter!=null){
-//                oldSpParameter.setValue(params.get(parameter));
-//                pF11BM010_Params.replaceSpParameterByName(SpParameter.SpType.ALL,parameter,oldSpParameter);
-//            }
-//        }
-//        SpInfo spInfo = SpInfo.builder()
-//                .spName("usp_F11BM010_FSConfigs")
-//                .spParameterList(pF11BM010_Params.getListOfAllSpParameters())
-//                .build();
-//        logger.info(spInfo.toString());
-//        return dbHelper.execute(spInfo);
-//    }
+    @Override
+    public Map<String, Object> mcustRcvAvg(Map<String,Object> params) throws SQLException {
+        List<String> listOfTableNames = List.of();
+        Meter_Params pMeter_Params = new Meter_Params();
+
+        for (String parameter : params.keySet()) {
+
+            logger.info("======== 333 ===========================");
+            logger.info("parameter : " + parameter);
+            logger.info("========================================");
+
+
+            SpParameter oldSpParameter =  pMeter_Params.getSpParameterByName(SpParameter.SpType.FIND3, parameter);
+            if(oldSpParameter==null) continue;
+            oldSpParameter.setValue(params.get(parameter));
+            pMeter_Params.replaceSpParameterByName(SpParameter.SpType.FIND3,parameter,oldSpParameter);
+        }
+        logger.info("====== 333 ==================================");
+        SpInfo spInfo = SpInfo.builder()
+                .spName("wsp_MCUST_RCV_AVG")
+                .spParameterList(pMeter_Params.getListOfFind3SpParameters())
+                .tableNames(listOfTableNames)
+                .build();
+        logger.info(spInfo.toString());
+        return dbHelper.execute(spInfo);
+    }
 }
