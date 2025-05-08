@@ -35,24 +35,6 @@ public class LoginController {
         return "IAM-SERVICE IS ACTIVE";
     }
 
-//    @RequestMapping("/check")
-//    public CommonResponse check(@RequestBody LoginRequestDto loginRequestDTO) {
-//
-//        Map<String, Object> optionalUserInfo = null;
-//        try {
-//            optionalUserInfo = loginService.check(loginRequestDTO.getUserID());
-//        } catch (SQLException e) {
-//            throw new LoginFailedException(e.getMessage());
-//        }
-//
-//        return CommonResponse.builder()
-//                .code("CHECK_SUCCESS")
-//                .status(200)
-//                .message("충전소코드조회성공")
-//                .token("")
-//                .data(Map.of("UserCheck", optionalUserInfo))
-//                .build();
-//    }
     @RequestMapping("/remotelogin")
     public CommonResponse remotelogin(@RequestBody LoginRemoteDto loginRemoteDTO, HttpServletRequest request) throws SQLException {
 
@@ -119,25 +101,6 @@ public class LoginController {
 
     }
 
-//    @RequestMapping("/login")
-//    public CommonResponse login(@RequestBody LoginRequestDto loginRequestDTO, HttpServletRequest request) throws SQLException {
-//
-//        String clientIp = HttpServletUtils.getClientIP(request);
-//
-//        Optional<UserInfo> optionalUserInfo = null;
-//        String UserID = loginRequestDTO.getUserID();
-//        int FSCode = loginRequestDTO.getFSCode();
-//        String LogOut = loginRequestDTO.getLogOut();
-//
-//            return CommonResponse.builder()
-//                    .code("LOGIN_SUCCESS")
-//                    .status(200)
-//                    .message("로그인 성공")
-//                    .token("")   //Access 토큰생성
-//                    .refreshToken("")  //RefreshToken 생성
-//                    .data(Map.of("UserInfo", optionalUserInfo.get()))
-//                    .build();
-//    }
 
     @RequestMapping("/refreshToken")
     public CommonResponse verifyRefreshToken(@RequestBody Map<String,Object> params) throws SQLException{
@@ -186,7 +149,7 @@ public class LoginController {
         try {
             //로그인 토큰 삭제
             loginService.deleteRefreshTokenByUserPhoneAndPrgKind(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
-            
+
             //DB 로그아웃 프로시져
             //Map<String, Object> result = loginService.userLogOff(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
             return CommonResponse.builder()
@@ -236,55 +199,4 @@ public class LoginController {
                     .build();
         }
     }
-//    @RequestMapping("/changepasswordtest")
-//    public String changepasswordtest(){
-//        return "IAM-SERVICE IS ACTIVE";
-//    }
-//    @PostMapping("/changepassword")
-//    public CommonResponse changepassword(@RequestBody Map<String,Object> params) {
-//        //@PathVariable String userID, @PathVariable String oldpasswd, @PathVariable String newpasswd
-//        LOGGER.info("UserController.changepassword() accepted on {}", params);
-//        LOGGER.info("UserController.changepassword() accepted on {}", params.get("UserID"));
-//        LOGGER.info("UserController.changepassword() accepted on {}", params.get("PassWord"));
-//        LOGGER.info("UserController.changepassword() accepted on {}", params.get("NewPassWord"));
-//        try {
-//            Map<String, Object> result = loginService.changepassword(String.valueOf(params.get("UserID")), String.valueOf(params.get("PassWord")), String.valueOf(params.get("NewPassWord")));
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("패스워드 변경")
-//                    .data(result)
-//                    .build();
-//        } catch (SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
-
-//    @PostMapping("/initpassword")
-//    public CommonResponse initpassword(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("UserController.initpassword() accepted on {}", params);
-//        LOGGER.info("UserController.initpassword() accepted on {}", params.get("UserID"));
-//        LOGGER.info("UserController.initpassword() accepted on {}", params.get("NewPassWord"));
-//        try {
-//            Map<String, Object> result = loginService.initpassword(String.valueOf(params.get("UserID")), String.valueOf(params.get("NewPassWord")));
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("패스워드 초기설정")
-//                    .data(result)
-//                    .build();
-//        } catch (SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
 }
