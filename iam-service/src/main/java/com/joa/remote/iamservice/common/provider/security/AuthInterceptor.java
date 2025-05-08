@@ -25,6 +25,16 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         log.info("preHandle!!");
 
+        String uri = servletRequest.getRequestURI();
+
+        // ✅ 인증 제외 엔드포인트 목록
+        if (uri.startsWith("/file") ||
+                uri.equals("/v1/signup") ||
+                uri.equals("/v1/status") ||
+                uri.equals("/v1/remotelogin")) {
+            return true;
+        }
+
         Optional<String> token = resolveToken(servletRequest);
 
         if (token.isPresent()) {

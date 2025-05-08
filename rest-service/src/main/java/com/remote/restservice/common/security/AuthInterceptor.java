@@ -24,9 +24,13 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest servletRequest, HttpServletResponse servletResponse, Object handler) {
 
         log.info("AuthInterceptor.preHandle!!");
+        String uri = servletRequest.getRequestURI();
 
-        // /file로 시작하는 URI는 인증 제외
-        if (servletRequest.getRequestURI().startsWith("/file")) {
+        // ✅ 인증 제외 엔드포인트 목록
+        if (uri.startsWith("/file") ||
+                uri.equals("/v1/signup") ||
+                uri.equals("/v1/status") ||
+                uri.equals("/v1/remotelogin")) {
             return true;
         }
 

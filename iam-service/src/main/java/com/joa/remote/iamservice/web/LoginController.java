@@ -6,6 +6,7 @@ import com.joa.remote.iamservice.common.exception.LoginFailedException;
 import com.joa.remote.iamservice.common.provider.security.JwtAuthToken;
 import com.joa.remote.iamservice.common.utils.HttpServletUtils;
 import com.joa.remote.iamservice.dto.LoginRemoteDto;
+import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
 import com.joa.remote.iamservice.service.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -77,6 +78,10 @@ public class LoginController {
                     loginRemoteDTO.getAppVer(),
                     clientIp
                     );
+
+            System.out.println(optionalUserRemoteInfo);
+            System.out.println(optionalUserRemoteInfo);
+            System.out.println(optionalUserRemoteInfo);
 
         } catch (SQLException e) {
             throw new LoginFailedException(e.getMessage());
@@ -199,4 +204,40 @@ public class LoginController {
                     .build();
         }
     }
+
+
+    /**
+     * todo: 회원가입
+     * @param dto
+     * @return
+     */
+    @PostMapping("/signup")
+    public CommonResponse signup(@RequestBody SignUpRequestDto dto) {
+        try {
+            boolean success = loginService.registerUser(dto);
+            if (success) {
+                return CommonResponse.builder()
+                        .code("SIGNUP_SUCCESS")
+                        .status(200)
+                        .message("회원가입 성공")
+                        .data(null)
+                        .build();
+            } else {
+                return CommonResponse.builder()
+                        .code("SIGNUP_FAIL")
+                        .status(500)
+                        .message("회원가입 실패")
+                        .data(null)
+                        .build();
+            }
+        } catch (SQLException e) {
+            return CommonResponse.builder()
+                    .code("SIGNUP_ERROR")
+                    .status(500)
+                    .message("SQL 오류: " + e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
+
 }

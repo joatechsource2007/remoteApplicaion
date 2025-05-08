@@ -4,6 +4,7 @@ import com.joa.remote.iamservice.common.core.security.AuthToken;
 import com.joa.remote.iamservice.common.core.security.Role;
 import com.joa.remote.iamservice.common.provider.security.JwtAuthTokenProvider;
 import com.joa.remote.iamservice.database.*;
+import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
 import com.joa.remote.iamservice.dto.UserSafeInfo;
 import com.joa.remote.iamservice.service.LoginService;
@@ -349,4 +350,64 @@ public class LoginServiceImpl implements LoginService {
 //
 //        return dbHelper.execute(spInfo3);
 //    }
+
+
+
+    @Override
+    public boolean registerUser(SignUpRequestDto dto) throws SQLException {
+        Connection con = dataSource.getConnection();
+        AutoSetAutoCommit sac = new AutoSetAutoCommit(con, false);
+        AutoRollback tm = new AutoRollback(con);
+
+        String userNoSql = "SELECT ISNULL(MAX(ReqID), 0) + 1 FROM SERVICE_USER";
+        PreparedStatement stmtUserNo = con.prepareStatement(userNoSql);
+        ResultSet rs = stmtUserNo.executeQuery();
+
+        int newNumber = 1;
+        if (rs.next()) {
+            newNumber = rs.getInt(1);
+        }
+
+        String userNo = String.format("%010d", newNumber);
+        String now = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+
+        PreparedStatement stmt1 = con.prepareStatement(
+                "INSERT INTO SERVICE_USER (UserNo, UserID, UserEmail, UserPhone, UserPass, " +
+                        "AuthStatus, AuthID, AuthType, UserName, PositionName, RegDT, " +
+                        "CompNo, CompName, CompZipCD, CompAddr1, CompAddr2, UserMemo, ServiceTYPE) " +
+                        "VALUES (?, '1', '', ?, ?, 'Y', '', '0', ?, ?, ?, '', ?, '', '', '', '', 'GAS_EYE')");
+
+        stmt1.setString(1, userNo);
+        stmt1.setString(2, dto.getUserPhone());
+        stmt1.setString(3, dto.getUserPass());
+        stmt1.setString(4, dto.getUserName());
+        stmt1.setString(5, dto.getUserPosition());
+        stmt1.setString(6, now);
+        stmt1.setString(7, dto.getCMngName());
+
+        PreparedStatement stmt2 = con.prepareStatement(
+                "INSERT INTO SERVICE_APP (UserNo, AppID, AppSno, AuthStatus, UserPhone, UserName, " +
+                        "APP_TYPE, C_MNG_NO, C_MNG_NAME, UserPosition, UserEmail, UserPass, USE_Memo, Request_DT, " +
+                        "APP_CERT, SVR_SQL_VER, SVR_IP, SVR_PORT, SVR_DBName, SVR_USER, SVR_PASS) " +
+                        "VALUES (?, 'GAS_EYE', 0, 'Y', ?, ?, '', '', ?, ?, '', ?, '', ?, '0000000000', '2022', " +
+                        "'joainfo.dyndns.org', '2521', 'GasMax_EYE', 'GasMax_EYE', 'Gasmax_eye_pass')");
+
+        stmt2.setString(1, userNo);
+        stmt2.setString(2, dto.getUserPhone());
+        stmt2.setString(3, dto.getUserName());
+        stmt2.setString(4, dto.getCMngName());
+        stmt2.setString(5, dto.getUserPosition());
+        stmt2.setString(6, dto.getUserPass());
+        stmt2.setString(7, now);
+
+        try (con; stmtUserNo; rs; stmt1; stmt2; sac; tm) {
+            stmt1.executeUpdate();
+            stmt2.executeUpdate();
+            tm.commit();
+            return true;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
 }

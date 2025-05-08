@@ -1,0 +1,13 @@
+package com.joa.remote.iamservice.dto;
+
+
+import lombok.Data;
+
+@Data
+public class SignUpRequestDto {
+    private String userPhone;
+    private String userPass;
+    private String userName;
+    private String userPosition;
+    private String cMngName; // 이 이름 유지 시, 서
+}
