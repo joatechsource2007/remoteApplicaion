@@ -1,0 +1,39 @@
+### /tank/search
+GET http://localhost:9083/tank/search?client_id=001&start_date=2024-01-01&end_date=2025-05-08
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/tcustRcvMonth
+GET http://localhost:9083/tank/tcustRcvMonth?client_id=001&month=2025-05
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/tcustRcvDetail
+GET http://localhost:9083/tank/tcustRcvDetail?client_id=001&start_date=2025-05-01&end_date=2025-05-08
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/tcustRcvDetailV2
+GET http://localhost:9083/tank/tcustRcvDetailV2?client_id=001&month=2025-05
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/cuChargeList
+GET http://localhost:9083/tank/cuChargeList?client_id=001
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/tankInspList
+GET http://localhost:9083/tank/tankInspList?client_id=001
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/tankInspHist
+GET http://localhost:9083/tank/tankInspHist?client_id=001
+Accept: application/json
+Authorization: supertoken1234
+
+### /tank/tankInspSelect
+GET http://localhost:9083/tank/tankInspSelect?client_id=001&tank_id=TK123
+Accept: application/json
+Authorization: supertoken1234
