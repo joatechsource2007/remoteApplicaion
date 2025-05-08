@@ -1,0 +1,593 @@
+# api Test
+
+###
+# group: 탱크잔량
+# @name tankmoniter/v1/status
+GET http://localhost:9081/v1/status
+
+###
+# group: 탱크잔량
+# @name tankmoniter/v1/remotelogin(로그인)
+GET http://localhost:9081/v1/remotelogin
+Content-Type: application/json
+
+{
+  "UserPhone": "010-2090-6987",
+  "UserPass": "1234",
+  "RegLat": "37.711110001",
+  "RegLong": "127.711110001",
+  "AppVer": "1.1.1",
+  "PrgKind": "GAS_EYE",
+  "OSKind": "Android",
+  "LogOut": "Y"
+}
+
+###
+# group: 탱크잔량
+# @name tankmoniter/tank/search(탱크주간수신내역)-311
+GET http://localhost:9083/tank/search?
+    p_C_MNG_NO=0008&
+    p_FIND_TEXT=null&
+    p_CUST_CODE=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_TURM_Day=7&
+    p_ALL_YN=Y&
+    p_DEL_YN=N&
+    p_ORDERBY=0&
+    p_GPS_FIND_YN=N&
+    p_GPS_EXTENT=50&
+    p_GPS_LAT=null&
+    p_GPS_LONG=null&
+    p_USERNO=null&
+    p_app_cert=0000000000&
+    p_HIGH_YN=Y
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/tank/tcustRcvMonth?(탱크 고객정보, 탱크 달력)-312
+GET http://localhost:9083/tank/tcustRcvMonth?
+    p_C_MNG_NO=0008&
+    p_CUST_CODE=00682&
+    p_DATE_F=null&
+    p_DATE_T=null&
+    p_TURM_Day=30
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/tank/tcustRcvDetail(탱크 거래처 상세 수신이력 (기간별 상세) - 313
+GET http://localhost:9083/tank/tcustRcvDetail?
+    p_C_MNG_NO=0008&
+    p_CUST_CODE=00682&
+    p_TRANSM_CD=&
+    p_DATE_F=&
+    p_DATE_T=&
+    p_TURM_Day=6&
+    p_OrderBY=null
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/tank/tcustRcvDetailV2(탱크 거래처 수신이력(달력), 집계 포함)-314
+GET http://localhost:9083/tank/tcustRcvDetailV2?
+    p_C_MNG_NO=0008&
+    p_CUST_CODE=00682&
+    p_TRANSM_CD=&
+    p_TURM_Day=50&
+    p_OrderBY=null
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/tank/cuChargeList("탱크 거래처 상세 수신이력 (충전이력))-315
+GET http://localhost:9083/tank/cuChargeList?
+    p_C_MNG_NO=0024&
+    p_CUST_CODE=02625&
+    p_Sale_TYPE=T&
+    p_DATE_F=null&
+    p_DATE_T=null&
+    p_TURM_Day=30
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/meter/search(검침주간주선)-331
+GET http://localhost:9083/meter/search?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_CUST_CODE=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_TURM_Day=7&
+    p_ALL_YN=Y&
+    p_DEL_YN=N&
+    p_ORDERBY=0&
+    p_GPS_FIND_YN=N&
+    p_GPS_EXTENT=50&
+    p_GPS_LAT=null&
+    p_GPS_LONG=null&
+    p_USERNO=null&
+    p_app_cert=0000000000
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/meter/getMeterDetail?(검침 상세수신이력)-332
+GET http://localhost:9083/meter/getMeterDetail?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011&
+    p_DATE_F=20250101&
+    p_DATE_T=20250331&
+    p_TURM_Day=100
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/meter/getMeterGroup?(검침 일간,주간,월간 집계 Data)-332-2
+GET http://localhost:9083/meter/getMeterGroup?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011&
+    p_DATE_F=20250101&
+    p_DATE_T=20250331&
+    p_TURM_Day=100&
+    p_GROUP_TYPE=DAY
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/meter/getMeterGroupApp?(검침 일간,주간,월간 집계 Data)-332-3
+GET http://localhost:9083/meter/getMeterGroupApp?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011&
+    p_DATE_F=20250101&
+    p_DATE_T=20250331&
+    p_TURM_Day=100&
+    p_GROUP_TYPE=DAY
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/meter/mcustRvcAvg(검침 거래처 정보 , 최종검침)-333
+GET http://localhost:9083/meter/mcustRcvAvg?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/cylrinder/search(용기주간수신내역)-321
+GET http://localhost:9083/cylrinder/search?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_CUST_CODE=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_TURM_Day=7&
+    p_ALL_YN=Y&
+    p_DEL_YN=N&
+    p_ORDERBY=0&
+    p_GPS_FIND_YN=N&
+    p_GPS_EXTENT=50&
+    p_GPS_LAT=null&
+    p_GPS_LONG=null&
+    p_USERNO=null&
+    p_app_cert=0000000000
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/cylrinder/searchV2(집계건수 + 용기 주간수신 리스트)-321
+GET http://localhost:9083/cylrinder/searchV2?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_CUST_CODE=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_TURM_Day=7&
+    p_ALL_YN=Y&
+    p_DEL_YN=N&
+    p_ORDERBY=0&
+    p_GPS_FIND_YN=N&
+    p_GPS_EXTENT=50&
+    p_GPS_LAT=null&
+    p_GPS_LONG=null&
+    p_USERNO=null&
+    p_app_cert=0000000000
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/cylrinder/jcustRcvDetail(용기 거래처 상세 수신이력 (기간별 상세) )-323
+GET http://localhost:9083/cylrinder/jcustRcvDetail?
+    p_C_MNG_NO=0084&
+    p_CUST_CODE=00007&
+    p_TRANSM_CD=&
+    p_DATE_F=20250101&
+    p_DATE_T=20250218&
+    p_TURM_Day=30&
+    p_OrderBY=DESC
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/cylrinder/jcustRcvMonth?(용기 거래처 수신이력(달력) +집계 포함) - 324
+GET http://localhost:9083/cylrinder/jcustRcvMonth?
+    p_C_MNG_NO=0084&
+    p_CUST_CODE=00054&
+    p_DATE_F=null&
+    p_DATE_T=null&
+    p_TURM_Day=50
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/customer/getbasecode(기초 콤보 코드리스트	)-300
+GET http://localhost:9083/customer/getbasecode?
+    p_CodeType=B_SW_CD&
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_UserNo=0000000004&
+    p_APP_CERT=0000000000000
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/customer/find(거래처정보)-301
+GET http://localhost:9083/customer/find?
+    p_C_MNG_NO=0084&
+    p_CUST_CODE=null&
+    p_TRANSM_CD=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_DEL_YN=Y&
+    p_TURM_Day=10&
+    p_CUST_TYPE=A&
+    p_FIND_TEXT1=null&
+    p_FIND_TEXT2=221&
+    p_CU_BIZ_TYPE=null&
+    p_CU_CARE=null&
+    p_CU_CONS_TYPE=null
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoiniter/customer/custinfo(거래처 정보 SELECT)-351
+GET http://localhost:9083/customer/custinfo?
+    p_C_MNG_NO=0084&
+    p_CUST_TYPE=T&
+    p_CUST_CODE=null&
+    p_TRANSM_CD=71361&
+    p_GET_TYPE=ALL
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name tankmoniter/company/find(company info)
+GET http://localhost:9083/company/find?
+    p_C_MNG_NO=0084
+authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAyMDkwNjk4NyIsIlVzZXJQaG9uZSI6IjAxMDIwOTA2OTg3IiwiUHJnS2luZCI6IkdBU19FWUUiLCJleHAiOjE3Mzg4MjA0ODF9.YorX38fT-oLtLwtGA661UhwFW7KUPcV0pScyoALgqSE
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/customer/modifyData ---401 테이터 등록 수정, 삭제 wsp_Modify_Data
+GET http://localhost:9083/customer/modifyData?
+    PageID=W1&
+    TableName=UB_BUY_DATA&
+    Operation=INSERT&
+    PKValue="CAR_DATE":"20190205","CAR_TIME":"143503749","C_MNG_NO":"0009","CAR_CODE":"001","CAR_SNO":"7"
+    &
+    NewData="TS_TYPE":"1","CUST_CODE":"","CUST_NAME":"변경고객명","SW_CODE":"01","SW_NAME":"C:","TS_BEFORE_KG":"250.0","TS_CHARGE_L":"184.5","TS_CHARGE_KG":"10.0","TS_AFTER_KG":"10.0","TS_DANGA":"2350.0","TS_KUMACK":"214500.0","TS_MEMO":"222","WK_POST_DT":"20250201 143503","WK_EDIT_DT":"225","APP_USER":"01020906987 길동"&
+    ChangedBy=01020906987 홍길동&
+    USERNO=000000004&
+    App_cert=000000000000
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/customer/selectData  -- 401 데이터 조회  wsp_Select_Data
+GET http://localhost:9083/customer/selectData?
+    TableName=UB_BUY_DATA&
+    PKValue="C_MNG_NO":"0009","CAR_DATE":"20190205","CAR_CODE":"001"&
+    ChangedBy=null&
+    USERNO=null&
+    App_cert=null
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/customer/generatePK  -- 402 insert PK 항번생성 wsp_Generate_PK
+GET http://localhost:9083/customer/generatePK?
+    TableName=T_CUST&
+    Condition="C_MNG_NO":"0009"&
+    PKValue=null
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/tank/tankInspList --- 501 탱크리스트(master) wsp_TANK_INSP_LIST
+GET http://localhost:9083/tank/tankInspList?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_TANK_VOL=null&
+    p_SW_CD=null&
+    p_AREA_CD=null&
+    p_TRANSM_YN=0&
+    p_TANK_RCV=null&
+    p_INSP_STATE=null&
+    p_INSP_SAWON=null&
+    p_INSP_EXP_T=null
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/tank/tankInspHist  --- 502  탱크 검사현황 (Detail) wsp_TANK_INSP_HIST
+GET http://localhost:9083/tank/tankInspSelect?
+    p_C_MNG_NO=0002&
+    p_TANK_CODE=01319
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/tank/tankInspSelect --- 503 탱크정보
+GET http://localhost:9083/tank/tankInspSelect?
+    p_C_MNG_NO=0009&
+    p_TANK_CODE=00060
+authorization: supertoken1234
+
+###
+# group: 탱크잔량
+# @name http://localhost:9083/transm/transmlist --- 504 발신기 관리-리스트
+GET http://localhost:9083/transm/transmlist?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=&
+    p_SW_CD=null&
+    p_AREA_CD=null&
+    p_TRANSM_STATE=&
+    p_TRANSM_TYPE=null&
+    p_IN_DATE_F=null&
+    p_IN_DATE_T=null&
+    p_RCV_TYPE=2
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9081/v1/status
+GET http://localhost:9081/v1/status
+
+###
+# group: local api
+# @name http://localhost:9081/v1/remotelogin
+GET http://localhost:9081/v1/remotelogin
+Content-Type: application/json
+
+{
+  "UserPhone": "010-2090-6987",
+  "UserPass": "1234",
+  "RegLat": "37.711110001",
+  "RegLong": "127.711110001",
+  "AppVer": "1.1.1",
+  "PrgKind": "GAS_EYE",
+  "OSKind": "Android",
+  "LogOut": "Y"
+}
+
+###
+# group: local api
+# @name http://localhost:9081/v1/token
+GET http://localhost:9081/v1/token/04fe52b1-ba82-4926-a3c3-70e4614adf4b
+
+###
+# group: local api
+# @name http://localhost:9083/cylrinder/search(용기주간수신내역)
+GET http://localhost:9083/meter/search?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_CUST_CODE=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_TURM_Day=7&
+    p_ALL_YN=Y&
+    p_DEL_YN=N&
+    p_ORDERBY=0&
+    p_GPS_FIND_YN=N&
+    p_GPS_EXTENT=50&
+    p_GPS_LAT=null&
+    p_GPS_LONG=null&
+    p_USERNO=null&
+    p_app_cert=0000000000
+authorization: supertoken1234
+
+###
+# group: local api
+# @name tankmoniter/customer/getbasecode(기초 콤보 코드리스트	)
+GET http://183.111.26.203:9083/customer/find?
+    p_C_MNG_NO=0084&
+    p_CUST_CODE=null&
+    p_TRANSM_CD=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_DEL_YN=Y&
+    p_TURM_Day=10&
+    p_CUST_TYPE=A&
+    p_FIND_TEXT1=null&
+    p_FIND_TEXT2=221&
+    p_CU_BIZ_TYPE=null&
+    p_CU_CARE=null&
+    p_CU_CONS_TYPE=null
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/customer/custinfo(거래처 정보 SELECT)
+GET http://localhost:9083/customer/custinfo?
+    p_C_MNG_NO  =0084&
+    p_CUST_TYPE=T&
+    p_CUST_CODE=null&
+    p_TRANSM_CD=ALL
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/tank/cuChargeList(탱크고객, 탱크달력)-312
+GET http://localhost:9083/tank/tcustRcvMonth?
+    p_C_MNG_NO=0008&
+    p_CUST_CODE=00682&
+    p_DATE_F=null&
+    p_DATE_T=null&
+    p_TURM_Day=30
+authorization: supertoken1234
+
+###
+# group: local api
+# @name meter/getMeterDetail (검침 상세수신이력, (실검침 이력 포함)) - 332
+GET http://localhost:9083/meter/getMeterDetail?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011&
+    p_DATE_F=20250101&
+    p_DATE_T=20250331&
+    p_TURM_Day=100
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/meter/getMeterGroup?(검침 일간,주간,월간 집계 Data)
+GET http://localhost:9083/meter/getMeterGroup?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011&
+    p_DATE_F=20250101&
+    p_DATE_T=20250331&
+    p_TURM_Day=100&
+    p_GROUP_TYPE=DAY
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/tank/cuChargeList(탱크 거래처 상세 수신이력 (달력, 집계))-315
+GET http://localhost:9083/tank/cuChargeList?
+    p_C_MNG_NO=0024&
+    p_CUST_CODE=02625&
+    p_DATE_F=null&
+    p_DATE_T=null&
+    p_TURM_Day=30&
+    p_Sale_TYPE=T
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/meter/mcustRvcAvg(검침 거래처 정보 , 최종검침)-333
+GET http://localhost:9083/meter/mcustRcvAvg?
+    p_C_MNG_NO=0934&
+    p_CUST_CODE=00011
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/cylrinder/jcustRcvMonth?(용기 거래처 수신이력(달력) +집계 포함) - 324
+GET http://localhost:9083/cylrinder/jcustRcvMonth?
+    p_C_MNG_NO=0084&
+    p_CUST_CODE=00054&
+    p_DATE_F=null&
+    p_DATE_T=null&
+    p_TURM_Day=50
+authorization: supertoken1234
+
+###
+# group: local api
+# @name localhost/cylrinder/search(용기주간수신내역)-321
+GET http://localhost:9083/cylrinder/search?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_CUST_CODE=null&
+    p_SW_CODE=null&
+    p_C_AREA_CODE=null&
+    p_C_TYPE_CODE=null&
+    p_TURM_Day=7&
+    p_ALL_YN=Y&
+    p_DEL_YN=N&
+    p_ORDERBY=0&
+    p_GPS_FIND_YN=N&
+    p_GPS_EXTENT=50&
+    p_GPS_LAT=null&
+    p_GPS_LONG=null&
+    p_USERNO=null&
+    p_app_cert=0000000000
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/customer/selectData?TableName=UB_BUY_DATA&PKValue="C_MNG_NO":"0009","CAR_DATE":"20190205","CAR_CODE":"001"&ChangedBy&USERNO&App_cert
+GET http://localhost:9083/customer/selectData?
+    TableName=UB_BUY_DATA&
+    PKValue="C_MNG_NO":"0009","CAR_DATE":"20190205","CAR_CODE":"001"&
+    ChangedBy=null&
+    USERNO=null&
+    App_cert=null
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/customer/modifyData?PageID=W1&TableName=UB_BUY_DATA&Operation=INSERT&PKValue="CAR_DATE":"20190205","CAR_TIME":"143503736","C_MNG_NO":"0009","CAR_CODE":"001","CAR_SNO":"4"
+# &NewData="TS_TYPE":"1","CUST_CODE":"","CUST_NAME":"변경고객명","SW_
+GET http://localhost:9083/customer/modifyData?
+    PageID=W1&
+    TableName=UB_BUY_DATA&
+    Operation=INSERT&
+    PKValue="CAR_DATE":"20190205","CAR_TIME":"143503736","C_MNG_NO":"0009","CAR_CODE":"001","CAR_SNO":"4"
+    &
+    NewData="TS_TYPE":"1","CUST_CODE":"","CUST_NAME":"변경고객명","SW_CODE":"01","SW_NAME":"C:","TS_BEFORE_KG":"250.0","TS_CHARGE_L":"184.5","TS_CHARGE_KG":"10.0","TS_AFTER_KG":"10.0","TS_DANGA":"2350.0","TS_KUMACK":"214500.0","TS_MEMO":"222","WK_POST_DT":"20250201 143503","WK_EDIT_DT":"225","APP_USER":"01020906987 길동"
+
+    &
+    ChangedBy=01020906987 홍길동&
+    USERNO=000000004&
+    App_cert=000000000000
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/tank/tankInspList?p_C_MNG_NO=0084&p_FIND_TEXT&p_TANK_VOL&p_SW_CD&p_AREA_CD&p_TRANSM_YN=0&p_TANK_RCV&p_INSP_STATE&p_INSP_SAWON&p_INSP_EXP_T
+GET http://localhost:9083/tank/tankInspList?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=null&
+    p_TANK_VOL=null&
+    p_SW_CD=null&
+    p_AREA_CD=null&
+    p_TRANSM_YN=0&
+    p_TANK_RCV=null&
+    p_INSP_STATE=null&
+    p_INSP_SAWON=null&
+    p_INSP_EXP_T=null
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/tank/tankInspHist?p_C_MNG_NO=0002&p_TANK_CODE=01319
+GET http://localhost:9083/tank/tankInspHist?
+    p_C_MNG_NO=0002&
+    p_TANK_CODE=01319
+authorization: supertoken1234
+
+###
+# group: local api
+# @name http://localhost:9083/transm/transmlist --- 504 발신기 관리-리스트
+GET http://localhost:9083/transm/transmlist?
+    p_C_MNG_NO=0084&
+    p_FIND_TEXT=&
+    p_SW_CD=null&
+    p_AREA_CD=null&
+    p_TRANSM_STATE=&
+    p_TRANSM_TYPE=null&
+    p_IN_DATE_F=null&
+    p_IN_DATE_T=null&
+    p_RCV_TYPE=2
+authorization: supertoken1234
+
+###
