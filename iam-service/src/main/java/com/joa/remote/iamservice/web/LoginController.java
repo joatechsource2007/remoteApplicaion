@@ -71,7 +71,7 @@ public class LoginController {
 
 
         try {
-            optionalUserRemoteInfo = loginService.remotelogin(loginRemoteDTO.getUserPhone(),
+            optionalUserRemoteInfo = loginService.getUserInfo2(loginRemoteDTO.getUserPhone(),
                     loginRemoteDTO.getUserPass(),
                     loginRemoteDTO.getRegLat(),
                     loginRemoteDTO.getRegLong(),
