@@ -8,7 +8,7 @@ import com.joa.remote.iamservice.common.utils.HttpServletUtils;
 import com.joa.remote.iamservice.dto.LoginRemoteDto;
 import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
-import com.joa.remote.iamservice.service.impl.LoginService;
+import com.joa.remote.iamservice.service.impl.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -25,11 +25,11 @@ import java.util.Optional;
 @RequestMapping("/v1")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*") // 컨트롤러에서 설정
-public class LoginController {
+public class AuthController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
-    private final LoginService loginService;
+    private final AuthService loginService;
 
     @RequestMapping("/status")
     public String status() {
@@ -100,7 +100,14 @@ public class LoginController {
                     .build();
 
         } else {
-            throw new LoginFailedException();
+            return CommonResponse.builder()
+                    .code("LOGIN_FAILED")
+                    .status(401)
+                    .message("유저 정보가 없습니다.")
+                    .token(null)
+                    .refreshToken(null)
+                    .data(null)
+                    .build();
         }
 
 

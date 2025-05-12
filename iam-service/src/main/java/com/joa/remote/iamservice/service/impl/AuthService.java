@@ -22,7 +22,7 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class LoginService {
+public class AuthService {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final static long LOGIN_RETENTION_MINUTES = 30;
@@ -33,7 +33,7 @@ public class LoginService {
     @Value("${joa.app.jwtRefreshExpirationMinute}")
     private int jwtRefreshExpirationMinute;
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     private final DataSource dataSource;
 
