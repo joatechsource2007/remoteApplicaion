@@ -1,0 +1,11 @@
+### 회원가입 요청
+POST http://localhost:9081/v1/signup
+Content-Type: application/json
+
+{
+  "userPhone": "1234",
+  "userPass": "1",
+  "userName": "고은하4",
+  "userPosition": "대리4",
+  "cmngName": "고은하컴패니4"
+}

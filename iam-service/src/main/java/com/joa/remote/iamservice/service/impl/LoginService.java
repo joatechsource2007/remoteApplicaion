@@ -6,29 +6,23 @@ import com.joa.remote.iamservice.common.provider.security.JwtAuthTokenProvider;
 import com.joa.remote.iamservice.database.*;
 import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
-import com.joa.remote.iamservice.dto.UserSafeInfo;
-import com.joa.remote.iamservice.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.jooq.tools.json.JSONArray;
-import org.jooq.tools.json.JSONObject;
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.*;
 import java.util.*;
 import java.util.Date;
-import java.util.stream.IntStream;
-
-
 
 
 @Service
 @RequiredArgsConstructor
-public class LoginServiceImpl implements LoginService {
+public class LoginService {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final static long LOGIN_RETENTION_MINUTES = 30;
@@ -39,14 +33,13 @@ public class LoginServiceImpl implements LoginService {
     @Value("${joa.app.jwtRefreshExpirationMinute}")
     private int jwtRefreshExpirationMinute;
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
 
     private final DataSource dataSource;
 
     @Autowired
     private DbHelper dbHelper;
 
-    @Override
     public Optional<UserRemoteInfo> remotelogin(String UserPhone, String UserPass, String  RegLat, String RegLong, String AppVer, String TermIP) throws SQLException {
 
         UserRemoteInfo userRemoteInfo = executeRemoteLogin(UserPhone, UserPass, RegLat, RegLong, AppVer);
@@ -54,18 +47,27 @@ public class LoginServiceImpl implements LoginService {
     }
 
     //TODO: 네이밍
-    @Override
     public AuthToken createAuthToken(UserRemoteInfo userRemoteInfo) {
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(jwtExpirationMinute).atZone(ZoneId.systemDefault()).toInstant());
         return jwtAuthTokenProvider.createAuthToken(userRemoteInfo.getUserPhone(), userRemoteInfo.getAppID(), expiredDate);
     }
 
-    @Override
     public AuthToken createAuthToken(String UserPhone, String PngKind) {
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(jwtExpirationMinute).atZone(ZoneId.systemDefault()).toInstant());
         return jwtAuthTokenProvider.createAuthToken(UserPhone, PngKind, expiredDate);
     }
 
+
+    /**
+     * todo : 로그인하는 로직.!
+     * @param UserPhone
+     * @param UserPass
+     * @param RegLat
+     * @param RegLong
+     * @param AppVer
+     * @return
+     * @throws SQLException
+     */
     public UserRemoteInfo executeRemoteLogin(String UserPhone,  String UserPass,  String  RegLat, String RegLong, String AppVer) throws SQLException {
 
         Connection con = dataSource.getConnection();
@@ -160,7 +162,6 @@ public class LoginServiceImpl implements LoginService {
 
     }
 
-    @Override
     public String createRefreshToken(String UserPhone, String clientIp, String PrgKind, String OSKind) throws SQLException {
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -183,7 +184,6 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
-    @Override
     public String verifyRefreshTokenExpiry(String token) throws SQLException {
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac1 = new AutoSetAutoCommit(con,false);
@@ -218,7 +218,6 @@ public class LoginServiceImpl implements LoginService {
         return token;
     }
 
-    @Override
     public int deleteRefreshTokenByUserPhoneAndPrgKind(String UserPhone, String PrgKind)throws SQLException {
         Connection conn = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(conn,false);
@@ -238,7 +237,6 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
-    @Override
     public String findUserPhoneByRefreshToken(String token) throws SQLException{
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -259,7 +257,6 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
-    @Override
     public String findPrgKindByRefreshToken(String token) throws SQLException{
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -279,7 +276,6 @@ public class LoginServiceImpl implements LoginService {
         return "";
     }
 
-    @Override
     public Map<String, Object> findRefreshTokenByUserPhoneAndPrgKind(String UserPhone, String PrgKind) throws SQLException{
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -306,7 +302,6 @@ public class LoginServiceImpl implements LoginService {
         return result;
     }
 
-    @Override
     public Map<String, Object> userLogOff(String UserPhone, String CMngNo) throws SQLException {
         List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
         listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.INOUT).value(UserPhone).jdbcType(JDBCType.VARCHAR).build());
@@ -320,40 +315,7 @@ public class LoginServiceImpl implements LoginService {
 
         return dbHelper.execute(spInfo3);
     }
-//    @Override
-//    public Map<String, Object> changepassword(String UserID, String OldPassWord, String NewPassWord) throws SQLException {
-//        List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
-//        listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.INOUT).value(UserID).jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("OldPassWord").direction(SpParameter.Direction.IN).value(OldPassWord)  .jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("NewPassWord").direction(SpParameter.Direction.IN).value(NewPassWord)  .jdbcType(JDBCType.VARCHAR).build());
-//
-//        SpInfo spInfo3 = SpInfo.builder()
-//                .spName("usp_COMMON_ChangePassword")
-//                .spParameterList(listOfAllSpParameters)
-//                .build();
-//
-//        return dbHelper.execute(spInfo3);
-//    }
 
-//    @Override
-//    public Map<String, Object> initpassword(String UserID, String NewPassWord) throws SQLException {
-//        List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
-//        listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.IN).value(UserID).jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("OldPassWord").direction(SpParameter.Direction.IN).value("")  .jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("NewPassWord").direction(SpParameter.Direction.IN).value(NewPassWord)  .jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("CalledGubun").direction(SpParameter.Direction.IN).value("R")  .jdbcType(JDBCType.VARCHAR).build());
-//
-//        SpInfo spInfo3 = SpInfo.builder()
-//                .spName("usp_COMMON_ChangePassword")
-//                .spParameterList(listOfAllSpParameters)
-//                .build();
-//
-//        return dbHelper.execute(spInfo3);
-//    }
-
-
-
-    @Override
     public boolean registerUser(SignUpRequestDto dto) throws SQLException {
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con, false);
@@ -383,7 +345,7 @@ public class LoginServiceImpl implements LoginService {
         stmt1.setString(4, dto.getUserName());
         stmt1.setString(5, dto.getUserPosition());
         stmt1.setString(6, now);
-        stmt1.setString(7, dto.getCMngName());
+        stmt1.setString(7, dto.getCmngName());
 
         PreparedStatement stmt2 = con.prepareStatement(
                 "INSERT INTO SERVICE_APP (UserNo, AppID, AppSno, AuthStatus, UserPhone, UserName, " +
@@ -395,7 +357,7 @@ public class LoginServiceImpl implements LoginService {
         stmt2.setString(1, userNo);
         stmt2.setString(2, dto.getUserPhone());
         stmt2.setString(3, dto.getUserName());
-        stmt2.setString(4, dto.getCMngName());
+        stmt2.setString(4, dto.getCmngName());
         stmt2.setString(5, dto.getUserPosition());
         stmt2.setString(6, dto.getUserPass());
         stmt2.setString(7, now);

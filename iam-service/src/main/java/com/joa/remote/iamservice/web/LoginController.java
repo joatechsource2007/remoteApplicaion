@@ -8,7 +8,7 @@ import com.joa.remote.iamservice.common.utils.HttpServletUtils;
 import com.joa.remote.iamservice.dto.LoginRemoteDto;
 import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
-import com.joa.remote.iamservice.service.LoginService;
+import com.joa.remote.iamservice.service.impl.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -214,7 +214,11 @@ public class LoginController {
     @PostMapping("/signup")
     public CommonResponse signup(@RequestBody SignUpRequestDto dto) {
         try {
+
+
             boolean success = loginService.registerUser(dto);
+
+
             if (success) {
                 return CommonResponse.builder()
                         .code("SIGNUP_SUCCESS")

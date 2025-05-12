@@ -9,5 +9,5 @@ public class SignUpRequestDto {
     private String userPass;
     private String userName;
     private String userPosition;
-    private String cMngName; // 이 이름 유지 시, 서
+    private String cmngName; // 이 이름 유지 시, 서
 }
