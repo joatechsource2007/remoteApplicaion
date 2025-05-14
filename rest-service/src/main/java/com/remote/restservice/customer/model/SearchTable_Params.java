@@ -37,7 +37,7 @@ public class SearchTable_Params {
         {
             listOfFindSpParameters.add(SpParameter.builder().name("TableName").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
             listOfFindSpParameters.add(SpParameter.builder().name("Condition").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
-            listOfFindSpParameters.add(SpParameter.builder().name("PKValue").direction(SpParameter.Direction.OUT).jdbcType(JDBCType.VARCHAR).build());
+            //listOfFindSpParameters.add(SpParameter.builder().name("PKValue").direction(SpParameter.Direction.INOUT).jdbcType(JDBCType.VARCHAR).build());
         }
 
 

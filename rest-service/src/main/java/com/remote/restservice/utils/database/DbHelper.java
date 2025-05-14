@@ -584,6 +584,8 @@ public class DbHelper {
         return FolderName;
     }
 
+
+
     /**
      * SpInfo 에는 프로시져명 N개의 SpParameter 정보 제공시 사용
      * 트랜잭션 관리 포함
@@ -1051,7 +1053,7 @@ public class DbHelper {
         }
         // Handle any errors that may have occurred.
         catch (SQLException e) {
-            logger.info("오류가 발생하였습니다.");
+            logger.info("오류가 발생하였습니다.--1");
             throw e;
         }
         resultMap.put("tables", tables);
