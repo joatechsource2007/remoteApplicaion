@@ -65,78 +65,7 @@ public class LoginServiceImpl implements LoginService {
         return jwtAuthTokenProvider.createAuthToken(UserPhone, PngKind, expiredDate);
     }
 
-//    @Override
-//    public Map<String, Object> check(String UserId) throws SQLException {
-//        Connection con = dataSource.getConnection();
-//        Statement stmt = con.createStatement();
-//        AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
-//        AutoRollback tm = new AutoRollback(con);
-//
-//        String sqlStringWithUnknownResults = String.format("EXEC usp_COMMON_GetFSInfo '%s'", UserId);
-//        logger.info(String.format("\n Executed Statement \n%s",sqlStringWithUnknownResults));
-//
-//        Map<String, Object> resultMap = new HashMap<>();
-//        try (con; stmt; sac; tm;) {
-//            boolean results = stmt.execute(sqlStringWithUnknownResults);
-//            int count = 0;
-//            int resultSetCount = 0;
-//            do {
-//                if (results) {
-//                    ResultSet rs = stmt.getResultSet();
-//                    ResultSetMetaData md = rs.getMetaData();
-//                    int numCols = md.getColumnCount();
-//                    List<String> colNames = IntStream.range(0, numCols)
-//                            .mapToObj(i -> {
-//                                try {
-//                                    return md.getColumnName(i + 1);
-//                                } catch (SQLException e) {
-//                                    logger.info("오류가 발생하였습니다.");
-//                                    return "?";
-//                                }
-//                            })
-//                            .toList();
-//
-//                    JSONArray result = new JSONArray();
-//                    while (rs.next()) {
-//                        JSONObject row = new JSONObject();
-//                        colNames.forEach(cn -> {
-//                            try {
-//                                row.put(cn, rs.getObject(cn));
-//                            } catch (SQLException e) {
-//                                logger.info("오류가 발생하였습니다.");
-//                            }
-//                        });
-//                        result.add(row);
-//                    }
-//
-//                    resultMap.put( "FSCodes", result);
-//                    resultSetCount++;
-//                    System.out.println("Result set data displayed here.");
-//                }
-//                else {
-//                    count = stmt.getUpdateCount();
-//                    if (count >= 0) {
-//                        resultMap.put( "RowAffected", count);
-//                        System.out.println("DDL or update data displayed here.");
-//                        System.out.println("RowAffected:"+count);
-//                    }
-//                    else {
-//                        resultMap.put( "RowAffected", count);
-//                        System.out.println("No more results to process.");
-//                    }
-//                }
-//                results = stmt.getMoreResults();
-//                logger.info("more result = {}",results);
-//            }
-//            while (results || count != -1);
-//            tm.commit();
-//        }
-//        catch (SQLException e) {
-//            throw e;
-//        }
-//
-//        return resultMap;
-//    }
+
     public UserRemoteInfo executeRemoteLogin(String UserPhone,  String UserPass,  String  RegLat, String RegLong, String AppVer) throws SQLException {
 
         Connection con = dataSource.getConnection();
@@ -391,34 +320,4 @@ public class LoginServiceImpl implements LoginService {
 
         return dbHelper.execute(spInfo3);
     }
-//    @Override
-//    public Map<String, Object> changepassword(String UserID, String OldPassWord, String NewPassWord) throws SQLException {
-//        List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
-//        listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.INOUT).value(UserID).jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("OldPassWord").direction(SpParameter.Direction.IN).value(OldPassWord)  .jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("NewPassWord").direction(SpParameter.Direction.IN).value(NewPassWord)  .jdbcType(JDBCType.VARCHAR).build());
-//
-//        SpInfo spInfo3 = SpInfo.builder()
-//                .spName("usp_COMMON_ChangePassword")
-//                .spParameterList(listOfAllSpParameters)
-//                .build();
-//
-//        return dbHelper.execute(spInfo3);
-//    }
-
-//    @Override
-//    public Map<String, Object> initpassword(String UserID, String NewPassWord) throws SQLException {
-//        List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
-//        listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.IN).value(UserID).jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("OldPassWord").direction(SpParameter.Direction.IN).value("")  .jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("NewPassWord").direction(SpParameter.Direction.IN).value(NewPassWord)  .jdbcType(JDBCType.VARCHAR).build());
-//        listOfAllSpParameters.add(SpParameter.builder().name("CalledGubun").direction(SpParameter.Direction.IN).value("R")  .jdbcType(JDBCType.VARCHAR).build());
-//
-//        SpInfo spInfo3 = SpInfo.builder()
-//                .spName("usp_COMMON_ChangePassword")
-//                .spParameterList(listOfAllSpParameters)
-//                .build();
-//
-//        return dbHelper.execute(spInfo3);
-//    }
 }

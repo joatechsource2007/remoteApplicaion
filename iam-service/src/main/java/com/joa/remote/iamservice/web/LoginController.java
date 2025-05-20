@@ -35,24 +35,6 @@ public class LoginController {
         return "IAM-SERVICE IS ACTIVE";
     }
 
-//    @RequestMapping("/check")
-//    public CommonResponse check(@RequestBody LoginRequestDto loginRequestDTO) {
-//
-//        Map<String, Object> optionalUserInfo = null;
-//        try {
-//            optionalUserInfo = loginService.check(loginRequestDTO.getUserID());
-//        } catch (SQLException e) {
-//            throw new LoginFailedException(e.getMessage());
-//        }
-//
-//        return CommonResponse.builder()
-//                .code("CHECK_SUCCESS")
-//                .status(200)
-//                .message("충전소코드조회성공")
-//                .token("")
-//                .data(Map.of("UserCheck", optionalUserInfo))
-//                .build();
-//    }
     @RequestMapping("/remotelogin")
     public CommonResponse remotelogin(@RequestBody LoginRemoteDto loginRemoteDTO, HttpServletRequest request) throws SQLException {
 
