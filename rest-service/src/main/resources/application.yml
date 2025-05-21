@@ -107,6 +107,8 @@ server:
     max-wait: 1800000 # milliseconds
 
 logging:
+  file:
+    name: logs/app.log
   config: classpath:log4j2-development.xml      # 개발 로그설정파일
   level:
     root: info
@@ -117,6 +119,10 @@ proxy:
     url: http://localhost:8090
 ---
 spring:
+  output:
+    ansi:
+      enabled: always
+
   config:
     activate:
       on-profile: production
@@ -162,8 +168,18 @@ server:
 
 logging:
   config: classpath:log4j2-production.xml      # 운영 로그설정파일
+  level:
+    jdbc.sqlonly: info
+    jdbc.sqltiming: info
+    jdbc.audit: off
+    jdbc.resultset: off
+    jdbc.resultsettable: off
 
 proxy:
   server:
     url: http://172.31.0.100:8090
----
+
+
+
+
+

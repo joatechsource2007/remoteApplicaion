@@ -12,3 +12,8 @@ GET http://localhost:9083/delivery/tankInspSelect?
     p_C_MNG_NO=0009&
     p_TANK_CODE=00060
 authorization: supertoken1234
+
+
+####
+GET http://localhost:9083/delivery/jaegoList?C_MNG_NO=0002&JAE_LAST=Y
+authorization: supertoken1234

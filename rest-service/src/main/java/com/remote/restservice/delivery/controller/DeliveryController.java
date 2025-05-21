@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,6 +54,35 @@ public class DeliveryController {
                     .build();
         }
     }
+
+    @RequestMapping("/jaegoList")
+    public CommonResponse getJaegoList(@RequestParam("C_MNG_NO") String cMngNo,
+                                       @RequestParam("JAE_LAST") String jaeLast) {
+        LOGGER.info("getJaegoList() called with C_MNG_NO: {}, JAE_LAST: {}", cMngNo, jaeLast);
+
+        try {
+            List<Map<String, Object>> resultList = service.selectJaegoList(cMngNo, jaeLast);
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("TABLE0", resultList);
+            result.put("RowCount", resultList.size());
+
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("재고 리스트 조회 성공")
+                    .data(result)
+                    .build();
+        } catch (RuntimeException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
+
 
 
 
