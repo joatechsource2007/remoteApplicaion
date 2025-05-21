@@ -108,7 +108,6 @@ public class CustomerServiceImpl implements CustomerService {
 
         for (String parameter : params.keySet()) {
 
-
             SpParameter oldSpParameter =  pSearchTable_Params.getSpParameterByName(SpParameter.SpType.QUERY, parameter);
 
             if(oldSpParameter==null) continue;
@@ -122,7 +121,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         logger.info("==== 401 select Data ===============================");
         SpInfo spInfo = SpInfo.builder()
-                .spName("wsp_Select_Data_Test")
+                .spName("wsp_Select_Data")
                 .spParameterList(pSearchTable_Params.getListOfQuerySpParameters())
                 .tableNames(listOfTableNames)
                 .build();
