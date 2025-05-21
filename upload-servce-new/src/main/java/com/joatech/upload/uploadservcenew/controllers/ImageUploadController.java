@@ -1,4 +1,4 @@
-package com.joatech.upload.uploadservcenew;
+package com.joatech.upload.uploadservcenew.controllers;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.*;
 import java.nio.file.*;
 import java.util.*;
 

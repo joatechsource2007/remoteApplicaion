@@ -24,3 +24,13 @@ Content-Type: image/jpeg
 
 < /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image2.png
 --WebAppBoundary--
+### 이미지 업로드
+POST http://localhost:1111/images/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="image1.png"
+Content-Type: image/png
+
+< /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image1.png
+--WebAppBoundary--
