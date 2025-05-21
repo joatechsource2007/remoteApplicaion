@@ -70,8 +70,8 @@ public class ImageUploadController {
                         .toFile(thumbPath.toFile());
 
                 uploadedResults.add(Map.of(
-                        "originalUrl", serverUrl + "/images/" + originalFileName,
-                        "thumbnailUrl", serverUrl + "/images/" + thumbnailFileName
+                        "originalUrl", "/images/" + originalFileName,
+                        "thumbnailUrl", "/images/" + thumbnailFileName
                 ));
             }
 
