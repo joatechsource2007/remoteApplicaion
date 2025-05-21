@@ -47,7 +47,7 @@ public class ImageUploadController {
 
         List<Map<String, String>> uploadedResults = new ArrayList<>();
 
-        String serverUrl = request.getScheme() + "://" + getPublicIp() + ":" + request.getServerPort();
+        //String serverUrl = request.getScheme() + "://" + getPublicIp() + ":" + request.getServerPort();
 
         try {
             for (MultipartFile file : files) {
