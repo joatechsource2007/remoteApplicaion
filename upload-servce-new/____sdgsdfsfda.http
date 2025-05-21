@@ -1,5 +1,5 @@
-### 이미지 업로드 (정상 작동 방식)
-POST http://localhost:1111/images/upload
+### 이미지 업로드
+POST http://118.222.92.10:1113/images/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -9,9 +9,8 @@ Content-Type: image/png
 < /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image1.png
 --WebAppBoundary--
 
-#####
-### 이미지 업로드 (다중 이미지도 가능)
-POST http://localhost:1111/images/upload
+###todo: 다중 이미지 업로드 (다중 이미지도 가능)
+POST http://118.222.92.10:1113/images/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
