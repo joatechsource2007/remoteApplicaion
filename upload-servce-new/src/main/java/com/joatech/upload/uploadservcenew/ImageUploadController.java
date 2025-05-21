@@ -5,16 +5,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.*;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.MediaTypeFactory;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.nio.file.*;
 import java.util.Map;
 import java.util.UUID;
@@ -29,7 +27,7 @@ public class ImageUploadController {
     public void init() {
         try {
             Files.createDirectories(Paths.get(baseUploadDir));
-            System.out.println("✅ 업로드 디렉토리 생성됨: " + baseUploadDir);
+            System.out.println("✅ 업로드 디렉토리 생성됨: " + Paths.get(baseUploadDir).toAbsolutePath());
         } catch (IOException e) {
             throw new RuntimeException("디렉토리 생성 실패: " + baseUploadDir, e);
         }
@@ -69,15 +67,9 @@ public class ImageUploadController {
                     .size(200, 200)
                     .toFile(thumbPath.toFile());
 
-            // 서버 IP 주소 가져오기
-            String serverIp;
-            try {
-                serverIp = InetAddress.getLocalHost().getHostAddress();
-            } catch (UnknownHostException e) {
-                serverIp = request.getServerName(); // fallback
-            }
-
-            String serverUrl = request.getScheme() + "://" + serverIp + ":" + request.getServerPort();
+            // ✅ 공인 IP 가져오기
+            String publicIp = getPublicIp();
+            String serverUrl = request.getScheme() + "://" + publicIp + ":" + request.getServerPort();
 
             String originalUrl = serverUrl + "/images/" + originalFileName;
             String thumbnailUrl = serverUrl + "/images/" + thumbnailFileName;
@@ -104,7 +96,6 @@ public class ImageUploadController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("파일이 존재하지 않습니다.");
             }
 
-            // MIME 타입 감지
             String mimeType = Files.probeContentType(filePath);
             MediaType mediaType = (mimeType != null) ? MediaType.parseMediaType(mimeType) : MediaType.APPLICATION_OCTET_STREAM;
 
@@ -122,5 +113,14 @@ public class ImageUploadController {
         }
     }
 
-
+    // ✅ 외부 API로 공인 IP 가져오는 메서드
+    private String getPublicIp() {
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            return restTemplate.getForObject("https://api.ipify.org", String.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "127.0.0.1"; // fallback
+        }
+    }
 }
