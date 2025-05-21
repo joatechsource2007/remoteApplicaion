@@ -14,8 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.*;
 import java.nio.file.*;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 public class ImageUploadController {
@@ -39,47 +38,48 @@ public class ImageUploadController {
     }
 
     @PostMapping("/images/upload")
-    public ResponseEntity<Object> uploadImage(
-            @RequestParam("file") MultipartFile file,
+    public ResponseEntity<Object> uploadImages(
+            @RequestParam("file") MultipartFile[] files,
             HttpServletRequest request
     ) {
+        if (files == null || files.length == 0) {
+            return ResponseEntity.badRequest().body(Map.of("error", "파일이 비어 있습니다."));
+        }
+
+        List<Map<String, String>> uploadedResults = new ArrayList<>();
+
+        String serverUrl = request.getScheme() + "://" + getPublicIp() + ":" + request.getServerPort();
+
         try {
-            if (file.isEmpty()) {
-                return ResponseEntity.badRequest().body(Map.of("error", "업로드된 파일이 비어 있습니다."));
+            for (MultipartFile file : files) {
+                if (file.isEmpty()) continue;
+
+                String ext = StringUtils.getFilenameExtension(file.getOriginalFilename());
+                if (ext == null) continue;
+
+                String baseName = UUID.randomUUID().toString();
+                String originalFileName = baseName + "." + ext;
+                String thumbnailFileName = baseName + "_thumb." + ext;
+
+                Path originalPath = Paths.get(baseUploadDir, originalFileName);
+                Files.copy(file.getInputStream(), originalPath, StandardCopyOption.REPLACE_EXISTING);
+
+                Path thumbPath = Paths.get(baseUploadDir, thumbnailFileName);
+                Thumbnails.of(originalPath.toFile())
+                        .size(200, 200)
+                        .toFile(thumbPath.toFile());
+
+                uploadedResults.add(Map.of(
+                        "originalUrl", serverUrl + "/images/" + originalFileName,
+                        "thumbnailUrl", serverUrl + "/images/" + thumbnailFileName
+                ));
             }
 
-            Files.createDirectories(Paths.get(baseUploadDir));
-
-            String ext = StringUtils.getFilenameExtension(file.getOriginalFilename());
-            if (ext == null) {
-                return ResponseEntity.badRequest().body(Map.of("error", "파일 확장자가 없습니다."));
+            if (uploadedResults.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "업로드 가능한 이미지가 없습니다."));
             }
 
-            String baseName = UUID.randomUUID().toString();
-            String originalFileName = baseName + "." + ext;
-            String thumbnailFileName = baseName + "_thumb." + ext;
-
-            Path originalPath = Paths.get(baseUploadDir, originalFileName);
-            Files.copy(file.getInputStream(), originalPath, StandardCopyOption.REPLACE_EXISTING);
-
-            Path thumbPath = Paths.get(baseUploadDir, thumbnailFileName);
-            Thumbnails.of(originalPath.toFile())
-                    .size(200, 200)
-                    .toFile(thumbPath.toFile());
-
-            // ✅ 공인 IP 가져오기
-            String publicIp = getPublicIp();
-            String serverUrl = request.getScheme() + "://" + publicIp + ":" + request.getServerPort();
-
-            String originalUrl = serverUrl + "/images/" + originalFileName;
-            String thumbnailUrl = serverUrl + "/images/" + thumbnailFileName;
-
-            Map<String, String> response = Map.of(
-                    "originalUrl", originalUrl,
-                    "thumbnailUrl", thumbnailUrl
-            );
-
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(uploadedResults);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +113,6 @@ public class ImageUploadController {
         }
     }
 
-    // ✅ 외부 API로 공인 IP 가져오는 메서드
     private String getPublicIp() {
         try {
             RestTemplate restTemplate = new RestTemplate();
