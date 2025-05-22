@@ -31,17 +31,17 @@ public class TestNoteRepository {
     };
 
     public List<TestNote> findAll() {
-        return jdbc.query("SELECT * FROM test_notes", mapper);
+        return jdbc.query("SELECT * FROM test_Notes", mapper);
     }
 
     public Optional<TestNote> findById(Long id) {
-        List<TestNote> result = jdbc.query("SELECT * FROM test_notes WHERE Id = ?", mapper, id);
+        List<TestNote> result = jdbc.query("SELECT * FROM test_Notes WHERE Id = ?", mapper, id);
         return result.stream().findFirst();
     }
 
     public int insert(TestNote note) {
         return jdbc.update("""
-            INSERT INTO test_notes (Title, Content, Status, Category, CreatedAt, UpdatedAt, UserId, PhoneNumber)
+            INSERT INTO test_Notes (Title, Content, Status, Category, CreatedAt, UpdatedAt, UserId, PhoneNumber)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
                 note.getTitle(),
@@ -56,7 +56,7 @@ public class TestNoteRepository {
 
     public int update(TestNote note) {
         return jdbc.update("""
-            UPDATE test_notes SET Title = ?, Content = ?, Status = ?, Category = ?, UpdatedAt = ?, UserId = ?, PhoneNumber = ?
+            UPDATE test_Notes SET Title = ?, Content = ?, Status = ?, Category = ?, UpdatedAt = ?, UserId = ?, PhoneNumber = ?
             WHERE Id = ?
         """,
                 note.getTitle(),
@@ -70,6 +70,6 @@ public class TestNoteRepository {
     }
 
     public int delete(Long id) {
-        return jdbc.update("DELETE FROM test_notes WHERE Id = ?", id);
+        return jdbc.update("DELETE FROM test_Notes WHERE Id = ?", id);
     }
 }
