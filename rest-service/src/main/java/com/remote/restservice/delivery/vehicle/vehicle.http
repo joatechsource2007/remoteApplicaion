@@ -1,0 +1,48 @@
+### GET 전체 차량 목록
+GET http://localhost:1112/api/vehicles
+Authorization: supertoken1234
+Content-Type: application/json
+
+###
+
+### GET 차량 단건 조회
+GET http://localhost:1112/api/vehicles/1
+Authorization: supertoken1234
+
+###
+
+### POST 차량 등록
+POST http://localhost:1112/api/vehicles
+Authorization: supertoken1234
+Content-Type: application/json
+
+{
+  "plateNumber": "123가5678",
+  "driverName": "홍길동",
+  "status": "운행중",
+  "address": "서울시 강남구 테헤란로 10",
+  "supplyCount": 26,
+  "supplyWeight": 1560
+}
+
+###
+
+### PUT 차량 정보 수정
+PUT http://localhost:1112/api/vehicles/1
+Authorization: supertoken1234
+Content-Type: application/json
+
+{
+  "plateNumber": "123가5678",
+  "driverName": "이몽룡",
+  "status": "정비중",
+  "address": "서울시 송파구 백제고분로",
+  "supplyCount": 30,
+  "supplyWeight": 1600
+}
+
+###
+
+### DELETE 차량 삭제
+DELETE http://localhost:1112/api/vehicles/1
+Authorization: supertoken1234
