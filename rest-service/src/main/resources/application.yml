@@ -17,7 +17,8 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.SQLServer2022Dialect
+        #dialect: org.hibernate.dialect.SQLServer2022Dialect
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
   jackson:
     # Date format string or a fully-qualified date format class name. For instance, 'yyyy-MM-dd HH:mm:ss'
     date-format: "yyyy-MM-dd HH:mm:ss.SSS"

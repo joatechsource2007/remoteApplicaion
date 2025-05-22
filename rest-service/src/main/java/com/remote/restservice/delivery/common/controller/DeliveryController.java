@@ -1,7 +1,7 @@
-package com.remote.restservice.delivery.controller;
+package com.remote.restservice.delivery.common.controller;
 
 import com.remote.restservice.common.CommonResponse;
-import com.remote.restservice.delivery.service.DeliveryService;
+import com.remote.restservice.delivery.common.service.DeliveryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

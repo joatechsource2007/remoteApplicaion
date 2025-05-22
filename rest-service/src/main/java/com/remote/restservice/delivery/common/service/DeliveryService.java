@@ -1,6 +1,5 @@
-package com.remote.restservice.delivery.service;
+package com.remote.restservice.delivery.common.service;
 
-import com.remote.restservice.tank.model.Tank_Insp_Params;
 import com.remote.restservice.utils.database.DbHelper;
 import com.remote.restservice.utils.database.SpInfo;
 import com.remote.restservice.utils.database.SpParameter;
