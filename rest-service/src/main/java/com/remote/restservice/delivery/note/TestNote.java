@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "test_notes")
-@Data // ✅ 모든 getter/setter, equals, hashCode, toString 포함
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TestNote {
@@ -30,13 +30,17 @@ public class TestNote {
 
     private LocalDateTime updatedAt;
 
-    // 생성 시 자동으로 createdAt 설정
+    @Column(nullable = true)
+    private Long userId; // ✅ 사용자 ID (nullable)
+
+    @Column(nullable = true, length = 20)
+    private String phoneNumber; // ✅ 전화번호 (nullable)
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
 
-    // 수정 시 자동으로 updatedAt 설정
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();

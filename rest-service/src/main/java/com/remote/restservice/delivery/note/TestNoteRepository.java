@@ -25,6 +25,8 @@ public class TestNoteRepository {
         note.setCategory(rs.getString("Category"));
         note.setCreatedAt(rs.getTimestamp("CreatedAt") != null ? rs.getTimestamp("CreatedAt").toLocalDateTime() : null);
         note.setUpdatedAt(rs.getTimestamp("UpdatedAt") != null ? rs.getTimestamp("UpdatedAt").toLocalDateTime() : null);
+        note.setUserId(rs.getObject("UserId", Long.class)); // nullable
+        note.setPhoneNumber(rs.getString("PhoneNumber"));   // nullable
         return note;
     };
 
@@ -39,18 +41,32 @@ public class TestNoteRepository {
 
     public int insert(TestNote note) {
         return jdbc.update("""
-            INSERT INTO test_notes (Title, Content, Status, Category, CreatedAt, UpdatedAt)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, note.getTitle(), note.getContent(), note.getStatus(), note.getCategory(),
-                Timestamp.valueOf(note.getCreatedAt()), Timestamp.valueOf(note.getUpdatedAt()));
+            INSERT INTO test_notes (Title, Content, Status, Category, CreatedAt, UpdatedAt, UserId, PhoneNumber)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+                note.getTitle(),
+                note.getContent(),
+                note.getStatus(),
+                note.getCategory(),
+                Timestamp.valueOf(note.getCreatedAt()),
+                Timestamp.valueOf(note.getUpdatedAt()),
+                note.getUserId(),
+                note.getPhoneNumber());
     }
 
     public int update(TestNote note) {
         return jdbc.update("""
-            UPDATE test_notes SET Title = ?, Content = ?, Status = ?, Category = ?, UpdatedAt = ?
+            UPDATE test_notes SET Title = ?, Content = ?, Status = ?, Category = ?, UpdatedAt = ?, UserId = ?, PhoneNumber = ?
             WHERE Id = ?
-        """, note.getTitle(), note.getContent(), note.getStatus(), note.getCategory(),
-                Timestamp.valueOf(note.getUpdatedAt()), note.getId());
+        """,
+                note.getTitle(),
+                note.getContent(),
+                note.getStatus(),
+                note.getCategory(),
+                Timestamp.valueOf(note.getUpdatedAt()),
+                note.getUserId(),
+                note.getPhoneNumber(),
+                note.getId());
     }
 
     public int delete(Long id) {

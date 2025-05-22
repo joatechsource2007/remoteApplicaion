@@ -12,7 +12,7 @@ Accept: application/json
 
 ###
 
-### ✅ 새 메모 생성
+### ✅ 새 메모 생성 (userId, phoneNumber 포함)
 POST http://localhost:9083/api/notes
 Content-Type: application/json
 authorization: supertoken1234
@@ -21,12 +21,14 @@ authorization: supertoken1234
   "title": "테스트 메모",
   "content": "IntelliJ에서 생성한 메모입니다.",
   "status": "pending",
-  "category": "업무"
+  "category": "업무",
+  "userId": 1001,
+  "phoneNumber": "010-1234-5678"
 }
 
 ###
 
-### ✅ 메모 수정 (예: ID = 1)
+### ✅ 메모 수정 (예: ID = 1, userId, phoneNumber 포함)
 PUT http://localhost:9083/api/notes/1
 Content-Type: application/json
 authorization: supertoken1234
@@ -35,7 +37,9 @@ authorization: supertoken1234
   "title": "수정된 메모 제목",
   "content": "수정된 본문 내용",
   "status": "done",
-  "category": "개인"
+  "category": "개인",
+  "userId": 1001,
+  "phoneNumber": "010-1234-5678"
 }
 
 ###
