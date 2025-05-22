@@ -1,4 +1,4 @@
-package com.remote.restservice.delivery.common.service;
+package com.remote.restservice.delivery.common;
 
 import com.remote.restservice.utils.database.DbHelper;
 import com.remote.restservice.utils.database.SpInfo;
