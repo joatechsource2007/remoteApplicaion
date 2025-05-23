@@ -1,0 +1,56 @@
+### 전체 조회
+GET http://localhost:9083/api/charge-delivery
+Accept: application/json
+Authorization: supertoken1234
+
+###
+
+### 단건 조회
+GET http://localhost:9083/api/charge-delivery/1
+Accept: application/json
+Authorization: supertoken1234
+
+###
+
+### 생성
+POST http://localhost:9083/api/charge-delivery
+Content-Type: application/json
+Authorization: supertoken1234
+
+{
+  "deliveryTime": "07:20:00",
+  "status": "요청",
+  "address": "명지빌리지 B동 2205호",
+  "customerName": "홍길동",
+  "remainPercent": 15,
+  "weightKg": 455,
+  "dealInfo": "637 → 324",
+  "memo": "테스트 메모",
+  "createdAt": "2025-05-22 13:20:00"
+}
+
+
+###
+
+### 수정
+PUT http://localhost:9083/api/charge-delivery/1
+Content-Type: application/json
+Authorization: supertoken1234
+
+{
+  "deliveryTime": "08:00:00",
+  "status": "완료",
+  "address": "명지빌리지 A동 101호",
+  "customerName": "이몽룡",
+  "remainPercent": 10,
+  "weightKg": 300,
+  "dealInfo": "321 → 123",
+  "memo": "수정 테스트",
+  "createdAt": "2025-05-22T13:20:00"
+}
+
+###
+
+### 삭제
+DELETE http://localhost:9083/api/charge-delivery/1
+Authorization: supertoken1234

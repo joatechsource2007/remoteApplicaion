@@ -6,8 +6,9 @@ import com.joa.remote.iamservice.common.exception.LoginFailedException;
 import com.joa.remote.iamservice.common.provider.security.JwtAuthToken;
 import com.joa.remote.iamservice.common.utils.HttpServletUtils;
 import com.joa.remote.iamservice.dto.LoginRemoteDto;
+import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
-import com.joa.remote.iamservice.service.LoginService;
+import com.joa.remote.iamservice.service.impl.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -24,11 +25,11 @@ import java.util.Optional;
 @RequestMapping("/v1")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*") // 컨트롤러에서 설정
-public class LoginController {
+public class AuthController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
-    private final LoginService loginService;
+    private final AuthService loginService;
 
     @RequestMapping("/status")
     public String status() {
@@ -70,13 +71,17 @@ public class LoginController {
 
 
         try {
-            optionalUserRemoteInfo = loginService.remotelogin(loginRemoteDTO.getUserPhone(),
+            optionalUserRemoteInfo = loginService.getUserInfo2(loginRemoteDTO.getUserPhone(),
                     loginRemoteDTO.getUserPass(),
                     loginRemoteDTO.getRegLat(),
                     loginRemoteDTO.getRegLong(),
                     loginRemoteDTO.getAppVer(),
                     clientIp
                     );
+
+            System.out.println(optionalUserRemoteInfo);
+            System.out.println(optionalUserRemoteInfo);
+            System.out.println(optionalUserRemoteInfo);
 
         } catch (SQLException e) {
             throw new LoginFailedException(e.getMessage());
@@ -95,31 +100,19 @@ public class LoginController {
                     .build();
 
         } else {
-            throw new LoginFailedException();
+            return CommonResponse.builder()
+                    .code("LOGIN_FAILED")
+                    .status(401)
+                    .message("유저 정보가 없습니다.")
+                    .token(null)
+                    .refreshToken(null)
+                    .data(null)
+                    .build();
         }
 
 
     }
 
-//    @RequestMapping("/login")
-//    public CommonResponse login(@RequestBody LoginRequestDto loginRequestDTO, HttpServletRequest request) throws SQLException {
-//
-//        String clientIp = HttpServletUtils.getClientIP(request);
-//
-//        Optional<UserInfo> optionalUserInfo = null;
-//        String UserID = loginRequestDTO.getUserID();
-//        int FSCode = loginRequestDTO.getFSCode();
-//        String LogOut = loginRequestDTO.getLogOut();
-//
-//            return CommonResponse.builder()
-//                    .code("LOGIN_SUCCESS")
-//                    .status(200)
-//                    .message("로그인 성공")
-//                    .token("")   //Access 토큰생성
-//                    .refreshToken("")  //RefreshToken 생성
-//                    .data(Map.of("UserInfo", optionalUserInfo.get()))
-//                    .build();
-//    }
 
     @RequestMapping("/refreshToken")
     public CommonResponse verifyRefreshToken(@RequestBody Map<String,Object> params) throws SQLException{
@@ -168,7 +161,7 @@ public class LoginController {
         try {
             //로그인 토큰 삭제
             loginService.deleteRefreshTokenByUserPhoneAndPrgKind(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
-            
+
             //DB 로그아웃 프로시져
             //Map<String, Object> result = loginService.userLogOff(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
             return CommonResponse.builder()
@@ -218,55 +211,44 @@ public class LoginController {
                     .build();
         }
     }
-//    @RequestMapping("/changepasswordtest")
-//    public String changepasswordtest(){
-//        return "IAM-SERVICE IS ACTIVE";
-//    }
-//    @PostMapping("/changepassword")
-//    public CommonResponse changepassword(@RequestBody Map<String,Object> params) {
-//        //@PathVariable String userID, @PathVariable String oldpasswd, @PathVariable String newpasswd
-//        LOGGER.info("UserController.changepassword() accepted on {}", params);
-//        LOGGER.info("UserController.changepassword() accepted on {}", params.get("UserID"));
-//        LOGGER.info("UserController.changepassword() accepted on {}", params.get("PassWord"));
-//        LOGGER.info("UserController.changepassword() accepted on {}", params.get("NewPassWord"));
-//        try {
-//            Map<String, Object> result = loginService.changepassword(String.valueOf(params.get("UserID")), String.valueOf(params.get("PassWord")), String.valueOf(params.get("NewPassWord")));
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("패스워드 변경")
-//                    .data(result)
-//                    .build();
-//        } catch (SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
 
-//    @PostMapping("/initpassword")
-//    public CommonResponse initpassword(@RequestBody Map<String,Object> params) {
-//        LOGGER.info("UserController.initpassword() accepted on {}", params);
-//        LOGGER.info("UserController.initpassword() accepted on {}", params.get("UserID"));
-//        LOGGER.info("UserController.initpassword() accepted on {}", params.get("NewPassWord"));
-//        try {
-//            Map<String, Object> result = loginService.initpassword(String.valueOf(params.get("UserID")), String.valueOf(params.get("NewPassWord")));
-//            return CommonResponse.builder()
-//                    .code("SUCCESS")
-//                    .status(HttpStatus.OK.value())
-//                    .message("패스워드 초기설정")
-//                    .data(result)
-//                    .build();
-//        } catch (SQLException e) {
-//            return CommonResponse.builder()
-//                    .code("FAIL")
-//                    .status(HttpStatus.OK.value())
-//                    .message(e.getMessage())
-//                    .data(null)
-//                    .build();
-//        }
-//    }
+
+    /**
+     * todo: 회원가입
+     * @param dto
+     * @return
+     */
+    @PostMapping("/signup")
+    public CommonResponse signup(@RequestBody SignUpRequestDto dto) {
+        try {
+
+
+            boolean success = loginService.registerUser(dto);
+
+
+            if (success) {
+                return CommonResponse.builder()
+                        .code("SIGNUP_SUCCESS")
+                        .status(200)
+                        .message("회원가입 성공")
+                        .data(null)
+                        .build();
+            } else {
+                return CommonResponse.builder()
+                        .code("SIGNUP_FAIL")
+                        .status(500)
+                        .message("회원가입 실패")
+                        .data(null)
+                        .build();
+            }
+        } catch (SQLException e) {
+            return CommonResponse.builder()
+                    .code("SIGNUP_ERROR")
+                    .status(500)
+                    .message("SQL 오류: " + e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
+
 }

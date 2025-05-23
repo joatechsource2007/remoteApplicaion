@@ -17,7 +17,8 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.SQLServer2022Dialect
+        #dialect: org.hibernate.dialect.SQLServer2022Dialect
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
   jackson:
     # Date format string or a fully-qualified date format class name. For instance, 'yyyy-MM-dd HH:mm:ss'
     date-format: "yyyy-MM-dd HH:mm:ss.SSS"
@@ -99,14 +100,16 @@ spring:
 location.nts: c:/RemoteFiles/NTS
 
 server:
-  port: 9083   #server.port=${PORT:8083}
+  #port: 9083   #server.port=${PORT:8083}
+  port: 1112   #server.port=${PORT:8083}
   address: 0.0.0.0
-  connection-timeout: 1800000
   tomcat:
     connection-timeout: 1800000 # milliseconds
     max-wait: 1800000 # milliseconds
 
 logging:
+  file:
+    name: logs/app.log
   config: classpath:log4j2-development.xml      # 개발 로그설정파일
   level:
     root: info
@@ -117,6 +120,10 @@ proxy:
     url: http://localhost:8090
 ---
 spring:
+  output:
+    ansi:
+      enabled: always
+
   config:
     activate:
       on-profile: production
@@ -162,8 +169,18 @@ server:
 
 logging:
   config: classpath:log4j2-production.xml      # 운영 로그설정파일
+  level:
+    jdbc.sqlonly: info
+    jdbc.sqltiming: info
+    jdbc.audit: off
+    jdbc.resultset: off
+    jdbc.resultsettable: off
 
 proxy:
   server:
     url: http://172.31.0.100:8090
----
+
+
+
+
+

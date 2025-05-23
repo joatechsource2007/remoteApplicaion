@@ -4,30 +4,25 @@ import com.joa.remote.iamservice.common.core.security.AuthToken;
 import com.joa.remote.iamservice.common.core.security.Role;
 import com.joa.remote.iamservice.common.provider.security.JwtAuthTokenProvider;
 import com.joa.remote.iamservice.database.*;
+import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
-import com.joa.remote.iamservice.dto.UserSafeInfo;
-import com.joa.remote.iamservice.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.jooq.tools.json.JSONArray;
-import org.jooq.tools.json.JSONObject;
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.*;
 import java.util.*;
 import java.util.Date;
-import java.util.stream.IntStream;
-
-
 
 
 @Service
 @RequiredArgsConstructor
-public class LoginServiceImpl implements LoginService {
+public class AuthService {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final static long LOGIN_RETENTION_MINUTES = 30;
@@ -38,34 +33,37 @@ public class LoginServiceImpl implements LoginService {
     @Value("${joa.app.jwtRefreshExpirationMinute}")
     private int jwtRefreshExpirationMinute;
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     private final DataSource dataSource;
 
     @Autowired
     private DbHelper dbHelper;
 
-    @Override
-    public Optional<UserRemoteInfo> remotelogin(String UserPhone, String UserPass, String  RegLat, String RegLong, String AppVer, String TermIP) throws SQLException {
 
-        UserRemoteInfo userRemoteInfo = executeRemoteLogin(UserPhone, UserPass, RegLat, RegLong, AppVer);
-        return Optional.ofNullable(userRemoteInfo);
-    }
 
     //TODO: 네이밍
-    @Override
     public AuthToken createAuthToken(UserRemoteInfo userRemoteInfo) {
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(jwtExpirationMinute).atZone(ZoneId.systemDefault()).toInstant());
         return jwtAuthTokenProvider.createAuthToken(userRemoteInfo.getUserPhone(), userRemoteInfo.getAppID(), expiredDate);
     }
 
-    @Override
     public AuthToken createAuthToken(String UserPhone, String PngKind) {
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(jwtExpirationMinute).atZone(ZoneId.systemDefault()).toInstant());
         return jwtAuthTokenProvider.createAuthToken(UserPhone, PngKind, expiredDate);
     }
 
 
+    /**
+     * todo : 로그인하는 로직.!
+     * @param UserPhone
+     * @param UserPass
+     * @param RegLat
+     * @param RegLong
+     * @param AppVer
+     * @return
+     * @throws SQLException
+     */
     public UserRemoteInfo executeRemoteLogin(String UserPhone,  String UserPass,  String  RegLat, String RegLong, String AppVer) throws SQLException {
 
         Connection con = dataSource.getConnection();
@@ -160,7 +158,6 @@ public class LoginServiceImpl implements LoginService {
 
     }
 
-    @Override
     public String createRefreshToken(String UserPhone, String clientIp, String PrgKind, String OSKind) throws SQLException {
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -183,7 +180,6 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
-    @Override
     public String verifyRefreshTokenExpiry(String token) throws SQLException {
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac1 = new AutoSetAutoCommit(con,false);
@@ -218,7 +214,6 @@ public class LoginServiceImpl implements LoginService {
         return token;
     }
 
-    @Override
     public int deleteRefreshTokenByUserPhoneAndPrgKind(String UserPhone, String PrgKind)throws SQLException {
         Connection conn = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(conn,false);
@@ -238,7 +233,6 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
-    @Override
     public String findUserPhoneByRefreshToken(String token) throws SQLException{
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -259,7 +253,6 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
-    @Override
     public String findPrgKindByRefreshToken(String token) throws SQLException{
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -279,7 +272,6 @@ public class LoginServiceImpl implements LoginService {
         return "";
     }
 
-    @Override
     public Map<String, Object> findRefreshTokenByUserPhoneAndPrgKind(String UserPhone, String PrgKind) throws SQLException{
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
@@ -306,7 +298,6 @@ public class LoginServiceImpl implements LoginService {
         return result;
     }
 
-    @Override
     public Map<String, Object> userLogOff(String UserPhone, String CMngNo) throws SQLException {
         List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
         listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.INOUT).value(UserPhone).jdbcType(JDBCType.VARCHAR).build());
@@ -320,4 +311,157 @@ public class LoginServiceImpl implements LoginService {
 
         return dbHelper.execute(spInfo3);
     }
+
+
+    /**
+     * todo: 회우너등록!
+     * @param dto
+     * @return
+     * @throws SQLException
+     */
+    public boolean registerUser(SignUpRequestDto dto) throws SQLException {
+        Connection con = dataSource.getConnection();
+        AutoSetAutoCommit sac = new AutoSetAutoCommit(con, false);
+        AutoRollback tm = new AutoRollback(con);
+
+        String userNoSql = "SELECT ISNULL(MAX(ReqID), 0) + 1 FROM SERVICE_USER";
+        PreparedStatement stmtUserNo = con.prepareStatement(userNoSql);
+        ResultSet rs = stmtUserNo.executeQuery();
+
+        int newNumber = 1;
+        if (rs.next()) {
+            newNumber = rs.getInt(1);
+        }
+
+        String userNo = String.format("%010d", newNumber);
+        String now = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+
+        PreparedStatement stmt1 = con.prepareStatement(
+                "INSERT INTO SERVICE_USER (UserNo, UserID, UserEmail, UserPhone, UserPass, " +
+                        "AuthStatus, AuthID, AuthType, UserName, PositionName, RegDT, " +
+                        "CompNo, CompName, CompZipCD, CompAddr1, CompAddr2, UserMemo, ServiceTYPE) " +
+                        "VALUES (?, '', ?, ?, ?, 'Y', '', '0', ?, ?, ?, '', ?, '', '', '', '', 'GAS_EYE')");
+
+        stmt1.setString(1, userNo);
+        stmt1.setString(2, dto.getUserEmail()); // email 필요
+        stmt1.setString(3, dto.getUserPhone());
+        stmt1.setString(4, dto.getUserPass());
+        stmt1.setString(5, dto.getUserName());
+        stmt1.setString(6, dto.getUserPosition());
+        stmt1.setString(7, now);
+        stmt1.setString(8, dto.getCmngName());
+
+        PreparedStatement stmt2 = con.prepareStatement(
+                "INSERT INTO SERVICE_APP (UserNo, AppID, AppSno, AuthStatus, UserPhone, UserName, " +
+                        "APP_TYPE, C_MNG_NO, C_MNG_NAME, UserPosition, UserEmail, UserPass, USE_Memo, Request_DT, " +
+                        "APP_CERT, SVR_SQL_VER, SVR_IP, SVR_PORT, SVR_DBName, SVR_USER, SVR_PASS) " +
+                        "VALUES (?, 'GAS_EYE', 0, 'Y', ?, ?, '', '', ?, ?, ?, ?, '', ?, '0000000000', '2022', " +
+                        "'joainfo.dyndns.org', '2521', 'GasMax_EYE', 'GasMax_EYE', 'Gasmax_eye_pass')");
+
+        stmt2.setString(1, userNo);
+        stmt2.setString(2, dto.getUserPhone());
+        stmt2.setString(3, dto.getUserName());
+        stmt2.setString(4, dto.getCmngName());
+        stmt2.setString(5, dto.getUserPosition());
+        stmt2.setString(6, dto.getUserEmail());  // email 필요
+        stmt2.setString(7, dto.getUserPass());
+        stmt2.setString(8, now);
+
+        try (con; stmtUserNo; rs; stmt1; stmt2; sac; tm) {
+            stmt1.executeUpdate();
+            stmt2.executeUpdate();
+            tm.commit();
+            return true;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+
+    /**
+     * todo: fetch user info
+     * @param userPhone
+     * @param userPass
+     * @param regLat
+     * @param regLong
+     * @param appVer
+     * @param termIP
+     * @return
+     * @throws SQLException
+     */
+    public Optional<UserRemoteInfo> getUserInfo2(String userPhone, String userPass, String regLat, String regLong, String appVer, String termIP) throws SQLException {
+        Connection con = dataSource.getConnection();
+        AutoSetAutoCommit sac = new AutoSetAutoCommit(con, false);
+        AutoRollback tm = new AutoRollback(con);
+
+        String userPhoneNum = userPhone.replaceAll("[^0-9]", "");
+
+        String sql = """
+            SELECT 
+                U.UserNo,
+                A.AppID,
+                CAST(A.AppSno AS VARCHAR) AS AppSno,
+                A.AuthStatus,
+                U.UserPhone,
+                U.UserName,
+                A.C_MNG_NO,
+                A.C_MNG_NAME,
+                A.Area_Code,
+                A.Area_Name,
+                A.SW_CD,
+                A.SW_Name,
+                A.APP_CERT,
+                A.UserEmail,
+                GETDATE() AS CurrentDateTime
+            FROM SERVICE_USER U
+            JOIN SERVICE_APP A ON U.UserNo = A.UserNo
+            WHERE U.UserPhone = ?
+              AND U.UserPass = ?
+              AND U.AuthStatus = 'Y'
+              AND A.AppID = 'GAS_EYE'
+              AND A.AuthStatus = 'Y'
+        """;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, userPhoneNum);
+            ps.setString(2, userPass);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                UserRemoteInfo info = UserRemoteInfo.builder()
+                        .UserNo(rs.getString("UserNo"))
+                        .AppID(rs.getString("AppID"))
+                        .AppSno(rs.getString("AppSno"))
+                        .AuthStatus(rs.getString("AuthStatus"))
+                        .UserPhone(rs.getString("UserPhone"))
+                        .UserName(rs.getString("UserName"))
+                        .CMngNo(rs.getString("C_MNG_NO"))
+                        .CMngName(rs.getString("C_MNG_NAME"))
+                        .AreaCode(rs.getString("Area_Code"))
+                        .AreaName(rs.getString("Area_Name"))
+                        .SwCd(rs.getString("SW_CD"))
+                        .SwName(rs.getString("SW_Name"))
+                        .AppCert(rs.getString("APP_CERT"))
+                        .UserEmail(rs.getString("UserEmail"))
+                        .CurrentDateTime(rs.getTimestamp("CurrentDateTime"))
+                        .Role(Role.USER)
+                        .build();
+                logger.info("✅ UserRemoteInfo retrieved via SQL: {}", info);
+                tm.commit();
+                return Optional.of(info);
+            } else {
+                logger.warn("❌ No matching user found for login.");
+                return Optional.empty();
+            }
+        } catch (SQLException e) {
+            logger.error("❌ SQL error during remotelogin(): {}", e.getMessage());
+            throw e;
+        } finally {
+            con.close();
+        }
+    }
+
+
+
+
 }

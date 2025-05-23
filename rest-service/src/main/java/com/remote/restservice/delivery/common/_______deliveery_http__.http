@@ -1,0 +1,19 @@
+### 탱크 검사정보 조회 (503 wsp_TANK_INSP_SELECT)
+GET http://localhost:9083/delivery/tankInspSelect
+Content-Type: application/x-www-form-urlencoded
+authorization: supertoken1234
+
+custId=1234&year=2025&month=05
+
+
+######
+# @name http://localhost:9083/tank/tankInspSelect --- 503 탱크정보
+GET http://localhost:9083/delivery/tankInspSelect?
+    p_C_MNG_NO=0009&
+    p_TANK_CODE=00060
+authorization: supertoken1234
+
+
+####
+GET http://localhost:9083/delivery/jaegoList?C_MNG_NO=0002&JAE_LAST=Y
+authorization: supertoken1234
