@@ -34,3 +34,12 @@ Content-Type: image/png
 
 < /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image1.png
 --WebAppBoundary--
+
+
+### Get image as base64
+GET http://localhost:1113/images/base64/1f63f09b-2c82-4377-8fa8-872c30069de9.png
+Accept: application/json
+
+### Get image as base64
+GET http://localhost:1113/images/test
+Accept: application/json

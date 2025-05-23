@@ -1,4 +1,4 @@
-package com.joatech.upload.uploadservcenew.controllers;
+package com.joatech.upload.uploadservcenew;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +36,8 @@ public class ImageUploadController {
         return "image upload controller alive";
     }
 
+
+    @CrossOrigin(origins = "*")
     @PostMapping("/images/upload")
     public ResponseEntity<Object> uploadImages(
             @RequestParam("file") MultipartFile[] files,
@@ -90,17 +92,25 @@ public class ImageUploadController {
     @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Object> serveImage(@PathVariable String filename) {
         try {
+            // 경로 조작 방지
+            if (filename.contains("..")) {
+                return ResponseEntity.badRequest().body("잘못된 파일 요청입니다.");
+            }
+
             Path filePath = Paths.get(baseUploadDir, filename);
             if (!Files.exists(filePath)) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("파일이 존재하지 않습니다.");
             }
 
             String mimeType = Files.probeContentType(filePath);
-            MediaType mediaType = (mimeType != null) ? MediaType.parseMediaType(mimeType) : MediaType.APPLICATION_OCTET_STREAM;
+            MediaType mediaType = (mimeType != null)
+                    ? MediaType.parseMediaType(mimeType)
+                    : MediaType.APPLICATION_OCTET_STREAM;
 
             ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(filePath));
 
             return ResponseEntity.ok()
+                    .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*") // CORS 허용
                     .contentType(mediaType)
                     .contentLength(Files.size(filePath))
                     .body(resource);
@@ -112,6 +122,7 @@ public class ImageUploadController {
         }
     }
 
+
     private String getPublicIp() {
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -121,4 +132,39 @@ public class ImageUploadController {
             return "127.0.0.1"; // fallback
         }
     }
+
+
+    @GetMapping("/images/base64/{filename:.+}")
+    public ResponseEntity<Object> serveImageAsBase64(@PathVariable String filename) {
+        try {
+            // 경로 조작 방지
+            if (filename.contains("..")) {
+                return ResponseEntity.badRequest().body("잘못된 파일 요청입니다.");
+            }
+
+            Path filePath = Paths.get(baseUploadDir, filename);
+            if (!Files.exists(filePath)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("파일이 존재하지 않습니다.");
+            }
+
+            String mimeType = Files.probeContentType(filePath);
+            byte[] fileBytes = Files.readAllBytes(filePath);
+            String base64Encoded = Base64.getEncoder().encodeToString(fileBytes);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("filename", filename);
+            response.put("contentType", mimeType);
+            response.put("base64", "data:" + mimeType + ";base64," + base64Encoded);
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Base64 인코딩 실패: " + e.getMessage()));
+        }
+    }
+
 }

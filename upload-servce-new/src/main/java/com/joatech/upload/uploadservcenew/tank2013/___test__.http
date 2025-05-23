@@ -1,0 +1,10 @@
+### 이미지 JSON 업로드 테스트
+POST http://192.168.3.58:1113/api/tank2013/customer-images
+Content-Type: application/json
+Authorization: supertoken1234
+
+{
+  "customerCode": "C001",
+  "customerName": "홍길동상사",
+  "imageList": "[{\"originalUrl\": \"/images/a1.png\", \"thumbnailUrl\": \"/images/a1_thumb.png\"}]"
+}

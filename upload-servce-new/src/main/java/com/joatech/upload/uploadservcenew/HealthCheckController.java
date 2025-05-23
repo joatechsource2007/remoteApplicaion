@@ -1,4 +1,4 @@
-package com.joatech.upload.uploadservcenew.controllers;
+package com.joatech.upload.uploadservcenew;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
