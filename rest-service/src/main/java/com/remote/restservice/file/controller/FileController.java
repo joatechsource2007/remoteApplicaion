@@ -25,6 +25,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import java.io.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+
+
 @RestController
 @RequestMapping("/file")
 public class FileController {
@@ -178,7 +183,7 @@ public class FileController {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @RequestMapping("/imgdownloadFile/{fileId}")
+    @RequestMapping("/imgdownloadfile/{fileId}")
     public ResponseEntity<Resource> imgDownloadFile(@PathVariable String fileId) throws UnsupportedEncodingException {
         UrlResource resource;
         LOGGER.info("FileController.imgDownloadFile() accepted on {}", fileId);
@@ -191,7 +196,6 @@ public class FileController {
                         .contentType(MediaType.IMAGE_JPEG)  // 이미지 타입 설정 (여기서는 JPEG로 설정)
                         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +resource.getFilename()  + "\"")
                         .body(resource);
-
         } catch (RuntimeException | IOException e) {
             LOGGER.info("오류가 발생하였습니다.");
         }
@@ -199,9 +203,24 @@ public class FileController {
         return null;
     }
 
+    @RequestMapping("/imgloadfile/{fileId}")
+    public static BufferedImage imgloadfile(@PathVariable String fileId) throws UnsupportedEncodingException {
+        //UrlResource resource;
+        String imgPaths = "c:/18.JOA_RemoteMoniter/Tank_IMG";
+        LOGGER.info("FileController.imgDownloadFile() accepted on {}", fileId);
+        try {
+            LOGGER.info("FileID :  {} ", fileId);
+            LOGGER.info("Image_path :  {} ", imgPaths);
 
+            File inputImage = new File(imgPaths + "/" +fileId);
+            return ImageIO.read(inputImage);
 
+        } catch (RuntimeException | IOException e) {
+            LOGGER.info("오류가 발생하였습니다.");
+        }
 
+        return null;
+    }
     /**
      * 파일명 인코딩
      * @param fileName
