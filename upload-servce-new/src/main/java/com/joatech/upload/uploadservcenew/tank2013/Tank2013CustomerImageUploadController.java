@@ -1,5 +1,8 @@
 package com.joatech.upload.uploadservcenew.tank2013;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,12 +23,40 @@ public class Tank2013CustomerImageUploadController {
     // ✅ CREATE
     @PostMapping
     public int insertCustomerImages(@RequestBody CustomerImageRequest req) {
-        String sql = """
-            INSERT INTO CustomerImageJson (CustomerCode, CustomerName, ImageList)
-            VALUES (?, ?, ?)
-        """;
-        return jdbc.update(sql, req.getCustomerCode(), req.getCustomerName(), req.getImageList());
+        String customerCode = req.getCustomerCode();
+
+        // 1. 기존 데이터 조회
+        String selectSql = "SELECT * FROM CustomerImageJson WHERE CustomerCode = ?";
+        List<CustomerImageRequest> existingList = jdbc.query(selectSql, new CustomerImageRowMapper(), customerCode);
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            List<ObjectNode> newImages = mapper.readValue(req.getImageList(), new TypeReference<>() {});
+
+            if (existingList.isEmpty()) {
+                // 2-1. 기존 데이터 없으면 INSERT
+                String insertSql = """
+                INSERT INTO CustomerImageJson (CustomerCode, CustomerName, ImageList)
+                VALUES (?, ?, ?)
+            """;
+                return jdbc.update(insertSql, customerCode, req.getCustomerName(), mapper.writeValueAsString(newImages));
+            } else {
+                // 2-2. 기존 데이터 있으면 기존 이미지 + 새 이미지 합치기
+                CustomerImageRequest existing = existingList.get(0);
+                List<ObjectNode> existingImages = mapper.readValue(existing.getImageList(), new TypeReference<>() {});
+
+                existingImages.addAll(newImages); // 병합
+                String updatedJson = mapper.writeValueAsString(existingImages);
+
+                String updateSql = "UPDATE CustomerImageJson SET CustomerName = ?, ImageList = ? WHERE CustomerCode = ?";
+                return jdbc.update(updateSql, req.getCustomerName(), updatedJson, customerCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
+
 
     // ✅ READ (전체 목록)
     @GetMapping
@@ -50,11 +81,42 @@ public class Tank2013CustomerImageUploadController {
         return jdbc.update(sql, req.getCustomerName(), req.getImageList(), customerCode);
     }
 
-    // ✅ DELETE (customerCode 기준)
-    @DeleteMapping("/{customerCode}")
-    public int deleteByCustomerCode(@PathVariable String customerCode) {
-        String sql = "DELETE FROM CustomerImageJson WHERE CustomerCode = ?";
-        return jdbc.update(sql, customerCode);
+
+    @Data
+    public static class DeleteImageRequest {
+        private String customerCode;
+        private String imageUrl;
+    }
+
+    @PostMapping("/delete")
+    public int deleteSingleImage(@RequestBody DeleteImageRequest req) {
+        String sql = "SELECT * FROM CustomerImageJson WHERE CustomerCode = ?";
+        List<CustomerImageRequest> results = jdbc.query(sql, new CustomerImageRowMapper(), req.getCustomerCode());
+
+        if (results.isEmpty()) return 0;
+
+        CustomerImageRequest record = results.get(0);
+        String imageListJson = record.getImageList();
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<ObjectNode> imageList = mapper.readValue(imageListJson, new TypeReference<>() {});
+
+            // 기존 목록 중 삭제할 이미지 제외
+            List<ObjectNode> updatedList = imageList.stream()
+                    .filter(node -> !req.getImageUrl().equals(node.get("originalUrl").asText()))
+                    .toList();
+
+            String updatedJson = mapper.writeValueAsString(updatedList);
+
+            // DB 업데이트
+            String updateSql = "UPDATE CustomerImageJson SET ImageList = ? WHERE CustomerCode = ?";
+            return jdbc.update(updateSql, updatedJson, req.getCustomerCode());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     // ✅ DTO

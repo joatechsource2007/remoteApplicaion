@@ -1,4 +1,4 @@
-package com.joatech.upload.uploadservcenew;
+package com.joatech.upload.uploadservcenew.main;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,19 +55,25 @@ public class ImageUploadController {
             for (MultipartFile file : files) {
                 if (file.isEmpty()) continue;
 
-                String ext = StringUtils.getFilenameExtension(file.getOriginalFilename());
-                if (ext == null) continue;
-
                 String baseName = UUID.randomUUID().toString();
-                String originalFileName = baseName + "." + ext;
-                String thumbnailFileName = baseName + "_thumb." + ext;
+                String originalFileName = baseName + ".jpg";      // 강제 확장자
+                String thumbnailFileName = baseName + "_thumb.jpg";
 
                 Path originalPath = Paths.get(baseUploadDir, originalFileName);
-                Files.copy(file.getInputStream(), originalPath, StandardCopyOption.REPLACE_EXISTING);
-
                 Path thumbPath = Paths.get(baseUploadDir, thumbnailFileName);
+
+                // ✅ 원본을 JPG로 저장
+                Thumbnails.of(file.getInputStream())
+                        .scale(1.0)
+                        .outputFormat("jpg")
+                        .outputQuality(0.92f)
+                        .toFile(originalPath.toFile());
+
+                // ✅ 썸네일 생성도 JPG로
                 Thumbnails.of(originalPath.toFile())
-                        .size(200, 200)
+                        .size(220, 220)
+                        .outputFormat("jpg")
+                        .outputQuality(0.85f)
                         .toFile(thumbPath.toFile());
 
                 uploadedResults.add(Map.of(
@@ -75,6 +81,7 @@ public class ImageUploadController {
                         "thumbnailUrl", "/images/" + thumbnailFileName
                 ));
             }
+
 
             if (uploadedResults.isEmpty()) {
                 return ResponseEntity.badRequest().body(Map.of("error", "업로드 가능한 이미지가 없습니다."));
