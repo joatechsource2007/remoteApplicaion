@@ -71,7 +71,7 @@ public class ImageUploadController {
 
                 // ✅ 썸네일 생성도 JPG로
                 Thumbnails.of(originalPath.toFile())
-                        .size(220, 220)
+                        .size(400, 400)
                         .outputFormat("jpg")
                         .outputQuality(0.85f)
                         .toFile(thumbPath.toFile());

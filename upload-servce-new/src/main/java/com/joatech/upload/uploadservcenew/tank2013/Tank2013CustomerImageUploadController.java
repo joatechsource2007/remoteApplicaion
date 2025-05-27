@@ -19,123 +19,91 @@ import java.util.List;
 public class Tank2013CustomerImageUploadController {
 
     private final JdbcTemplate jdbc;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    // ✅ CREATE
+    // ✅ INSERT
     @PostMapping
-    public int insertCustomerImages(@RequestBody CustomerImageRequest req) {
-        String customerCode = req.getCustomerCode();
-
-        // 1. 기존 데이터 조회
-        String selectSql = "SELECT * FROM CustomerImageJson WHERE CustomerCode = ?";
-        List<CustomerImageRequest> existingList = jdbc.query(selectSql, new CustomerImageRowMapper(), customerCode);
-
-        ObjectMapper mapper = new ObjectMapper();
+    public int insertTankImages(@RequestParam("customerCode") String customerCode,
+                                @RequestParam("imageList") String imageListJson) {
         try {
-            List<ObjectNode> newImages = mapper.readValue(req.getImageList(), new TypeReference<>() {});
+            List<ObjectNode> imageList = objectMapper.readValue(imageListJson, new TypeReference<>() {});
 
-            if (existingList.isEmpty()) {
-                // 2-1. 기존 데이터 없으면 INSERT
+            int insertedCount = 0;
+            for (ObjectNode image : imageList) {
+                String orgUrl = image.get("originalUrl").asText();
+                String smallUrl = image.get("thumbnailUrl").asText();
+
                 String insertSql = """
-                INSERT INTO CustomerImageJson (CustomerCode, CustomerName, ImageList)
-                VALUES (?, ?, ?)
-            """;
-                return jdbc.update(insertSql, customerCode, req.getCustomerName(), mapper.writeValueAsString(newImages));
-            } else {
-                // 2-2. 기존 데이터 있으면 기존 이미지 + 새 이미지 합치기
-                CustomerImageRequest existing = existingList.get(0);
-                List<ObjectNode> existingImages = mapper.readValue(existing.getImageList(), new TypeReference<>() {});
+                    INSERT INTO GasMax_EYE.dbo.TANK_IMG (
+                        DEL_FLAG, C_MNG_NO, CUST_TYPE, CUST_CODE, TRANSM_CD,
+                        TANK_CODE, IMG_NAME, IMG_TYPE, SMALL_IMG_URL, ORG_IMG_URL,
+                        ORG_IMG_SIZE, WK_ID, WK_DATE
+                    ) VALUES (
+                        'N', NULL, NULL, 'TEST-CODE', NULL,
+                        ?, 'dummy.jpg', 'jpg', ?, ?, 0, 'SYSTEM', GETDATE()
+                    )
+                """;
 
-                existingImages.addAll(newImages); // 병합
-                String updatedJson = mapper.writeValueAsString(existingImages);
-
-                String updateSql = "UPDATE CustomerImageJson SET CustomerName = ?, ImageList = ? WHERE CustomerCode = ?";
-                return jdbc.update(updateSql, req.getCustomerName(), updatedJson, customerCode);
+                insertedCount += jdbc.update(insertSql, customerCode, smallUrl, orgUrl);
             }
+
+            return insertedCount;
+
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-
-    // ✅ READ (전체 목록)
-    @GetMapping
-    public List<CustomerImageRequest> getAllCustomerImages() {
-        String sql = "SELECT * FROM CustomerImageJson ORDER BY Id DESC";
-        return jdbc.query(sql, new CustomerImageRowMapper());
+    // ✅ READ 전체
+    @PostMapping("/list")
+    public List<TankImageRecord> getAllTankImages() {
+        String sql = "SELECT * FROM GasMax_EYE.dbo.TANK_IMG ORDER BY AUTO_ID DESC";
+        return jdbc.query(sql, new TankImageRowMapper());
     }
 
-    // ✅ READ (단건 조회 by customerCode)
-    @GetMapping("/{customerCode}")
-    public List<CustomerImageRequest> getByCustomerCode(@PathVariable String customerCode) {
-        String sql = "SELECT * FROM CustomerImageJson WHERE CustomerCode = ?";
-        return jdbc.query(sql, new CustomerImageRowMapper(), customerCode);
+    // ✅ READ 단건
+    @PostMapping("/by-code")
+    public List<TankImageRecord> getByTankCode(@RequestParam("customerCode") String customerCode) {
+        String sql = "SELECT * FROM GasMax_EYE.dbo.TANK_IMG WHERE TANK_CODE = ? ORDER BY AUTO_ID DESC";
+        return jdbc.query(sql, new TankImageRowMapper(), customerCode);
     }
-
-    // ✅ UPDATE (customerCode 기준)
-    @PutMapping("/{customerCode}")
-    public int updateImageList(@PathVariable String customerCode, @RequestBody CustomerImageRequest req) {
-        String sql = """
-            UPDATE CustomerImageJson SET CustomerName = ?, ImageList = ? WHERE CustomerCode = ?
-        """;
-        return jdbc.update(sql, req.getCustomerName(), req.getImageList(), customerCode);
-    }
-
 
     @Data
-    public static class DeleteImageRequest {
+    public static class DeleteRequest {
         private String customerCode;
         private String imageUrl;
     }
 
     @PostMapping("/delete")
-    public int deleteSingleImage(@RequestBody DeleteImageRequest req) {
-        String sql = "SELECT * FROM CustomerImageJson WHERE CustomerCode = ?";
-        List<CustomerImageRequest> results = jdbc.query(sql, new CustomerImageRowMapper(), req.getCustomerCode());
-
-        if (results.isEmpty()) return 0;
-
-        CustomerImageRequest record = results.get(0);
-        String imageListJson = record.getImageList();
-
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            List<ObjectNode> imageList = mapper.readValue(imageListJson, new TypeReference<>() {});
-
-            // 기존 목록 중 삭제할 이미지 제외
-            List<ObjectNode> updatedList = imageList.stream()
-                    .filter(node -> !req.getImageUrl().equals(node.get("originalUrl").asText()))
-                    .toList();
-
-            String updatedJson = mapper.writeValueAsString(updatedList);
-
-            // DB 업데이트
-            String updateSql = "UPDATE CustomerImageJson SET ImageList = ? WHERE CustomerCode = ?";
-            return jdbc.update(updateSql, updatedJson, req.getCustomerCode());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public int deleteByImageUrl(@RequestBody DeleteRequest req) {
+        String sql = "DELETE FROM GasMax_EYE.dbo.TANK_IMG WHERE TANK_CODE = ? AND ORG_IMG_URL = ?";
+        return jdbc.update(sql, req.getCustomerCode(), req.getImageUrl());
     }
 
-    // ✅ DTO
+    // ✅ DTO (조회용 레코드)
     @Data
-    public static class CustomerImageRequest {
-        private String customerCode;
-        private String customerName;
-        private String imageList;
+    public static class TankImageRecord {
+        private int autoId;
+        private String tankCode;
+        private String orgImgUrl;
+        private String smallImgUrl;
+        private String imgName;
+        private String imgType;
     }
 
     // ✅ RowMapper
-    private static class CustomerImageRowMapper implements RowMapper<CustomerImageRequest> {
+    private static class TankImageRowMapper implements RowMapper<TankImageRecord> {
         @Override
-        public CustomerImageRequest mapRow(ResultSet rs, int rowNum) throws SQLException {
-            CustomerImageRequest req = new CustomerImageRequest();
-            req.setCustomerCode(rs.getString("CustomerCode"));
-            req.setCustomerName(rs.getString("CustomerName"));
-            req.setImageList(rs.getString("ImageList"));
-            return req;
+        public TankImageRecord mapRow(ResultSet rs, int rowNum) throws SQLException {
+            TankImageRecord record = new TankImageRecord();
+            record.setAutoId(rs.getInt("AUTO_ID"));
+            record.setTankCode(rs.getString("TANK_CODE"));
+            record.setOrgImgUrl(rs.getString("ORG_IMG_URL"));
+            record.setSmallImgUrl(rs.getString("SMALL_IMG_URL"));
+            record.setImgName(rs.getString("IMG_NAME"));
+            record.setImgType(rs.getString("IMG_TYPE"));
+            return record;
         }
     }
 }
