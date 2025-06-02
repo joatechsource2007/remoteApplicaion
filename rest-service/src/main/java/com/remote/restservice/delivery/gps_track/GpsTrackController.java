@@ -17,28 +17,6 @@ public class GpsTrackController {
 
     private final JdbcTemplate jdbc;
 
-    // ✅ 차량 궤적 조회 (FN_TANK_GPS_LINE 함수)
-    @GetMapping("/trajectory")
-    public List<VehicleTrajectory> getVehicleTrajectory(
-            @RequestParam String cMngNo,
-            @RequestParam String carCode,
-            @RequestParam String date
-    ) {
-        String sql = "SELECT * FROM FN_TANK_GPS_LINE(?, ?, ?) ORDER BY CAR_CODE, R_DATE, R_TIME";
-        return jdbc.query(sql, new VehicleTrajectoryMapper(), cMngNo, carCode, date);
-    }
-
-    // ✅ 차량 최종 위치 조회 (wfn_Get_Latest_GPS 함수)
-    @GetMapping("/latest-location")
-    public List<VehicleLatestLocation> getLatestLocation(
-            @RequestParam String cMngNo,
-            @RequestParam String date,
-            @RequestParam String carCode
-    ) {
-        String sql = "SELECT * FROM dbo.wfn_Get_Latest_GPS(?, ?, ?)";
-        return jdbc.query(sql, new VehicleLatestLocationMapper(), cMngNo, date, carCode);
-    }
-
     // 🧭 궤적 결과 모델
     @Data
     public static class VehicleTrajectory {
@@ -106,4 +84,28 @@ public class GpsTrackController {
             return v;
         }
     }
+
+    // ✅ 차량 궤적 조회 (FN_TANK_GPS_LINE 함수)
+    @GetMapping("/trajectory")
+    public List<VehicleTrajectory> getVehicleTrajectory(
+            @RequestParam String cMngNo,
+            @RequestParam String carCode,
+            @RequestParam String date
+    ) {
+        String sql = "SELECT * FROM FN_TANK_GPS_LINE(?, ?, ?) ORDER BY CAR_CODE, R_DATE, R_TIME";
+        return jdbc.query(sql, new VehicleTrajectoryMapper(), cMngNo, carCode, date);
+    }
+
+    // ✅ 차량 최종 위치 조회 (wfn_Get_Latest_GPS 함수)
+    @GetMapping("/latest-location")
+    public List<VehicleLatestLocation> getLatestLocation(
+            @RequestParam String cMngNo,
+            @RequestParam String date,
+            @RequestParam String carCode
+    ) {
+        String sql = "SELECT * FROM dbo.wfn_Get_Latest_GPS(?, ?, ?)";
+        return jdbc.query(sql, new VehicleLatestLocationMapper(), cMngNo, date, carCode);
+    }
+
+
 }
