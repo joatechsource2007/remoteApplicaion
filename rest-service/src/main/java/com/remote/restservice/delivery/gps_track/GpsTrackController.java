@@ -86,6 +86,9 @@ public class GpsTrackController {
     }
 
     // ✅ 차량 궤적 조회 (FN_TANK_GPS_LINE 함수)
+    //todo: UB_GPS_DATA table에서 조회해온다!
+    //todo: UB_GPS_DATA table에서 조회해온다!
+    //todo: UB_GPS_DATA table에서 조회해온다!
     @GetMapping("/trajectory")
     public List<VehicleTrajectory> getVehicleTrajectory(
             @RequestParam String cMngNo,
@@ -93,6 +96,11 @@ public class GpsTrackController {
             @RequestParam String date
     ) {
         String sql = "SELECT * FROM FN_TANK_GPS_LINE(?, ?, ?) ORDER BY CAR_CODE, R_DATE, R_TIME";
+
+        // ✅ 콘솔에 쿼리 로그 출력
+        System.out.println("📡 Executing SQL: " + sql);
+        System.out.println("📌 Params: cMngNo=" + cMngNo + ", carCode=" + carCode + ", date=" + date);
+
         return jdbc.query(sql, new VehicleTrajectoryMapper(), cMngNo, carCode, date);
     }
 

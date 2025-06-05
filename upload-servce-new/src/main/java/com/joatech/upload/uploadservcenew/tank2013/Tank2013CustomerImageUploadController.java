@@ -85,10 +85,9 @@ public class Tank2013CustomerImageUploadController {
         return jdbc.query(sql, new TankImageRowMapper(), tankCode, customerCode, clientNumber);
     }
 
-    // ✅ DELETE
     @PostMapping("/delete")
     public int deleteByImageUrl(@RequestBody DeleteRequest req) {
-        String sql = "DELETE FROM GasMax_EYE.dbo.TANK_IMG WHERE TANK_CODE = ? AND CUST_CODE = ? AND ORG_IMG_URL = ?";
+        String sql = "DELETE FROM ... WHERE TANK_CODE = ? AND CUST_CODE = ? AND ORG_IMG_URL = ?";
         return jdbc.update(sql, req.getTankCode(), req.getCustomerCode(), req.getImageUrl());
     }
 
@@ -97,6 +96,7 @@ public class Tank2013CustomerImageUploadController {
     public static class DeleteRequest {
         private String customerCode;
         private String tankCode;
+        private String clientNumber;
         private String imageUrl;
     }
 

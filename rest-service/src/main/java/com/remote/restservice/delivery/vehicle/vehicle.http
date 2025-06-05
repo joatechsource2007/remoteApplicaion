@@ -46,3 +46,10 @@ Content-Type: application/json
 ### DELETE 차량 삭제
 DELETE http://localhost:1112/api/vehicles/1
 Authorization: supertoken1234
+
+##############
+
+### 차량 리스트 조회 (업체코드: 0009)
+GET http://localhost:1112/api/vehicles?cMngNo=0009
+Accept: application/json
+Authorization: supertoken1234
