@@ -78,7 +78,7 @@ spring:
       on-profile: development
   datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_WEB;password=WEB36900**;
+    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_APP;password=APP36900**;
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
       maximum-pool-size: 10
@@ -100,8 +100,7 @@ spring:
 location.nts: c:/RemoteFiles/NTS
 
 server:
-  #port: 9083   #server.port=${PORT:8083}
-  port: 1112   #server.port=${PORT:8083}
+  port: 9083   #server.port=${PORT:8083}
   address: 0.0.0.0
   tomcat:
     connection-timeout: 1800000 # milliseconds
@@ -129,7 +128,7 @@ spring:
       on-profile: production
   datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_WEB;password=WEB36900**;
+    url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_APP;password=APP36900**;
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
       maximum-pool-size: 30
