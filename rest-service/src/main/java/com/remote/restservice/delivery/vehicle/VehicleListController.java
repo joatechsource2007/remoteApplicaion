@@ -3,6 +3,8 @@ package com.remote.restservice.delivery.vehicle;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -79,12 +81,21 @@ public class VehicleListController {
         }
     }
 
-    // ✅ 차량 리스트 조회
+    private static final Logger log = LoggerFactory.getLogger(VehicleListController.class);
+
+    //todo: ✅ 차량 리스트 조회
     @GetMapping
     public List<VehicleInfo> getVehicleList(@RequestParam String cMngNo) {
+        log.info("📥 차량 리스트 조회 요청 - cMngNo: {}", cMngNo);
+
         String sql = "EXEC wsp_OTHER_LIST @p_C_MNG_NO = ?, @p_OTHER_NAME = 'UB_CAR', " +
                 "@p_FIND_TEXT = NULL, @p_FIND_G1 = NULL, @p_FIND_G2 = NULL, @p_FIND_G3 = NULL";
-        return jdbc.query(sql, new VehicleInfoMapper(), cMngNo);
+
+        List<VehicleInfo> result = jdbc.query(sql, new VehicleInfoMapper(), cMngNo);
+
+        log.info("📤 차량 리스트 조회 완료 - 반환 건수: {}", result.size());
+
+        return result;
     }
 
 
