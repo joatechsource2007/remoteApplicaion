@@ -1,13 +1,11 @@
 package com.joa.remote.iamservice.web;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.joa.remote.iamservice.common.core.CommonResponse;
 import com.joa.remote.iamservice.common.exception.LoginFailedException;
 import com.joa.remote.iamservice.common.provider.security.JwtAuthToken;
 import com.joa.remote.iamservice.common.utils.HttpServletUtils;
 import com.joa.remote.iamservice.dto.LoginRemoteDto;
-import com.joa.remote.iamservice.dto.MemberDto;
 import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
 import com.joa.remote.iamservice.service.impl.AuthService;
@@ -37,32 +35,6 @@ public class AuthController {
     public String status() {
         return "IAM-SERVICE IS ACTIVE";
     }
-
-    @RequestMapping("/remotemember")
-    public CommonResponse remotemember(@RequestBody MemberDto memberDto, HttpServletRequest request) throws SQLException {
-
-        String clientIp = HttpServletUtils.getClientIP(request);
-        Optional<MemberDto> optionalMemberDto = null;
-
-        try {
-            String str =   loginService.memberinfo(memberDto);
-
-            return CommonResponse.builder()
-                    .code("S001")
-                    .status(200)
-                    .message("회원가입완료")
-                    .token(null)
-                    .refreshToken(null)
-                    .data(null)
-                    .build();
-
-        } catch (SQLException e) {
-            throw new LoginFailedException(e.getMessage());
-        }
-
-
-    }
-
 
     @RequestMapping("/remotelogin")
     public CommonResponse remotelogin(@RequestBody LoginRemoteDto loginRemoteDTO, HttpServletRequest request) throws SQLException {
@@ -107,6 +79,8 @@ public class AuthController {
                     clientIp
                     );
 
+            System.out.println(optionalUserRemoteInfo);
+            System.out.println(optionalUserRemoteInfo);
             System.out.println(optionalUserRemoteInfo);
 
         } catch (SQLException e) {
@@ -189,7 +163,7 @@ public class AuthController {
             loginService.deleteRefreshTokenByUserPhoneAndPrgKind(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
 
             //DB 로그아웃 프로시져
-            Map<String, Object> result = loginService.userLogOff(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
+            //Map<String, Object> result = loginService.userLogOff(loginRemoteDTO.getUserPhone(), loginRemoteDTO.getPrgKind());
             return CommonResponse.builder()
                     .code("SUCCESS")
                     .status(HttpStatus.OK.value())

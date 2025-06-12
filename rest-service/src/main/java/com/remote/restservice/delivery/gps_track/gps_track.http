@@ -1,0 +1,13 @@
+### ✅ 1. 차량 궤적 조회 (Trajectory via FN_TANK_GPS_LINE)
+### 차량 궤적 조회 (예: 업체코드 0024, 차량코드 001, 일자 20250522)
+GET http://localhost:1112/api/gps-tracks/trajectory?cMngNo=0024&carCode=001&date=20250522
+Accept: application/json
+authorization: supertoken1234
+
+
+
+### ✅ 2. 차량 최종 위치 조회 (Latest Location via wfn_Get_Latest_GPS)
+### 차량 최종 위치 조회 (예: 업체코드 0024, 차량코드 001, 일자 20250522)
+GET http://localhost:1112/api/gps-tracks/latest-location?cMngNo=0024&date=20250522&carCode=001
+Accept: application/json
+authorization: supertoken1234

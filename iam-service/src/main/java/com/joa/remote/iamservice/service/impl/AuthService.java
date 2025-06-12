@@ -333,14 +333,14 @@ public class AuthService {
         return result;
     }
 
-    public Map<String, Object> userLogOff(String UserPhone, String userno) throws SQLException {
+ public Map<String, Object> userLogOff(String UserPhone, String CMngNo) throws SQLException {
         List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
-        listOfAllSpParameters.add(SpParameter.builder().name("p_userphone").direction(SpParameter.Direction.INOUT).value(UserPhone).jdbcType(JDBCType.VARCHAR).build());
-        listOfAllSpParameters.add(SpParameter.builder().name("p_userno").direction(SpParameter.Direction.IN).value(userno)  .jdbcType(JDBCType.VARCHAR).build());
-        listOfAllSpParameters.add(SpParameter.builder().name("OPT_CD").direction(SpParameter.Direction.IN).value("60")  .jdbcType(JDBCType.CHAR).build());
+        listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.INOUT).value(UserPhone).jdbcType(JDBCType.VARCHAR).build());
+        listOfAllSpParameters.add(SpParameter.builder().name("FSCode").direction(SpParameter.Direction.IN).value(CMngNo)  .jdbcType(JDBCType.INTEGER).build());
+        listOfAllSpParameters.add(SpParameter.builder().name("LoginGubun").direction(SpParameter.Direction.IN).value("X")  .jdbcType(JDBCType.CHAR).build());
 
         SpInfo spInfo3 = SpInfo.builder()
-                .spName("wsp_EYE_LOGIN")
+                .spName("usp_COMMON_Login_Web")
                 .spParameterList(listOfAllSpParameters)
                 .build();
 
@@ -349,7 +349,6 @@ public class AuthService {
 
 
     /**
-     * todo: 회원등록!
      * @param dto
      * @return
      * @throws SQLException

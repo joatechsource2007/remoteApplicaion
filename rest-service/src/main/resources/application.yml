@@ -100,7 +100,8 @@ spring:
 location.nts: c:/RemoteFiles/NTS
 
 server:
-  port: 9083   #server.port=${PORT:8083}
+  #port: 9083   #server.port=${PORT:8083}
+  port: 1112   #server.port=${PORT:8083}
   address: 0.0.0.0
   tomcat:
     connection-timeout: 1800000 # milliseconds
