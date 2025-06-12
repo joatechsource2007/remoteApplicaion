@@ -4,6 +4,7 @@ import com.joa.remote.iamservice.common.core.security.AuthToken;
 import com.joa.remote.iamservice.common.core.security.Role;
 import com.joa.remote.iamservice.common.provider.security.JwtAuthTokenProvider;
 import com.joa.remote.iamservice.database.*;
+import com.joa.remote.iamservice.dto.MemberDto;
 import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
 import lombok.RequiredArgsConstructor;
@@ -53,6 +54,40 @@ public class AuthService {
         return jwtAuthTokenProvider.createAuthToken(UserPhone, PngKind, expiredDate);
     }
 
+    public  String  memberinfo(MemberDto memberInfo) throws SQLException{
+
+        Connection con = dataSource.getConnection();
+        AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
+        AutoRollback tm = new AutoRollback(con);
+
+        String sql = "{call wsp_EYE_LOGIN(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+        logger.info("EXECUTED SQL : {}", sql);
+
+        int opt = 10;
+        CallableStatement cs =con.prepareCall(sql);
+        cs.setInt(1,opt);                               // 1  @OPT_CD
+        cs.setString(2,memberInfo.getCmngname());       // 2  @p_c_mng_name
+        cs.setString(3,memberInfo.getUsername());       // 3  @p_username
+        cs.setString(4,memberInfo.getUserposition());   // 4  @p_userposition
+        cs.setString(5,memberInfo.getUserphone());      // 5  @p_userphone
+        cs.setString(6,memberInfo.getUseremail());      // 6  @p_useremail
+        cs.setString(7,memberInfo.getUserpass());       // 7  @p_userpass
+        cs.setString(8,memberInfo.getAppver());         // 8  @p_appver
+        cs.setString(9,memberInfo.getReglat());         // 9  @p_reg_lat
+        cs.setString(10,memberInfo.getReglong());       // 10 @p_reg_long
+        cs.setString(11,memberInfo.getUserno());        // 11 @p_userno
+
+        try (con; cs; sac; tm;) {
+            boolean results = cs.execute();
+            tm.commit();
+
+        }catch (SQLException e) {
+                throw e;
+        }
+
+        return null;
+
+    }
 
     /**
      * todo : 로그인하는 로직.!
@@ -298,7 +333,7 @@ public class AuthService {
         return result;
     }
 
-    public Map<String, Object> userLogOff(String UserPhone, String CMngNo) throws SQLException {
+ public Map<String, Object> userLogOff(String UserPhone, String CMngNo) throws SQLException {
         List<SpParameter> listOfAllSpParameters = new ArrayList<SpParameter>();
         listOfAllSpParameters.add(SpParameter.builder().name("UserID").direction(SpParameter.Direction.INOUT).value(UserPhone).jdbcType(JDBCType.VARCHAR).build());
         listOfAllSpParameters.add(SpParameter.builder().name("FSCode").direction(SpParameter.Direction.IN).value(CMngNo)  .jdbcType(JDBCType.INTEGER).build());
@@ -314,7 +349,6 @@ public class AuthService {
 
 
     /**
-     * todo: 회우너등록!
      * @param dto
      * @return
      * @throws SQLException

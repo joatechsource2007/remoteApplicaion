@@ -1,5 +1,5 @@
 ### GET 전체 차량 목록
-GET http://localhost:1112/api/vehicles
+GET http://localhost:1112/api/vehicles?cMngNo=0024
 Authorization: supertoken1234
 Content-Type: application/json
 
@@ -10,12 +10,12 @@ Content-Type: application/json
 
 {
   "cMngNo": "1818",
-  "carCode": "005",
-  "carName": "신차량",
+  "carCode": "111",
+  "carName": "마세라티",
   "carType": "1",
   "iotCode": "00090004",
   "swCode": "S001",
-  "carMaker": "현대",
+  "carMaker": "made in italy",
   "carInsure": "삼성화재",
   "carInsureTurm": "2025-12",
   "carMemo": "신규 등록"
@@ -48,5 +48,11 @@ Authorization: supertoken1234
 
 ### 차량 리스트 조회 (업체코드: 0009)
 GET http://localhost:1112/api/vehicles?cMngNo=1818
+Accept: application/json
+Authorization: supertoken1234
+
+
+###
+GET http://118.222.92.10:1112/api/vehicles?cMngNo=0024
 Accept: application/json
 Authorization: supertoken1234
