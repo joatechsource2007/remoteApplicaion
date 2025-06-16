@@ -39,3 +39,5 @@ public interface CustomerService {
     Map<String, Object> getbasecode(Map<String,Object> param) throws SQLException;
 
 }
+//wsp_Get_Base_Code
+//wsp_Modify_Data

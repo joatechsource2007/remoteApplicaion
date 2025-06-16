@@ -176,4 +176,20 @@ public class Tank_Params {
         }
     }
 
+    // 👉 이 생성자를 추가하거나 기존 생성자에 임시로 대체
+    public static Tank_Params createForDelivery() {
+        Tank_Params params = new Tank_Params();
+        params.listOfQuerySpParameters.clear(); // 기존 쓸모없는 파라미터 제거
+
+        params.listOfQuerySpParameters.add(SpParameter.builder().name("p_C_MNG_NO").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+        params.listOfQuerySpParameters.add(SpParameter.builder().name("p_USERNO").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+        params.listOfQuerySpParameters.add(SpParameter.builder().name("p_DATE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+        params.listOfQuerySpParameters.add(SpParameter.builder().name("p_CAR_CODE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+        params.listOfQuerySpParameters.add(SpParameter.builder().name("p_SW_CODE").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+        params.listOfQuerySpParameters.add(SpParameter.builder().name("p_FIND_STR").direction(SpParameter.Direction.IN).jdbcType(JDBCType.VARCHAR).build());
+
+        return params;
+    }
+
+
 }
