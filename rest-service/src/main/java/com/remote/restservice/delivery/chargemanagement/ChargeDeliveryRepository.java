@@ -1,11 +1,11 @@
 package com.remote.restservice.delivery.chargemanagement;
 
+import com.remote.restservice.delivery.charge_new.ChargeDelivery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;

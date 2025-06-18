@@ -1,4 +1,4 @@
-package com.remote.restservice.delivery.chargemanagement;
+package com.remote.restservice.delivery.charge_new;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

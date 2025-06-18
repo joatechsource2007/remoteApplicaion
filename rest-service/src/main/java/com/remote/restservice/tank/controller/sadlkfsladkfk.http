@@ -1,0 +1,6 @@
+### Tank 주간 조회 요청
+### Tank 주간 조회 요청 (GET)
+GET http://localhost:1112/tank/search?p_C_MNG_NO=0008&p_FIND_TEXT=&p_CUST_CODE=&p_SW_CODE=&p_C_AREA_CODE=&p_C_TYPE_CODE=&p_TURM_Day=7&p_ALL_YN=Y&p_DEL_YN=N&p_ORDERBY=0&p_GPS_FIND_YN=N&p_GPS_EXTENT=50&p_GPS_LAT=&p_GPS_LONG=&p_USERNO=0000000173&p_app_cert=00000000000000000000000000000000
+Authorization: supertoken1234
+
+
