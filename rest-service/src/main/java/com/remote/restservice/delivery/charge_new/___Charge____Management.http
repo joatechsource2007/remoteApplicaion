@@ -102,7 +102,7 @@ Authorization: supertoken1234
   "pageID": "A703",
   "tableName": "UB_DELIVERY",
   "operation": "UPDATE",
-  "pkValue": " \"DLV_ID\":6, \"C_MNG_NO\":\"0009\" ",
+  "pkValue": " \"DLV_ID\":1, \"C_MNG_NO\":\"0024\" ",
   "newData": " \"DLV_STAT\":\"1\", \"DLV_STAT_DT\":\"20250617093503\" ",
   "changedBy": "01020906987 홍길동",
   "userNo": "000000004",
