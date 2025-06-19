@@ -3,3 +3,6 @@ GET http://localhost:1112/db-info
 authorization: supertoken1234
 
 ###
+### GET request to example server
+GET http://118.222.92.10:1112/db-info
+authorization: supertoken1234

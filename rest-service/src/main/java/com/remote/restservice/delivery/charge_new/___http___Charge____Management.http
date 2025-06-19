@@ -70,7 +70,7 @@ Accept: application/json
 
 
 ### 배송완료 조회 merge
-GET http://localhost:1112/api/charge-management/list
+GET http://118.222.92.10:1112/api/charge-management/list
     ?cMngNo=0024
     &userNo=0000000004
     &date=20250611
@@ -83,13 +83,13 @@ Authorization: supertoken1234
 
 ### 배송완료 조회 merge
 GET http://localhost:1112/api/charge-management/all_deliveries
-    ?cMngNo=0024
+    ?cMngNo=0024db_backupoperator
     &userNo=0000000004
     &date=20250611
     &carCode=001
     &swCode=7
     &findStr=
-    &divType=3
+    &divType=3UB_ACC
 Accept: application/json
 Authorization: supertoken1234
 
@@ -102,7 +102,7 @@ Authorization: supertoken1234
   "pageID": "A703",
   "tableName": "UB_DELIVERY",
   "operation": "UPDATE",
-  "pkValue": " \"DLV_ID\":1, \"C_MNG_NO\":\"0024\" ",
+  "pkValue": " \"DLV_ID\":3, \"C_MNG_NO\":\"0084\" ",
   "newData": " \"DLV_STAT\":\"1\", \"DLV_STAT_DT\":\"20250617093503\" ",
   "changedBy": "01020906987 홍길동",
   "userNo": "000000004",

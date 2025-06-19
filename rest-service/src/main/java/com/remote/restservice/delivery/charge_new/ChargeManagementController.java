@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/charge-management")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class ChargeManagementController {
 
@@ -18,7 +18,7 @@ public class ChargeManagementController {
 
 
     // ➕ 동적 파라미터 받는 버전 (선택 사항)
-    @GetMapping("/list")
+    @GetMapping("/charge-management/list")
     public ResponseEntity<List<Map<String, Object>>> getCompletedDeliveries(
             @RequestParam String divType,   // ✅ 조회구분 추가 (A, 1, 2, 3, 4 중 하나)
             @RequestParam String cMngNo,
@@ -44,7 +44,7 @@ public class ChargeManagementController {
     }
 
     // ✅ 요청/접수/연기 + 완료 병합 조회
-    @GetMapping("/all_deliveries")
+    @GetMapping("/charge-management/all_deliveries")
     public ResponseEntity<List<Map<String, Object>>> getRequestedDeliveries(
             @RequestParam String cMngNo,
             @RequestParam String userNo,
@@ -87,7 +87,7 @@ public class ChargeManagementController {
      * ✅ [신규] 건수만 조회하는 별도 호출용 엔드포인트
      * GET /api/charge-management/counts
      */
-    @GetMapping("/counts")
+    @GetMapping("/charge-management/counts")
     public ResponseEntity<?> getCountsEndpoint(
             @RequestParam String cMngNo,
             @RequestParam String userNo,
@@ -118,7 +118,7 @@ public class ChargeManagementController {
 
 
 
-    @PostMapping("/modify")
+    @PostMapping("/charge-management/modify")
     public ResponseEntity<?> modifyDelivery(@RequestBody ModifyRequest req) {
         try {
             // ✅ 요청 파라미터 로그
