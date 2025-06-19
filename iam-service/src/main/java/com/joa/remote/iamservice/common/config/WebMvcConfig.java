@@ -20,8 +20,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/v1/status","/v1/check","/v1/remotelogin","/v1/login", "/v1/refreshToken", "/v1/logout", "/v1/token/*", "/v1/changepassword/*/*/*",
-                        "/v1/changepassword", "/v1/initpassword/*/*", "/v1/initpassword","/v1/changepasswordtest");
+                .excludePathPatterns(
+                        "/v1/status",
+                        "/v1/check",
+                        "/v1/remotelogin",
+                        "/v1/login",
+                        "/v1/refreshToken",
+                        "/v1/logout",
+                        "/v1/token/*",
+                        "/v1/changepassword/*/*/*",
+                        "/v1/changepassword",
+                        "/v1/initpassword/*/*",
+                        "/v1/initpassword",
+                        "/v1/changepasswordtest",
+                        "/db-info" // ✅ 여기에 추가됨
+                );
     }
 
     @Bean
@@ -35,7 +48,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/v1/*","/v1/*/**").permitAll()
+                .requestMatchers("/v1/*", "/v1/*/**").permitAll()
                 .anyRequest().authenticated();
 
         return http.build();

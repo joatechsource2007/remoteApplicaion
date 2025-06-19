@@ -1,0 +1,63 @@
+### 🚚운행 차량 차량 등록 ub_jaego
+POST http://118.222.92.10:1112/api/jaego/insert
+authorization: supertoken1234
+Content-Type: application/json
+
+{
+  "cMngNo": "0009",
+  "carCode": "001",
+  "jaeDate": "20250604",
+  "jaeType": "0",
+  "jaeLast": "Y",
+  "carName": "홍길동123",
+  "swCode": "001",
+  "swName": "홍길동",
+  "jaeDateType": "0009001202506040",
+  "wkPostDt": "20210114 084443",
+  "appUser": "01056908001_이순신",
+  "gpsX": "37.12345",
+  "gpsY": "127.12345",
+  "userNo": "0000000004",
+  "changedBy": "01020906987 홍길동",
+  "appCert": "000000000000"
+}
+
+### 운행시작, 운행종료  정보 저장 요청
+### jaeType 운행시작(1), 운행죵료(2)
+POST http://localhost:1112/api/jaego/insert-driving
+authorization: supertoken1234
+Content-Type: application/json
+
+{
+  "cMngNo": "0009",
+  "carCode": "001",
+  "jaeDate": "20250604",
+  "jaeType": "1",
+  "jaeLast": "Y",
+  "carName": "테슬라7777",
+  "swCode": "",
+  "swName": "",
+  "jaeCarP": "86.3",
+  "jaeCarKm": "0.0",
+  "jaeCarL": "5374.0",
+  "jaeCarKg": "2730.0",
+  "totalReg": "0.0",
+  "jaeDateType": "0017002202101141",
+  "wkPostDt": "20210114 084443",
+  "appUser": "01056908001_이순신",
+  "gpsX": "37.12345",
+  "gpsY": "127.12345",
+  "userMemo": "메모",
+  "userNo": "0000000004",
+  "changedBy": "01020906987 홍길동",
+  "appCert": "000000000000"
+}
+
+
+
+
+### 🚗 차량 콤보 조회
+GET http://118.222.92.10:1112/api/jaego/car-combo?cMngNo=0002
+Authorization: supertoken1234
+
+

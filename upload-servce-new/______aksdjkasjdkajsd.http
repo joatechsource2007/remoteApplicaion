@@ -1,0 +1,10 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+
+
+탱크 사진등록시 사진명.
+####
+GET http://118.222.92.10:9083/customer/getbasecode

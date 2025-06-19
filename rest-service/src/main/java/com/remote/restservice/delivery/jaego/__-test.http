@@ -1,0 +1,11 @@
+
+
+### 배송 지시 목록 조회
+GET http://localhost:1112/api/charge/delivery-request?cMngNo=0084&userNo=0000000004&date=20250608
+Authorization: supertoken1234
+
+
+
+### 충전관리 배송 조회
+GET http://localhost:1112/api/charge/delivery?cMngNo=0024&userNo=0000000004&date=20250611&carCode=001&swCode=7&findStr=
+Authorization: supertoken1234

@@ -78,6 +78,8 @@ spring:
       on-profile: development
   datasource: #jdbc-url 에서 SQL Server TLS 인증서의 유효성을 검사하지 않아도 되는 인증된 서버라는 값(encrypt=true;trustServerCertificate=true)을 설정
     type: com.zaxxer.hikari.HikariDataSource
+    #url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE;user=GASEYE_APP;password=APP36900**;
+    #todo: test db
     url: jdbc:sqlserver://183.111.26.202:3521;encrypt=true;trustServerCertificate=true;databaseName=GasMax_EYE_RESTORE;user=GASEYE_APP;password=APP36900**;
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:

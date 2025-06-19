@@ -26,16 +26,20 @@ public class TankController {
      * @throws SQLException
      */
     @RequestMapping("/search")
-    public CommonResponse search(@RequestParam Map<String,Object> params) {
-        LOGGER.info("TankController.search() accepted on {}");
+    public CommonResponse search(@RequestParam Map<String, Object> params) {
+        LOGGER.info("📥 TankController.search() called with params: {}", params);
         try {
+            Object result = service.search(params);
+            LOGGER.info("✅ TankController.search() result: {}", result);
+
             return CommonResponse.builder()
                     .code("SUCCESS")
                     .status(HttpStatus.OK.value())
                     .message("탱크 주간 조회")
-                    .data(service.search(params))
+                    .data((Map<String, Object>) result)
                     .build();
         } catch (RuntimeException | SQLException e) {
+            LOGGER.error("❌ TankController.search() error: {}", e.getMessage(), e);
             return CommonResponse.builder()
                     .code("FAIL")
                     .status(HttpStatus.OK.value())
