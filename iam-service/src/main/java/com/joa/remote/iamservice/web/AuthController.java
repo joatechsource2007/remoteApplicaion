@@ -8,6 +8,7 @@ import com.joa.remote.iamservice.common.utils.HttpServletUtils;
 import com.joa.remote.iamservice.dto.LoginRemoteDto;
 import com.joa.remote.iamservice.dto.SignUpRequestDto;
 import com.joa.remote.iamservice.dto.UserRemoteInfo;
+import com.joa.remote.iamservice.dto.MemberDto;
 import com.joa.remote.iamservice.service.impl.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,30 @@ public class AuthController {
         return "IAM-SERVICE IS ACTIVE";
     }
 
+    @RequestMapping("/remotesingin")
+    public CommonResponse remotesingin(@RequestBody MemberDto memberinfo) throws SQLException {
+
+        LOGGER.info("UserController.logout() accepted on {}", memberinfo);
+        try {
+            // 회원등록
+            Map<String, Object> MenberSingin = loginService.membersingin(memberinfo);
+
+            return CommonResponse.builder()
+                    .code("SUCCESS")
+                    .status(HttpStatus.OK.value())
+                    .message("사용자등록")
+                    .data(null)
+                    .build();
+
+        } catch (SQLException e) {
+            return CommonResponse.builder()
+                    .code("FAIL")
+                    .status(HttpStatus.OK.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+        }
+    }
     @RequestMapping("/remotelogin")
     public CommonResponse remotelogin(@RequestBody LoginRemoteDto loginRemoteDTO, HttpServletRequest request) throws SQLException {
 
@@ -211,6 +236,9 @@ public class AuthController {
                     .build();
         }
     }
+
+
+
 
 
     /**

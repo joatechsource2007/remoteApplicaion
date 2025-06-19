@@ -54,7 +54,7 @@ public class AuthService {
         return jwtAuthTokenProvider.createAuthToken(UserPhone, PngKind, expiredDate);
     }
 
-    public  String  memberinfo(MemberDto memberInfo) throws SQLException{
+    public  Map<String, Object> membersingin(MemberDto memberInfo) throws SQLException{
 
         Connection con = dataSource.getConnection();
         AutoSetAutoCommit sac = new AutoSetAutoCommit(con,false);
