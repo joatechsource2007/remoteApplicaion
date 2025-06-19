@@ -2636,4 +2636,123 @@ This generated password is for development use only. Your security configuration
  -[36m2025/06/19 15:25:46,275[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
  -[36m2025/06/19 15:25:46,275[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
  -[36m2025/06/19 15:25:46,275[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:26:16,276[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:26:16,276[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:26:16,276[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:26:46,280[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:26:46,280[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:26:46,280[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:27:16,281[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:27:16,281[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:27:16,281[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:27:46,284[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:27:46,284[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:27:46,284[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:28:16,288[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:28:16,288[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:28:16,288[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:28:46,290[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:28:46,290[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:28:46,290[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:29:16,295[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:29:16,295[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:29:16,295[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:29:46,299[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:29:46,300[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:29:46,300[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:30:16,300[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:30:16,300[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:30:16,301[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:30:46,301[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:30:46,301[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:30:46,301[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:31:16,302[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:31:16,302[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:31:16,302[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:31:46,304[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:31:46,304[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:31:46,304[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:32:16,306[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:32:16,306[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:32:16,306[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:32:46,306[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:32:46,306[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:32:46,306[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:33:16,310[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:33:16,311[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:33:16,311[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:33:46,314[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:33:46,314[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:33:46,314[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:34:16,315[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:34:16,316[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:34:16,316[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:34:46,318[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:34:46,318[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:34:46,319[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:35:16,320[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:35:16,320[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:35:16,320[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:35:36,792[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:11 ClientConnectionId: 2206363c-f974-4d04-b25b-0b646e1006e9
+ -[36m2025/06/19 15:35:38,630[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:12 ClientConnectionId: 83dd4f35-5662-49a5-9652-3a9326b8a82c
+ -[36m2025/06/19 15:35:41,104[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:13 ClientConnectionId: 65771b72-e6bf-41a5-8ede-2c85cdaeea56
+ -[36m2025/06/19 15:35:45,772[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:14 ClientConnectionId: 88df6384-50fa-4ef7-aa6f-69cda2a381f1
+ -[36m2025/06/19 15:35:46,322[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:35:46,322[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:35:46,322[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:35:53,046[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:15 ClientConnectionId: 0c4850b1-f91e-46b1-b951-666eb5e52046
+ -[36m2025/06/19 15:36:11,609[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:16 ClientConnectionId: 9b9b144d-bcd8-4450-ac18-0f378a8cfe5b
+ -[36m2025/06/19 15:36:14,433[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:17 ClientConnectionId: bc486eea-2dec-4ebc-b108-ea9d8c0ca9be
+ -[36m2025/06/19 15:36:14,533[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:18 ClientConnectionId: c38b468d-b69d-4f11-9050-34b9d85030f8
+ -[36m2025/06/19 15:36:15,386[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Add connection elided, waiting=0, adders pending/running=2
+ -[36m2025/06/19 15:36:15,436[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:19 ClientConnectionId: bb0539bf-ec87-4f33-9233-95d595065679
+ -[36m2025/06/19 15:36:15,501[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:20 ClientConnectionId: 695d6085-41e0-4927-8d9c-1922827412fd
+ -[36m2025/06/19 15:36:16,325[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:36:16,325[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:36:16,325[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:36:46,327[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:36:46,328[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:36:46,328[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:37:16,330[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:37:16,330[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:37:16,330[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:37:36,258[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMapping] [33m[http-nio-0.0.0.0-1111-exec-3][m- Mapped to com.joa.remote.iamservice.web.AuthController#remotelogin(LoginRemoteDto, HttpServletRequest)
+ -[36m2025/06/19 15:37:36,259[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- POST "/v1/remotelogin", parameters={}
+ -[36m2025/06/19 15:37:36,259[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMapping] [33m[http-nio-0.0.0.0-1111-exec-3][m- Mapped to com.joa.remote.iamservice.web.AuthController#remotelogin(LoginRemoteDto, HttpServletRequest)
+ -[36m2025/06/19 15:37:36,260[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- Read "application/json;charset=utf-8" to [LoginRemoteDto(UserPhone=01099068228, UserName=null, UserPass=1, AppVer=1.0.0, RegLat=, RegLong=, Pr (truncated)...]
+ -[36m2025/06/19 15:37:36,260[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > X-Forwarded-For : null
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > X-Real-IP : null
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > Proxy-Client-IP : null
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- >  WL-Proxy-Client-IP : null
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > HTTP_CLIENT_IP : null
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > HTTP_X_FORWARDED_FOR : null
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > getRemoteAddr : 192.168.0.10
+ -[36m2025/06/19 15:37:36,261[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > Result : IP Address : 192.168.0.10
+ -[36m2025/06/19 15:37:36,310[m [32m[INFO ][m  [com.joa.remote.iamservice.service.impl.AuthService] [33m[http-nio-0.0.0.0-1111-exec-3][m- ✅ UserRemoteInfo retrieved via SQL: com.joa.remote.iamservice.dto.UserRemoteInfo@5725329[
+  AppCert=000000000000000000000
+  AppID=GAS_EYE
+  AppSno=0
+  AreaCode=<null>
+  AreaName=<null>
+  AuthStatus=Y
+  CMngName=고경준 주식회사
+  CMngNo=0002
+  CurrentDateTime=2025-06-19 15:37:36.337
+  Role=USER
+  SwCd=<null>
+  SwName=<null>
+  UserEmail=
+  UserName=홍길동
+  UserNo=0000000173
+  UserPhone=01099068228
+]
+ -[36m2025/06/19 15:37:36,345[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor] [33m[http-nio-0.0.0.0-1111-exec-3][m- Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+ -[36m2025/06/19 15:37:36,345[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- Writing [com.joa.remote.iamservice.common.core.CommonResponse@78570ba0]
+ -[36m2025/06/19 15:37:36,346[m [34m[DEBUG][m  [org.springframework.web.servlet.FrameworkServlet] [33m[http-nio-0.0.0.0-1111-exec-3][m- Completed 200 OK
+ -[36m2025/06/19 15:37:46,330[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:37:46,330[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:37:46,331[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/19 15:38:16,332[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:38:16,332[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/19 15:38:16,332[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
  -
