@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-@Service("MeterService")
+@Service("DashboardService")
 @RequiredArgsConstructor
 public class DashboardServiceImpl implements DashBoardService {
 
