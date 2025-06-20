@@ -96,6 +96,73 @@ public class ImageUploadController {
         }
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/portal/images/upload")
+    public ResponseEntity<Object> uploadImagesWithDomain(
+            @RequestParam("file") MultipartFile[] files,
+            HttpServletRequest request
+    ) {
+        if (files == null || files.length == 0) {
+            return ResponseEntity.badRequest().body(Map.of("error", "파일이 비어 있습니다."));
+        }
+
+        List<Map<String, String>> uploadedResults = new ArrayList<>();
+
+        try {
+            String scheme = request.getScheme(); // http or https
+            String host = request.getHeader("host"); // upload.joajoa.xyz
+            String domain = scheme + "://" + host;
+
+            for (MultipartFile file : files) {
+                if (file.isEmpty()) continue;
+
+                String baseName = UUID.randomUUID().toString();
+                String originalFileName = baseName + ".jpg";
+                String thumbnailFileName = baseName + "_thumb.jpg";
+
+                Path originalPath = Paths.get(baseUploadDir, originalFileName);
+                Path thumbPath = Paths.get(baseUploadDir, thumbnailFileName);
+
+                Thumbnails.of(file.getInputStream())
+                        .scale(1.0)
+                        .outputFormat("jpg")
+                        .outputQuality(0.92f)
+                        .toFile(originalPath.toFile());
+
+                Thumbnails.of(originalPath.toFile())
+                        .size(400, 400)
+                        .outputFormat("jpg")
+                        .outputQuality(0.85f)
+                        .toFile(thumbPath.toFile());
+
+                String originalUrl = "/images/" + originalFileName;
+                String thumbnailUrl = "/images/" + thumbnailFileName;
+
+                uploadedResults.add(Map.of(
+                        "originalUrl", originalUrl,
+                        "thumbnailUrl", thumbnailUrl,
+                        "fullOriginalUrl", domain + originalUrl,
+                        "fullThumbnailUrl", domain + thumbnailUrl,
+                        "domain", domain
+                ));
+            }
+
+            if (uploadedResults.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "업로드 가능한 이미지가 없습니다."));
+            }
+
+            return ResponseEntity.ok(uploadedResults);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Upload failed: " + e.getMessage()));
+        }
+    }
+
+
+
+
     @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Object> serveImage(@PathVariable String filename) {
         try {

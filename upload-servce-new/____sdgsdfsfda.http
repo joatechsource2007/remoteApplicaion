@@ -10,7 +10,7 @@ Content-Type: image/png
 --WebAppBoundary--
 
 ###todo: 다중 이미지 업로드 (다중 이미지도 가능)
-POST http://118.222.92.10:1113/images/upload
+POST https://upload.joajoa.xyz/portal/images/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -25,7 +25,7 @@ Content-Type: image/jpeg
 < /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image2.png
 --WebAppBoundary--
 ### 이미지 업로드
-POST http://localhost:1113/images/upload
+POST http://118.222.92.10:1113/images/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -37,7 +37,45 @@ Content-Type: image/png
 
 #####
 
+### 이미지 업로드
+POST http://localhost:1113/portal/images/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="image1.png"
+Content-Type: image/png
+
+< /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image1.png
+--WebAppBoundary--
+
+#####
+
+### 이미지 업로드
+POST https://upload.joajoa.xyz/portal/images/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="image1.png"
+Content-Type: image/png
+
+< /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image1.png
+--WebAppBoundary--
+
+### 이미지 업로드
+POST http://localhost/images/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="image1.png"
+Content-Type: image/png
+
+< /Users/gilzako/IdeaProjects/new_tankapp_backend/upload-servce-new/image1.png
+--WebAppBoundary--
+
 ### Base Code 조회 요청
 GET http://118.222.92.10:9083/customer/getbasecode?p_CodeType=IMG_NAME&p_C_MNG_NO=0009
 Authorization: supertoken1234
 
+###
+GET http://118.222.92.10:1112/customer/getbasecode?p_CodeType=IMG_NAME&p_C_MNG_NO=0009
+Authorization: supertoken1234
