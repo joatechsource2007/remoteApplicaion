@@ -83,7 +83,7 @@ Authorization: supertoken1234
 
 ### 배송완료 조회 merge
 GET http://localhost:1112/api/charge-management/all_deliveries
-    ?cMngNo=0024db_backupoperator
+    ?cMngNo=0024
     &userNo=0000000004
     &date=20250611
     &carCode=001

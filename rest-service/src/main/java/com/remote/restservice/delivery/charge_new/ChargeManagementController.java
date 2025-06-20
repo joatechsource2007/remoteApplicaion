@@ -54,6 +54,15 @@ public class ChargeManagementController {
             @RequestParam(defaultValue = "") String findStr
     ) {
         String procedure = "{CALL dbo.wsp_TANK_UB_DELIVERY_USERNO(?, ?, ?, ?, ?, ?, ?)}";
+        System.out.println("📦 호출 파라미터:");
+        System.out.println("  procedure: " + procedure);
+        System.out.println("  divType  : 2");
+        System.out.println("  cMngNo   : " + cMngNo);
+        System.out.println("  userNo   : " + userNo);
+        System.out.println("  date     : " + date);
+        System.out.println("  carCode  : " + carCode);
+        System.out.println("  swCode   : " + swCode);
+        System.out.println("  findStr  : " + findStr);
 
         // 요청/접수/연기
         List<Map<String, Object>> result = jdbcTemplate.queryForList(
