@@ -8,7 +8,7 @@ GET http://localhost:9081/v1/status
 ###
 # group: 탱크잔량
 # @name tankmoniter/v1/remotelogin(로그인)
-GET http://localhost:9081/v1/remotelogin
+GET http://localhost:1111/v1/remotelogin
 Content-Type: application/json
 
 {

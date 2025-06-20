@@ -1,4 +1,4 @@
-[36m2025/06/20 09:19:43,444[m [32m[INFO ][m  [org.springframework.boot.SpringApplicationBannerPrinter] [33m[main][m- 
+[36m2025/06/20 09:19:43,444[m [32m[INFO ][m  [org.springframework.boot.SpringApplicationBannerPrinter] [33m[main][m-
   ___    _    __  __   ____  _____ ______     _____ ____ _____
  |_ _|  / \  |  \/  | / ___|| ____|  _ \ \   / /_ _/ ___| ____|
   | |  / _ \ | |\/| | \___ \|  _| | |_) \ \ / / | | |   |  _|
@@ -34,7 +34,7 @@
  -[36m2025/06/20 09:19:44,023[m [32m[INFO ][m  [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [33m[main][m- Root WebApplicationContext: initialization completed in 528 ms
  -[36m2025/06/20 09:19:44,035[m [34m[DEBUG][m  [org.springframework.boot.web.servlet.ServletContextInitializerBeans] [33m[main][m- Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
  -[36m2025/06/20 09:19:44,035[m [34m[DEBUG][m  [org.springframework.boot.web.servlet.ServletContextInitializerBeans] [33m[main][m- Mapping servlets: dispatcherServlet urls=[/]
- -[36m2025/06/20 09:19:44,125[m [33m[WARN ][m  [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [33m[main][m- 
+ -[36m2025/06/20 09:19:44,125[m [33m[WARN ][m  [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [33m[main][m-
 
 Using generated security password: 9f9afee2-2890-4980-99f5-0a5d07e718b9
 
@@ -2103,4 +2103,289 @@ This generated password is for development use only. Your security configuration
  -[36m2025/06/20 14:41:24,326[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
  -[36m2025/06/20 14:41:24,326[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
  -[36m2025/06/20 14:41:24,327[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:41:54,332[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:41:54,332[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:41:54,332[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -
+[36m2025/06/20 14:43:25,798[m [32m[INFO ][m  [org.springframework.boot.SpringApplicationBannerPrinter] [33m[main][m- 
+  ___    _    __  __   ____  _____ ______     _____ ____ _____
+ |_ _|  / \  |  \/  | / ___|| ____|  _ \ \   / /_ _/ ___| ____|
+  | |  / _ \ | |\/| | \___ \|  _| | |_) \ \ / / | | |   |  _|
+  | | / ___ \| |  | |  ___) | |___|  _ < \ V /  | | |___| |___
+ |___/_/   \_\_|  |_| |____/|_____|_| \_\ \_/  |___\____|_____|
+
+    :: Spring Boot ::                (v3.0.5) ==== iam-service-0.0.1-SNAPSHOT.jar ====
+
+ -[36m2025/06/20 14:43:25,819[m [32m[INFO ][m  [org.springframework.boot.StartupInfoLogger] [33m[main][m- Starting IamServiceApplication using Java 17.0.14 with PID 26305 (/Users/gilzako/IdeaProjects/new_tankapp_backend/iam-service/target/classes started by gilzako in /Users/gilzako/IdeaProjects/new_tankapp_backend)
+ -[36m2025/06/20 14:43:25,820[m [32m[INFO ][m  [org.springframework.boot.SpringApplication] [33m[main][m- The following 1 profile is active: "development"
+ -[36m2025/06/20 14:43:26,035[m [32m[INFO ][m  [org.springframework.data.repository.config.RepositoryConfigurationDelegate] [33m[main][m- Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+ -[36m2025/06/20 14:43:26,043[m [32m[INFO ][m  [org.springframework.data.repository.config.RepositoryConfigurationDelegate] [33m[main][m- Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+ -[36m2025/06/20 14:43:26,127[m [32m[INFO ][m  [org.springframework.cloud.context.scope.GenericScope] [33m[main][m- BeanFactory id=68e89600-928f-32a1-8985-bb4ea4bb68f9
+ -[36m2025/06/20 14:43:26,145[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.configuration.EnableEncryptablePropertiesBeanFactoryPostProcessor] [33m[main][m- Post-processing PropertySource instances
+ -[36m2025/06/20 14:43:26,146[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+ -[36m2025/06/20 14:43:26,146[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+ -[36m2025/06/20 14:43:26,146[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+ -[36m2025/06/20 14:43:26,147[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:26,147[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+ -[36m2025/06/20 14:43:26,147[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+ -[36m2025/06/20 14:43:26,147[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource cachedrandom [org.springframework.cloud.util.random.CachedRandomPropertySource] to EncryptablePropertySourceWrapper
+ -[36m2025/06/20 14:43:26,147[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource springCloudClientHostInfo [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:26,148[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #1) [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:26,148[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #0) [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:26,238[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.filter.DefaultLazyPropertyFilter] [33m[main][m- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+ -[36m2025/06/20 14:43:26,241[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.resolver.DefaultLazyPropertyResolver] [33m[main][m- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+ -[36m2025/06/20 14:43:26,245[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.detector.DefaultLazyPropertyDetector] [33m[main][m- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+ -[36m2025/06/20 14:43:26,304[m [32m[INFO ][m  [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [33m[main][m- Tomcat initialized with port(s): 1111 (http)
+ -[36m2025/06/20 14:43:26,307[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Initializing ProtocolHandler ["http-nio-0.0.0.0-1111"]
+ -[36m2025/06/20 14:43:26,308[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Starting service [Tomcat]
+ -[36m2025/06/20 14:43:26,308[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Starting Servlet engine: [Apache Tomcat/10.1.7]
+ -[36m2025/06/20 14:43:26,340[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Initializing Spring embedded WebApplicationContext
+ -[36m2025/06/20 14:43:26,340[m [32m[INFO ][m  [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [33m[main][m- Root WebApplicationContext: initialization completed in 509 ms
+ -[36m2025/06/20 14:43:26,353[m [34m[DEBUG][m  [org.springframework.boot.web.servlet.ServletContextInitializerBeans] [33m[main][m- Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+ -[36m2025/06/20 14:43:26,353[m [34m[DEBUG][m  [org.springframework.boot.web.servlet.ServletContextInitializerBeans] [33m[main][m- Mapping servlets: dispatcherServlet urls=[/]
+ -[36m2025/06/20 14:43:26,438[m [33m[WARN ][m  [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [33m[main][m- 
+
+Using generated security password: e8bf2b27-08b8-421f-8885-9d4be2beae36
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+ -[36m2025/06/20 14:43:26,484[m [32m[INFO ][m  [org.springframework.security.web.DefaultSecurityFilterChain] [33m[main][m- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@65d73bd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@27896d3b, org.springframework.security.web.context.SecurityContextHolderFilter@45d389f2, org.springframework.security.web.header.HeaderWriterFilter@6a6d1ff3, org.springframework.web.filter.CorsFilter@3ed7dd70, org.springframework.security.web.authentication.logout.LogoutFilter@51f01535, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66298fe9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c262f2f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f3b13d0, org.springframework.security.web.session.SessionManagementFilter@211a9647, org.springframework.security.web.access.ExceptionTranslationFilter@3db1ce78, org.springframework.security.web.access.intercept.AuthorizationFilter@63a84bb6]
+ -[36m2025/06/20 14:43:26,509[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMethodMapping] [33m[main][m- 9 mappings in 'requestMappingHandlerMapping'
+ -[36m2025/06/20 14:43:26,550[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping] [33m[main][m- Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+ -[36m2025/06/20 14:43:26,562[m [32m[INFO ][m  [org.springframework.security.web.DefaultSecurityFilterChain] [33m[main][m- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@14485747, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@59fea5f5, org.springframework.security.web.context.SecurityContextHolderFilter@38022758, org.springframework.security.web.header.HeaderWriterFilter@3e753289, org.springframework.web.filter.CorsFilter@78eafad, org.springframework.security.web.authentication.logout.LogoutFilter@5d221b20, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@69f9b561, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e8f23ad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70f4abc1, org.springframework.security.web.session.SessionManagementFilter@1573e8a5, org.springframework.security.web.access.ExceptionTranslationFilter@41d20f06, org.springframework.security.web.access.intercept.AuthorizationFilter@7ec13984]
+ -[36m2025/06/20 14:43:26,564[m [33m[WARN ][m  [org.springframework.security.config.annotation.web.builders.WebSecurity] [33m[main][m- You are asking Spring Security to ignore Mvc [pattern='/예외처리하고 싶은 url 나열']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+ -[36m2025/06/20 14:43:26,564[m [32m[INFO ][m  [org.springframework.security.web.DefaultSecurityFilterChain] [33m[main][m- Will not secure Mvc [pattern='/예외처리하고 싶은 url 나열']
+ -[36m2025/06/20 14:43:26,589[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [33m[main][m- ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+ -[36m2025/06/20 14:43:26,603[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver] [33m[main][m- ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+ -[36m2025/06/20 14:43:26,646[m [32m[INFO ][m  [com.zaxxer.hikari.HikariDataSource] [33m[main][m- HikariPool-1 - Starting...
+ -[36m2025/06/20 14:43:26,764[m [32m[INFO ][m  [com.zaxxer.hikari.pool.HikariPool] [33m[main][m- HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 77bf22e8-da38-4f6d-85b2-dde3385fad50
+ -[36m2025/06/20 14:43:26,765[m [32m[INFO ][m  [com.zaxxer.hikari.HikariDataSource] [33m[main][m- HikariPool-1 - Start completed.
+ -[36m2025/06/20 14:43:26,778[m [33m[WARN ][m  [org.springframework.data.convert.CustomConversions] [33m[main][m- Registering converter from class microsoft.sql.DateTimeOffset to class java.time.OffsetDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+ -[36m2025/06/20 14:43:26,870[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+ -[36m2025/06/20 14:43:26,870[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+ -[36m2025/06/20 14:43:26,907[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 725b36f3-2217-42a9-ae14-9f9b9e90a6b0
+ -[36m2025/06/20 14:43:26,954[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 854d4dcd-5a1c-4eaa-90ed-a1142dbb1faf
+ -[36m2025/06/20 14:43:27,004[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:4 ClientConnectionId: 24e72f61-106a-4488-8fcd-fee98481b928
+ -[36m2025/06/20 14:43:27,053[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:5 ClientConnectionId: 0003b2f0-ea8f-46e8-a762-836573641f5c
+ -[36m2025/06/20 14:43:27,088[m [32m[INFO ][m  [org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration] [33m[main][m- Eureka HTTP Client uses RestTemplate.
+ -[36m2025/06/20 14:43:27,100[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:6 ClientConnectionId: fa13eb15-0c2e-4f94-8468-86bb77f1235d
+ -[36m2025/06/20 14:43:27,105[m [33m[WARN ][m  [org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] [33m[main][m- Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+ -[36m2025/06/20 14:43:27,140[m [32m[INFO ][m  [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [33m[main][m- Tomcat started on port(s): 1111 (http) with context path ''
+ -[36m2025/06/20 14:43:27,141[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.RefreshScopeRefreshedEventListener] [33m[main][m- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+ -[36m2025/06/20 14:43:27,141[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source systemProperties refreshed
+ -[36m2025/06/20 14:43:27,141[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source systemEnvironment refreshed
+ -[36m2025/06/20 14:43:27,141[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source random refreshed
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source cachedrandom refreshed
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source springCloudClientHostInfo refreshed
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #1) refreshed
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #0) refreshed
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+ -[36m2025/06/20 14:43:27,142[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+ -[36m2025/06/20 14:43:27,146[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:7 ClientConnectionId: ab2d9195-124f-4cc7-a0ea-4dea42c3fc31
+ -[36m2025/06/20 14:43:27,147[m [32m[INFO ][m  [org.springframework.boot.StartupInfoLogger] [33m[main][m- Started IamServiceApplication in 1.499 seconds (process running for 1.731)
+ -[36m2025/06/20 14:43:27,153[m [32m[INFO ][m  [com.zaxxer.hikari.HikariDataSource] [33m[SpringApplicationShutdownHook][m- HikariPool-1 - Shutdown initiated...
+ -[36m2025/06/20 14:43:27,153[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[SpringApplicationShutdownHook][m- HikariPool-1 - Before shutdown stats (total=7, active=0, idle=7, waiting=0)
+ -[36m2025/06/20 14:43:27,157[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 connection adder][m- HikariPool-1 - After adding stats (total=0, active=0, idle=0, waiting=0)
+ -[36m2025/06/20 14:43:27,158[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[SpringApplicationShutdownHook][m- HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+ -[36m2025/06/20 14:43:27,158[m [32m[INFO ][m  [com.zaxxer.hikari.HikariDataSource] [33m[SpringApplicationShutdownHook][m- HikariPool-1 - Shutdown completed.
+ -[36m2025/06/20 14:43:28,206[m [32m[INFO ][m  [org.springframework.boot.SpringApplicationBannerPrinter] [33m[main][m- 
+  ___    _    __  __   ____  _____ ______     _____ ____ _____
+ |_ _|  / \  |  \/  | / ___|| ____|  _ \ \   / /_ _/ ___| ____|
+  | |  / _ \ | |\/| | \___ \|  _| | |_) \ \ / / | | |   |  _|
+  | | / ___ \| |  | |  ___) | |___|  _ < \ V /  | | |___| |___
+ |___/_/   \_\_|  |_| |____/|_____|_| \_\ \_/  |___\____|_____|
+
+    :: Spring Boot ::                (v3.0.5) ==== iam-service-0.0.1-SNAPSHOT.jar ====
+
+ -[36m2025/06/20 14:43:28,229[m [32m[INFO ][m  [org.springframework.boot.StartupInfoLogger] [33m[main][m- Starting IamServiceApplication using Java 17.0.14 with PID 26312 (/Users/gilzako/IdeaProjects/new_tankapp_backend/iam-service/target/classes started by gilzako in /Users/gilzako/IdeaProjects/new_tankapp_backend)
+ -[36m2025/06/20 14:43:28,230[m [32m[INFO ][m  [org.springframework.boot.SpringApplication] [33m[main][m- The following 1 profile is active: "development"
+ -[36m2025/06/20 14:43:28,449[m [32m[INFO ][m  [org.springframework.data.repository.config.RepositoryConfigurationDelegate] [33m[main][m- Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+ -[36m2025/06/20 14:43:28,455[m [32m[INFO ][m  [org.springframework.data.repository.config.RepositoryConfigurationDelegate] [33m[main][m- Finished Spring Data repository scanning in 5 ms. Found 0 JDBC repository interfaces.
+ -[36m2025/06/20 14:43:28,527[m [32m[INFO ][m  [org.springframework.cloud.context.scope.GenericScope] [33m[main][m- BeanFactory id=68e89600-928f-32a1-8985-bb4ea4bb68f9
+ -[36m2025/06/20 14:43:28,545[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.configuration.EnableEncryptablePropertiesBeanFactoryPostProcessor] [33m[main][m- Post-processing PropertySource instances
+ -[36m2025/06/20 14:43:28,545[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+ -[36m2025/06/20 14:43:28,546[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+ -[36m2025/06/20 14:43:28,546[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+ -[36m2025/06/20 14:43:28,546[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:28,546[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+ -[36m2025/06/20 14:43:28,547[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+ -[36m2025/06/20 14:43:28,547[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource cachedrandom [org.springframework.cloud.util.random.CachedRandomPropertySource] to EncryptablePropertySourceWrapper
+ -[36m2025/06/20 14:43:28,547[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource springCloudClientHostInfo [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:28,547[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #1) [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:28,547[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #0) [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+ -[36m2025/06/20 14:43:28,623[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.filter.DefaultLazyPropertyFilter] [33m[main][m- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+ -[36m2025/06/20 14:43:28,626[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.resolver.DefaultLazyPropertyResolver] [33m[main][m- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+ -[36m2025/06/20 14:43:28,629[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.detector.DefaultLazyPropertyDetector] [33m[main][m- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+ -[36m2025/06/20 14:43:28,680[m [32m[INFO ][m  [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [33m[main][m- Tomcat initialized with port(s): 1111 (http)
+ -[36m2025/06/20 14:43:28,682[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Initializing ProtocolHandler ["http-nio-0.0.0.0-1111"]
+ -[36m2025/06/20 14:43:28,683[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Starting service [Tomcat]
+ -[36m2025/06/20 14:43:28,683[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Starting Servlet engine: [Apache Tomcat/10.1.7]
+ -[36m2025/06/20 14:43:28,712[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Initializing Spring embedded WebApplicationContext
+ -[36m2025/06/20 14:43:28,712[m [32m[INFO ][m  [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [33m[main][m- Root WebApplicationContext: initialization completed in 468 ms
+ -[36m2025/06/20 14:43:28,724[m [34m[DEBUG][m  [org.springframework.boot.web.servlet.ServletContextInitializerBeans] [33m[main][m- Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+ -[36m2025/06/20 14:43:28,724[m [34m[DEBUG][m  [org.springframework.boot.web.servlet.ServletContextInitializerBeans] [33m[main][m- Mapping servlets: dispatcherServlet urls=[/]
+ -[36m2025/06/20 14:43:28,805[m [33m[WARN ][m  [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [33m[main][m- 
+
+Using generated security password: e85b5b98-aa2a-4c45-b736-2030edab6a47
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+ -[36m2025/06/20 14:43:28,844[m [32m[INFO ][m  [org.springframework.security.web.DefaultSecurityFilterChain] [33m[main][m- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ed7dd70, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f3b13d0, org.springframework.security.web.context.SecurityContextHolderFilter@66298fe9, org.springframework.security.web.header.HeaderWriterFilter@57c6feea, org.springframework.web.filter.CorsFilter@2964511, org.springframework.security.web.authentication.logout.LogoutFilter@467ef400, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5563bb40, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11148dc2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e9a10cd, org.springframework.security.web.session.SessionManagementFilter@322b09da, org.springframework.security.web.access.ExceptionTranslationFilter@6a6d1ff3, org.springframework.security.web.access.intercept.AuthorizationFilter@1999149e]
+ -[36m2025/06/20 14:43:28,865[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMethodMapping] [33m[main][m- 9 mappings in 'requestMappingHandlerMapping'
+ -[36m2025/06/20 14:43:28,906[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping] [33m[main][m- Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+ -[36m2025/06/20 14:43:28,919[m [32m[INFO ][m  [org.springframework.security.web.DefaultSecurityFilterChain] [33m[main][m- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@78eafad, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70f4abc1, org.springframework.security.web.context.SecurityContextHolderFilter@7e8f23ad, org.springframework.security.web.header.HeaderWriterFilter@38022758, org.springframework.web.filter.CorsFilter@26d028f7, org.springframework.security.web.authentication.logout.LogoutFilter@7ec13984, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7433ca19, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d221b20, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a2df0d5, org.springframework.security.web.session.SessionManagementFilter@69f9b561, org.springframework.security.web.access.ExceptionTranslationFilter@1573e8a5, org.springframework.security.web.access.intercept.AuthorizationFilter@59fea5f5]
+ -[36m2025/06/20 14:43:28,921[m [33m[WARN ][m  [org.springframework.security.config.annotation.web.builders.WebSecurity] [33m[main][m- You are asking Spring Security to ignore Mvc [pattern='/예외처리하고 싶은 url 나열']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+ -[36m2025/06/20 14:43:28,921[m [32m[INFO ][m  [org.springframework.security.web.DefaultSecurityFilterChain] [33m[main][m- Will not secure Mvc [pattern='/예외처리하고 싶은 url 나열']
+ -[36m2025/06/20 14:43:28,944[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [33m[main][m- ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+ -[36m2025/06/20 14:43:28,958[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver] [33m[main][m- ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+ -[36m2025/06/20 14:43:29,004[m [32m[INFO ][m  [com.zaxxer.hikari.HikariDataSource] [33m[main][m- HikariPool-1 - Starting...
+ -[36m2025/06/20 14:43:29,112[m [32m[INFO ][m  [com.zaxxer.hikari.pool.HikariPool] [33m[main][m- HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: fc3e10b0-8fe1-4f8a-9a49-33fce1728e4c
+ -[36m2025/06/20 14:43:29,112[m [32m[INFO ][m  [com.zaxxer.hikari.HikariDataSource] [33m[main][m- HikariPool-1 - Start completed.
+ -[36m2025/06/20 14:43:29,126[m [33m[WARN ][m  [org.springframework.data.convert.CustomConversions] [33m[main][m- Registering converter from class microsoft.sql.DateTimeOffset to class java.time.OffsetDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+ -[36m2025/06/20 14:43:29,214[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+ -[36m2025/06/20 14:43:29,214[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+ -[36m2025/06/20 14:43:29,253[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 4931195d-8d6f-4059-9e02-06b5ed86f11d
+ -[36m2025/06/20 14:43:29,299[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 4c19fcb9-1449-4b80-8277-92e3f9f9ec3f
+ -[36m2025/06/20 14:43:29,348[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:4 ClientConnectionId: 23dea143-c84c-4243-891e-b8bc36596fbf
+ -[36m2025/06/20 14:43:29,399[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:5 ClientConnectionId: a846875e-8a7e-455a-a229-1e89412b3ae3
+ -[36m2025/06/20 14:43:29,425[m [32m[INFO ][m  [org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration] [33m[main][m- Eureka HTTP Client uses RestTemplate.
+ -[36m2025/06/20 14:43:29,439[m [33m[WARN ][m  [org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] [33m[main][m- Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+ -[36m2025/06/20 14:43:29,448[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:6 ClientConnectionId: 944e8f26-5996-4614-95a3-49c7baad3f43
+ -[36m2025/06/20 14:43:29,471[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[main][m- Starting ProtocolHandler ["http-nio-0.0.0.0-1111"]
+ -[36m2025/06/20 14:43:29,475[m [32m[INFO ][m  [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [33m[main][m- Tomcat started on port(s): 1111 (http) with context path ''
+ -[36m2025/06/20 14:43:29,476[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.RefreshScopeRefreshedEventListener] [33m[main][m- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+ -[36m2025/06/20 14:43:29,476[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source systemProperties refreshed
+ -[36m2025/06/20 14:43:29,476[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source systemEnvironment refreshed
+ -[36m2025/06/20 14:43:29,476[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source random refreshed
+ -[36m2025/06/20 14:43:29,476[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source cachedrandom refreshed
+ -[36m2025/06/20 14:43:29,476[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source springCloudClientHostInfo refreshed
+ -[36m2025/06/20 14:43:29,477[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #1) refreshed
+ -[36m2025/06/20 14:43:29,477[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource] [33m[main][m- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' (document #0) refreshed
+ -[36m2025/06/20 14:43:29,477[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+ -[36m2025/06/20 14:43:29,477[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+ -[36m2025/06/20 14:43:29,477[m [32m[INFO ][m  [com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter] [33m[main][m- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+ -[36m2025/06/20 14:43:29,482[m [32m[INFO ][m  [org.springframework.boot.StartupInfoLogger] [33m[main][m- Started IamServiceApplication in 1.44 seconds (process running for 1.663)
+ -[36m2025/06/20 14:43:29,499[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:7 ClientConnectionId: 1b218890-b9a9-4a8d-a8ef-e6d981c31641
+ -[36m2025/06/20 14:43:29,548[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:8 ClientConnectionId: 106e5a78-a63c-4ae4-9ce4-27910ce91f38
+ -[36m2025/06/20 14:43:29,591[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:9 ClientConnectionId: 201b7d60-6b1b-494e-92dd-e59609452234
+ -[36m2025/06/20 14:43:29,629[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator] [33m[HikariPool-1 connection adder][m- HikariPool-1 - Added connection ConnectionID:10 ClientConnectionId: dc2d78bc-9f3c-4f47-b9b7-fb1a0c066118
+ -[36m2025/06/20 14:43:29,641[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 connection adder][m- HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:43:59,218[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:43:59,220[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:43:59,220[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:44:29,221[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:44:29,222[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:44:29,223[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:44:59,226[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:44:59,226[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:44:59,227[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:45:29,230[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:45:29,232[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:45:29,232[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:45:59,236[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:45:59,236[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:45:59,237[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:46:29,241[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:46:29,242[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:46:29,242[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:46:35,035[m [32m[INFO ][m  [org.apache.juli.logging.DirectJDKLog] [33m[http-nio-0.0.0.0-1111-exec-1][m- Initializing Spring DispatcherServlet 'dispatcherServlet'
+ -[36m2025/06/20 14:46:35,035[m [32m[INFO ][m  [org.springframework.web.servlet.FrameworkServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Initializing Servlet 'dispatcherServlet'
+ -[36m2025/06/20 14:46:35,035[m [34m[DEBUG][m  [org.springframework.web.servlet.DispatcherServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Detected StandardServletMultipartResolver
+ -[36m2025/06/20 14:46:35,035[m [34m[DEBUG][m  [org.springframework.web.servlet.DispatcherServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Detected AcceptHeaderLocaleResolver
+ -[36m2025/06/20 14:46:35,035[m [34m[DEBUG][m  [org.springframework.web.servlet.DispatcherServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Detected FixedThemeResolver
+ -[36m2025/06/20 14:46:35,036[m [34m[DEBUG][m  [org.springframework.web.servlet.DispatcherServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4abbe20e
+ -[36m2025/06/20 14:46:35,036[m [34m[DEBUG][m  [org.springframework.web.servlet.DispatcherServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Detected org.springframework.web.servlet.support.SessionFlashMapManager@7baa1eab
+ -[36m2025/06/20 14:46:35,036[m [34m[DEBUG][m  [org.springframework.web.servlet.FrameworkServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+ -[36m2025/06/20 14:46:35,036[m [32m[INFO ][m  [org.springframework.web.servlet.FrameworkServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Completed initialization in 1 ms
+ -[36m2025/06/20 14:46:35,041[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMapping] [33m[http-nio-0.0.0.0-1111-exec-1][m- Mapped to com.joa.remote.iamservice.web.AuthController#remotelogin(LoginRemoteDto, HttpServletRequest)
+ -[36m2025/06/20 14:46:35,045[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- POST "/v1/remotelogin", parameters={}
+ -[36m2025/06/20 14:46:35,046[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMapping] [33m[http-nio-0.0.0.0-1111-exec-1][m- Mapped to com.joa.remote.iamservice.web.AuthController#remotelogin(LoginRemoteDto, HttpServletRequest)
+ -[36m2025/06/20 14:46:35,077[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- Read "application/json;charset=utf-8" to [LoginRemoteDto(UserPhone=01099068228, UserName=null, UserPass=1, AppVer=1.0.0, RegLat=, RegLong=, Pr (truncated)...]
+ -[36m2025/06/20 14:46:35,079[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > X-Forwarded-For : null
+ -[36m2025/06/20 14:46:35,079[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > X-Real-IP : null
+ -[36m2025/06/20 14:46:35,080[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > Proxy-Client-IP : null
+ -[36m2025/06/20 14:46:35,080[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- >  WL-Proxy-Client-IP : null
+ -[36m2025/06/20 14:46:35,080[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > HTTP_CLIENT_IP : null
+ -[36m2025/06/20 14:46:35,080[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > HTTP_X_FORWARDED_FOR : null
+ -[36m2025/06/20 14:46:35,080[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > getRemoteAddr : 192.168.3.38
+ -[36m2025/06/20 14:46:35,080[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- > Result : IP Address : 192.168.3.38
+ -[36m2025/06/20 14:46:35,133[m [32m[INFO ][m  [com.joa.remote.iamservice.service.impl.AuthService] [33m[http-nio-0.0.0.0-1111-exec-1][m- ✅ UserRemoteInfo retrieved via SQL: com.joa.remote.iamservice.dto.UserRemoteInfo@c1f8a10[
+  AppCert=000000000000000000000
+  AppID=GAS_EYE
+  AppSno=0
+  AreaCode=<null>
+  AreaName=<null>
+  AuthStatus=Y
+  CMngName=고경준 주식회사
+  CMngNo=0002
+  CurrentDateTime=2025-06-20 14:46:35.173
+  Role=USER
+  SwCd=<null>
+  SwName=<null>
+  UserEmail=
+  UserName=홍길동
+  UserNo=0000000173
+  UserPhone=01099068228
+]
+ -[36m2025/06/20 14:46:35,173[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor] [33m[http-nio-0.0.0.0-1111-exec-1][m- Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+ -[36m2025/06/20 14:46:35,174[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-1][m- Writing [com.joa.remote.iamservice.common.core.CommonResponse@7d9999b1]
+ -[36m2025/06/20 14:46:35,178[m [34m[DEBUG][m  [org.springframework.web.servlet.FrameworkServlet] [33m[http-nio-0.0.0.0-1111-exec-1][m- Completed 200 OK
+ -[36m2025/06/20 14:46:59,246[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:46:59,246[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:46:59,247[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:47:28,081[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMapping] [33m[http-nio-0.0.0.0-1111-exec-3][m- Mapped to com.joa.remote.iamservice.web.AuthController#remotelogin(LoginRemoteDto, HttpServletRequest)
+ -[36m2025/06/20 14:47:28,082[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- GET "/v1/remotelogin", parameters={}
+ -[36m2025/06/20 14:47:28,082[m [34m[DEBUG][m  [org.springframework.web.servlet.handler.AbstractHandlerMapping] [33m[http-nio-0.0.0.0-1111-exec-3][m- Mapped to com.joa.remote.iamservice.web.AuthController#remotelogin(LoginRemoteDto, HttpServletRequest)
+ -[36m2025/06/20 14:47:28,083[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- Read "application/json;charset=UTF-8" to [LoginRemoteDto(UserPhone=010-9906-8228, UserName=null, UserPass=1, AppVer=1.1.1, RegLat=37.711110001 (truncated)...]
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > X-Forwarded-For : null
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > X-Real-IP : null
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > Proxy-Client-IP : null
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- >  WL-Proxy-Client-IP : null
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > HTTP_CLIENT_IP : null
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > HTTP_X_FORWARDED_FOR : null
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > getRemoteAddr : 127.0.0.1
+ -[36m2025/06/20 14:47:28,083[m [32m[INFO ][m  [com.joa.remote.iamservice.common.utils.HttpServletUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- > Result : IP Address : 127.0.0.1
+ -[36m2025/06/20 14:47:28,107[m [32m[INFO ][m  [com.joa.remote.iamservice.service.impl.AuthService] [33m[http-nio-0.0.0.0-1111-exec-3][m- ✅ UserRemoteInfo retrieved via SQL: com.joa.remote.iamservice.dto.UserRemoteInfo@2fc359aa[
+  AppCert=000000000000000000000
+  AppID=GAS_EYE
+  AppSno=0
+  AreaCode=<null>
+  AreaName=<null>
+  AuthStatus=Y
+  CMngName=고경준 주식회사
+  CMngNo=0002
+  CurrentDateTime=2025-06-20 14:47:28.153
+  Role=USER
+  SwCd=<null>
+  SwName=<null>
+  UserEmail=
+  UserName=홍길동
+  UserNo=0000000173
+  UserPhone=01099068228
+]
+ -[36m2025/06/20 14:47:28,125[m [34m[DEBUG][m  [org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor] [33m[http-nio-0.0.0.0-1111-exec-3][m- Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+ -[36m2025/06/20 14:47:28,125[m [34m[DEBUG][m  [org.springframework.core.log.LogFormatUtils] [33m[http-nio-0.0.0.0-1111-exec-3][m- Writing [com.joa.remote.iamservice.common.core.CommonResponse@26b3b9ed]
+ -[36m2025/06/20 14:47:28,125[m [34m[DEBUG][m  [org.springframework.web.servlet.FrameworkServlet] [33m[http-nio-0.0.0.0-1111-exec-3][m- Completed 200 OK
+ -[36m2025/06/20 14:47:29,248[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:47:29,249[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:47:29,249[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:47:59,252[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:47:59,253[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:47:59,253[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:48:29,255[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:48:29,255[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:48:29,256[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:48:59,259[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:48:59,260[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:48:59,260[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:49:29,263[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:49:29,264[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:49:29,264[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:49:59,267[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:49:59,268[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:49:59,268[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+ -[36m2025/06/20 14:50:29,274[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Before cleanup stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:50:29,274[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - After cleanup  stats (total=10, active=0, idle=10, waiting=0)
+ -[36m2025/06/20 14:50:29,274[m [34m[DEBUG][m  [com.zaxxer.hikari.pool.HikariPool] [33m[HikariPool-1 housekeeper][m- HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
  -
